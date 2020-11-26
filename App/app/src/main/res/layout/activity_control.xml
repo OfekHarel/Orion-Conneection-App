@@ -22,18 +22,6 @@
         app:layout_constraintGuide_end="24dp" />
 
     <ImageButton
-        android:id="@+id/power_control_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
-        app:layout_constraintStart_toStartOf="@+id/guidline_right"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121"
-        app:srcCompat="@drawable/power_on_widget" />
-
-    <ImageButton
         android:id="@+id/control_back_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,5 +34,29 @@
         app:layout_constraintVertical_bias="0.027"
         app:srcCompat="@drawable/back_btn_widget" />
 
+    <ImageButton
+        android:id="@+id/power_control_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
+        app:layout_constraintStart_toStartOf="@+id/guidline_right"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.11"
+        app:srcCompat="@drawable/power_on_widget" />
+
+    <ImageButton
+        android:id="@+id/other_power_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="@+id/guidline_right"
+        app:layout_constraintTop_toBottomOf="@+id/power_control_btn"
+        app:layout_constraintVertical_bias="0.103"
+        app:srcCompat="@drawable/other" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

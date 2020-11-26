@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name=".RoutinesActivity"></activity>
+        <activity android:name=".OtherPowerOptionsActivity"></activity>
+        <activity android:name=".RoutinesActivity" />
         <activity android:name=".PcInfoActivity" />
         <activity android:name=".InfoActivity" />
         <activity android:name=".ControlActivity" />

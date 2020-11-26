@@ -1,29 +1,26 @@
 package com.app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageButton;
 
 import com.app.activitytools.BaseActive;
 
-public class ControlActivity extends AppCompatActivity implements BaseActive {
+public class OtherPowerOptionsActivity extends AppCompatActivity implements BaseActive {
 
-    private ImageButton backBtn;
-    private  ImageButton powerOptionsBtn;
+    ImageButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_control);
+        setContentView(R.layout.activity_other_power_options);
 
-        backBtn = findViewById(R.id.control_back_btn);
+        backBtn = findViewById(R.id.other_power_options_back_btn);
         backBtn.setOnClickListener(v -> activitiesSwitcher(Activities.BACK));
-
-        powerOptionsBtn = findViewById(R.id.other_power_options);
-        powerOptionsBtn.setOnClickListener(v -> activitiesSwitcher(Activities.OTHER_POWR_OPTION));
-
     }
 
     @Override
@@ -32,20 +29,21 @@ public class ControlActivity extends AppCompatActivity implements BaseActive {
             Intent intent = null;
             switch ((Activities) a) {
                 case BACK:
-                    intent = new Intent(this, MainActivity.class);
+                    intent = new Intent(this, ControlActivity.class);
                     break;
-                case OTHER_POWR_OPTION:
-                    intent = new Intent(this, OtherPowerOptionsActivity.class);
-                    break;
-
             }
             startActivity(intent);
         }
     }
 
     enum Activities implements BaseActivities {
-        BACK,
-        OTHER_POWR_OPTION;
+        BACK;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @Override
@@ -53,4 +51,5 @@ public class ControlActivity extends AppCompatActivity implements BaseActive {
         super.finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
+
 }

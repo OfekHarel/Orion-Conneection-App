@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
-import com.app.activity_tools.BaseActive;
+import com.app.activitytools.BaseActive;
 
 public class MainActivity extends AppCompatActivity implements BaseActive {
 
@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements BaseActive {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 
         controlBtn = findViewById(R.id.control_btn);
         controlBtn.setOnClickListener(v -> activitiesSwitcher(Activities.CONTROL));
@@ -52,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements BaseActive {
                 case ROUTINES:
                     intent = new Intent(this, RoutinesActivity.class);
                     break;
-
             }
             startActivity(intent);
         }
@@ -63,5 +63,10 @@ public class MainActivity extends AppCompatActivity implements BaseActive {
         INFO,
         PC_INFO,
         ROUTINES;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

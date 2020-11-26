@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_grey"
-    tools:context=".PcInfoActivity">
+    tools:context=".OtherPowerOptionsActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidline_right"
@@ -22,7 +22,7 @@
         app:layout_constraintGuide_end="24dp" />
 
     <ImageButton
-        android:id="@+id/pc_info_btn_back_btn"
+        android:id="@+id/other_power_options_back_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/transparent"

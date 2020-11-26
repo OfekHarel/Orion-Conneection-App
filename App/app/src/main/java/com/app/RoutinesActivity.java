@@ -2,13 +2,45 @@ package com.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
 
-public class RoutinesActivity extends AppCompatActivity {
+import com.app.activitytools.BaseActive;
+
+public class RoutinesActivity extends AppCompatActivity implements BaseActive {
+
+    private ImageButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routines);
+
+        backBtn = findViewById(R.id.routines_back_btn);
+        backBtn.setOnClickListener(v -> activitiesSwitcher(Activities.BACK));
+    }
+
+    @Override
+    public void activitiesSwitcher(Object a) {
+        if (a instanceof BaseActivities) {
+            Intent intent = null;
+            switch ((Activities) a) {
+                case BACK:
+                    intent = new Intent(this, MainActivity.class);
+                    break;
+            }
+            startActivity(intent);
+        }
+    }
+
+    enum Activities implements BaseActivities {
+        BACK;
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }
