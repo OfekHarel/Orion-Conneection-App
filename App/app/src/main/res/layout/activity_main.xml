@@ -43,10 +43,10 @@
         android:scaleY="0.9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidline_left"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@+id/guidline_right"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269"
+        app:layout_constraintVertical_bias="0.304"
         app:srcCompat="@drawable/control_widget" />
 
     <ImageButton
