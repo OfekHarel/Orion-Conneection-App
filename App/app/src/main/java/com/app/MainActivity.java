@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements BaseActive {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 
         controlBtn = findViewById(R.id.control_btn);
         controlBtn.setOnClickListener(v -> activitiesSwitcher(Activities.CONTROL));
