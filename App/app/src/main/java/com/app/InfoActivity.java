@@ -10,15 +10,12 @@ import com.app.activitytools.BaseActive;
 
 public class InfoActivity extends AppCompatActivity implements BaseActive {
 
-    private ImageButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
-
-        backBtn = findViewById(R.id.info_back_btn);
-        backBtn.setOnClickListener(v -> activitiesSwitcher(Activities.BACK));
+        setTitle(R.string.info_panel);
     }
 
     @Override
@@ -26,8 +23,7 @@ public class InfoActivity extends AppCompatActivity implements BaseActive {
         if (a instanceof BaseActivities) {
             Intent intent = null;
             switch ((Activities) a) {
-                case BACK:
-                    intent = new Intent(this, MainActivity.class);
+                case NULL:
                     break;
             }
             startActivity(intent);
@@ -35,7 +31,7 @@ public class InfoActivity extends AppCompatActivity implements BaseActive {
     }
 
     enum Activities implements BaseActivities {
-        BACK;
+        NULL
     }
 
     @Override

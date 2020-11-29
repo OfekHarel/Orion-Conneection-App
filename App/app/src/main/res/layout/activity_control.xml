@@ -22,19 +22,6 @@
         app:layout_constraintGuide_end="24dp" />
 
     <ImageButton
-        android:id="@+id/control_back_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.027"
-        app:srcCompat="@drawable/back_btn_widget" />
-
-    <ImageButton
         android:id="@+id/power_control_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +30,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guidline_left"
         app:layout_constraintStart_toStartOf="@+id/guidline_right"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11"
+        app:layout_constraintVertical_bias="0.041"
         app:srcCompat="@drawable/power_on_widget" />
 
     <ImageButton
@@ -53,10 +40,89 @@
         android:background="@color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidline_left"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="@+id/guidline_right"
         app:layout_constraintTop_toBottomOf="@+id/power_control_btn"
-        app:layout_constraintVertical_bias="0.103"
+        app:layout_constraintVertical_bias="0.112"
         app:srcCompat="@drawable/other" />
+
+    <ImageButton
+        android:id="@+id/play_pause_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
+        app:layout_constraintStart_toStartOf="@+id/guidline_right"
+        app:layout_constraintTop_toBottomOf="@+id/other_power_options"
+        app:layout_constraintVertical_bias="0.203"
+        app:srcCompat="@drawable/play_pause" />
+
+    <ImageButton
+        android:id="@+id/rewind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/play_pause_btn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guidline_right"
+        app:layout_constraintTop_toBottomOf="@+id/other_power_options"
+        app:layout_constraintVertical_bias="0.222"
+        app:srcCompat="@drawable/rewind_song" />
+
+    <ImageButton
+        android:id="@+id/skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/play_pause_btn"
+        app:layout_constraintTop_toBottomOf="@+id/other_power_options"
+        app:layout_constraintVertical_bias="0.222"
+        app:srcCompat="@drawable/skip_song" />
+
+    <ImageButton
+        android:id="@+id/mute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/guidline_right"
+        app:layout_constraintTop_toBottomOf="@+id/play_pause_btn"
+        app:layout_constraintVertical_bias="0.321"
+        app:srcCompat="@drawable/mute" />
+
+    <ImageButton
+        android:id="@+id/vol_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
+        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintStart_toStartOf="@+id/guidline_right"
+        app:layout_constraintTop_toBottomOf="@+id/skip"
+        app:layout_constraintVertical_bias="0.443"
+        app:srcCompat="@drawable/vol_up" />
+
+    <ImageButton
+        android:id="@+id/vol_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guidline_right"
+        app:layout_constraintTop_toBottomOf="@+id/rewind"
+        app:layout_constraintVertical_bias="0.447"
+        app:srcCompat="@drawable/vol_down" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

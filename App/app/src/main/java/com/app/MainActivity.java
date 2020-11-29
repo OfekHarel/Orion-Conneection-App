@@ -64,9 +64,4 @@ public class MainActivity extends AppCompatActivity implements BaseActive {
         PC_INFO,
         ROUTINES;
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 }

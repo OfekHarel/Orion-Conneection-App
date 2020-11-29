@@ -21,17 +21,41 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="24dp" />
 
-    <ImageButton
-        android:id="@+id/pc_info_btn_back_btn"
+    <ImageView
+        android:id="@+id/cpu_temp_back_plate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidline_left"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/guidline_right"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.027"
-        app:srcCompat="@drawable/back_btn_widget" />
+        app:layout_constraintVertical_bias="0.04"
+        app:srcCompat="@drawable/back_plate" />
+
+    <ImageView
+        android:id="@+id/gpu_temp_back_plate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/guidline_right"
+        app:layout_constraintTop_toBottomOf="@+id/cpu_temp_back_plate"
+        app:layout_constraintVertical_bias="0.149"
+        app:srcCompat="@drawable/back_plate" />
+
+    <ImageButton
+        android:id="@+id/specs_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
+        app:layout_constraintStart_toStartOf="@+id/guidline_right"
+        app:layout_constraintTop_toBottomOf="@+id/gpu_temp_back_plate"
+        app:srcCompat="@drawable/specs" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

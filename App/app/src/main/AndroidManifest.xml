@@ -9,11 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name=".OtherPowerOptionsActivity"></activity>
-        <activity android:name=".RoutinesActivity" />
-        <activity android:name=".PcInfoActivity" />
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".ControlActivity" />
+        <activity android:name=".OtherPowerOptionsActivity"
+            android:parentActivityName=".ControlActivity"/>
+        <activity android:name=".RoutinesActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".PcInfoActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".InfoActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".ControlActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

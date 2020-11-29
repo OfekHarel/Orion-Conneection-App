@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Orion Connection</string>
+    <string name="control_panel">Control</string>
+    <string name="info_panel">Information</string>
+    <string name="pc_info_panel">PC Info</string>
+    <string name="routines_panel">Routines</string>
+    <string name="powe_opt">Other Power Options</string>
+
 </resources>
