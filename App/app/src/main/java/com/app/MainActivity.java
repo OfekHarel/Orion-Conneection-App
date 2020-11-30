@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
-import com.app.activitytools.BaseActive;
+import java.io.IOException;
+
+import networking.util.Constants;
+import networking.util.sockets.BroadcastSocket;
 
 public class MainActivity extends AppCompatActivity implements BaseActive {
 
@@ -14,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements BaseActive {
     private ImageButton infoBtn;
     private ImageButton pcInfoBtn;
     private ImageButton routinesBtn;
-
+    private BroadcastSocket broadcastSocket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,13 @@ public class MainActivity extends AppCompatActivity implements BaseActive {
 
         routinesBtn = findViewById(R.id.routines_btn);
         routinesBtn.setOnClickListener(v -> activitiesSwitcher(Activities.ROUTINES));
+
+        try {
+            broadcastSocket = new BroadcastSocket(Constants.NetworkParams.BROAD_PORT, Constants.NetworkParams.BROAD_IP);
+            broadcastSocket.recv();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -4,9 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageButton;
-
-import com.app.activitytools.BaseActive;
 
 public class InfoActivity extends AppCompatActivity implements BaseActive {
 

@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
-import com.app.activitytools.BaseActive;
-
 public class ControlActivity extends AppCompatActivity implements BaseActive {
 
     private  ImageButton powerOptionsBtn;
