@@ -35,6 +35,6 @@ public class ControlActivity extends AppCompatActivity implements BaseActive {
     }
 
     enum Activities implements BaseActivities {
-        OTHER_POWR_OPTION;
+        OTHER_POWR_OPTION, INFO;
     }
 }

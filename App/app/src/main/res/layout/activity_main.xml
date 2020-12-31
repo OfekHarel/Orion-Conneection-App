@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home_bg"
 
     tools:context=".MainActivity">
 
@@ -23,91 +22,26 @@
         app:layout_constraintGuide_end="24dp" />
 
     <ImageView
-        android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_width="616dp"
+        android:layout_height="915dp"
+        app:srcCompat="@drawable/backmain"
+        tools:layout_editor_absoluteX="-103dp"
+        tools:layout_editor_absoluteY="-44dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="174dp"
+        android:layout_height="106dp"
+        android:background="@color/transparent"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidline_left"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidline_right"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.008"
-        app:srcCompat="@drawable/d_ico" />
-
-
-    <ImageButton
-        android:id="@+id/control_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:background="@color/transparent"
-        android:scaleX="0.9"
-        android:scaleY="0.9"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="@+id/guidline_right"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304"
-        app:srcCompat="@drawable/control_widget" />
-
-    <ImageButton
-        android:id="@+id/pc_info_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:scaleX="0.9"
-        android:scaleY="0.9"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
-        app:layout_constraintStart_toStartOf="@+id/guidline_right"
-        app:layout_constraintTop_toBottomOf="@+id/control_btn"
-        app:layout_constraintVertical_bias="0.08"
-        app:srcCompat="@drawable/pc_info_widget" />
-
-    <ImageButton
-        android:id="@+id/routines_btn"
-        android:layout_width="136dp"
-        android:layout_height="135dp"
-        android:background="@color/transparent"
-        android:scaleX="0.97"
-        android:scaleY="0.97"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="@+id/guidline_right"
-        app:layout_constraintTop_toBottomOf="@+id/pc_info_btn"
-        app:layout_constraintVertical_bias="0.196"
-        app:srcCompat="@drawable/routines_widget" />
-
-    <ImageButton
-        android:id="@+id/info_btn"
-        android:layout_width="59dp"
-        android:layout_height="68dp"
-        android:background="@color/transparent"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guidline_right"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_menu_info_details" />
-
-    <ImageButton
-        android:id="@+id/connect_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:scaleX="1.48"
-        android:scaleY="1.47"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidline_left"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:layout_constraintVertical_bias="0.372"
+        app:srcCompat="@drawable/plus" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
