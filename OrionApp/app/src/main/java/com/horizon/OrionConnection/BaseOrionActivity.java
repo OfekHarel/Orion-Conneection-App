@@ -3,6 +3,7 @@ package com.horizon.OrionConnection;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -29,7 +30,7 @@ public class BaseOrionActivity extends AppCompatActivity {
         closeDrawer();
     }
 
-    protected void closeDrawer() {
+    public void closeDrawer() {
         if(this.menu.isDrawerOpen(GravityCompat.START)) {
             this.menu.closeDrawer(GravityCompat.START);
         }
@@ -55,7 +56,7 @@ public class BaseOrionActivity extends AppCompatActivity {
         redirectActv(this, About.class);
     }
 
-    private void redirectActv(AppCompatActivity activity, Class aClass ) {
+    protected void redirectActv(AppCompatActivity activity, Class aClass ) {
         Intent intent = new Intent(activity, aClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);

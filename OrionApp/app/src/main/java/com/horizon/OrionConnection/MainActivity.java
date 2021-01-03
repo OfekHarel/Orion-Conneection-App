@@ -1,10 +1,6 @@
 package com.horizon.OrionConnection;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,7 +19,7 @@ public class MainActivity extends BaseOrionActivity {
         closeDrawer();
     }
 
-    public void clickAdd(View view) {
-
+    public void clickPair(View view) {
+        redirectActv(this, Pair.class);
     }
 }
