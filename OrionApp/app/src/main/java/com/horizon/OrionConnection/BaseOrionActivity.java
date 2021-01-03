@@ -41,7 +41,7 @@ public class BaseOrionActivity extends AppCompatActivity {
     }
 
     public void clickGroups(View view) {
-        redirectActv(this, Groups.class);
+        redirectActv(this, Control.class);
     }
 
     public void clickRoutines(View view) {
