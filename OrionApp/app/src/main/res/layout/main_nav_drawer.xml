@@ -19,7 +19,7 @@
         android:text="Orion Connection"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="23sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <View
@@ -43,12 +43,15 @@
             android:text="Home"
             android:padding="12dp"
             android:textColor="@color/white"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:textSize="20sp"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
+            android:scaleY="1.2"
+            android:scaleX="1.2"
             android:src="@drawable/ic_home"/>
     </LinearLayout>
 
@@ -66,12 +69,15 @@
             android:text="Groups"
             android:textColor="@color/white"
             android:padding="12dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:textSize="20sp"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
+            android:scaleY="1.2"
+            android:scaleX="1.2"
             android:src="@drawable/ic_group"/>
     </LinearLayout>
 
@@ -89,12 +95,15 @@
             android:text="Routines"
             android:textColor="@color/white"
             android:padding="12dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:textSize="20sp"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
+            android:scaleY="1.1"
+            android:scaleX="1.1"
             android:src="@drawable/ic_schedule"/>
     </LinearLayout>
 
@@ -112,12 +121,15 @@
             android:text="Settings"
             android:textColor="@color/white"
             android:padding="12dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:textSize="20sp"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
+            android:scaleY="1.1"
+            android:scaleX="1.1"
             android:src="@drawable/ic_settings"/>
     </LinearLayout>
 
@@ -135,12 +147,15 @@
             android:text="About"
             android:textColor="@color/white"
             android:padding="12dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:textSize="20sp"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
+            android:scaleY="1.1"
+            android:scaleX="1.1"
             android:src="@drawable/ic_about" />
     </LinearLayout>
 

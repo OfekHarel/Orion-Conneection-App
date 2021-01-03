@@ -1,6 +1,5 @@
 package com.horizon.OrionConnection;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;

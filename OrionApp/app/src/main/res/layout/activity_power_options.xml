@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer"
-    tools:context=".About"
+    tools:context=".PowerOptions"
     android:background="@drawable/grad_background">
 
     <LinearLayout
@@ -17,27 +17,13 @@
         <include layout="@layout/main_toolbar" />
 
         <TextView
-            android:paddingVertical="20dp"
-            android:paddingHorizontal="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/info_text"
+            android:layout_height="match_parent"
+            android:text="PowerOptions"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textSize="50sp"
             android:textStyle="bold"
-            android:gravity="start" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingHorizontal="15dp"
-            android:autoLink="web"
-            android:text="@string/github_link"
-            android:textColor="@color/link_color"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
+            android:gravity="center"/>
     </LinearLayout>
 
     <RelativeLayout

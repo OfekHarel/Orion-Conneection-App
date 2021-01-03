@@ -10,4 +10,5 @@
     <color name="app_grey">#2D2D2D</color>
     <color name="app_white">#EBEBEB</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="link_color">#0066CC</color>
 </resources>

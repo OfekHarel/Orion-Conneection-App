@@ -3,7 +3,6 @@ package com.horizon.OrionConnection;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -40,6 +39,7 @@ public class BaseOrionActivity extends AppCompatActivity {
         redirectActv(this, MainActivity.class);
     }
 
+    // TODO: change
     public void clickGroups(View view) {
         redirectActv(this, Control.class);
     }

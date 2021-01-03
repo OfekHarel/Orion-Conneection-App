@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OrionApp">
-        <activity android:name=".Control"></activity>
+        <activity android:name=".PCInfo"></activity>
+        <activity android:name=".PowerOptions" />
+        <activity android:name=".Control" />
         <activity android:name=".Pair" />
         <activity android:name=".About" />
         <activity android:name=".Settings" />
