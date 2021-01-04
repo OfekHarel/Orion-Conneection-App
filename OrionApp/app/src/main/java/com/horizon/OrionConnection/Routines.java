@@ -16,4 +16,8 @@ public class Routines extends BaseOrionActivity {
     public void clickRoutines(View view) {
         closeDrawer();
     }
+
+    public void clickAdd(View view) {
+        redirectActv(this, NewRoutine.class);
+    }
 }

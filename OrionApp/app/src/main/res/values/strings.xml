@@ -3,11 +3,19 @@
     <string name="title_activity_base">Base</string>
     <string name="password_valid_chars">
         abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 123456789</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
-    <string name="info_text">By the development of: Ofek Harel (AKA Horizon).<br/>Year: 2020 and 2021.<br/><br/> This software is part of the Orion Connection tools that allows<br/> to use the computer as if it was an I.O.T device.<br/>This Project created using Java and XML.<br/><br/>For further info go to my GitHub:</string>
+    <string name="info_text">By the development of: Ofek Harel (AKA Horizon).\nYear: 2020 and 2021.\n\nThis software is part of the Orion Connection tools that allows\nto use the computer as if it was an I.O.T device.\nThis Project created using Java and XML.\n\nFor further info go to my GitHub:</string>
     <string name="github_link"> https://github.com/OfekHarel</string>
+    <string-array name="Spinner_Actions">
+        <item>Volume Up</item>
+        <item>Volume down</item>
+        <item>Mute</item>
+        <item>Next</item>
+        <item>Previous</item>
+        <item>Pause Play Toggle</item>
+        <item>Power Off</item>
+        <item>Power On</item>
+        <item>Sleep</item>
+        <item>Lock</item>
+        <item>Restart</item>
+    </string-array>
 </resources>

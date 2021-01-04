@@ -13,13 +13,4 @@
         android:onClick="clickMenu"
         android:src="@drawable/ic_menu"/>
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="Orion Connection"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="@color/app_white"/>
 </LinearLayout>
