@@ -2,4 +2,5 @@
 <resources>
     <integer name="id_length">4</integer>
     <integer name="password_length">8</integer>
+    <integer name="PC_length">15</integer>
 </resources>

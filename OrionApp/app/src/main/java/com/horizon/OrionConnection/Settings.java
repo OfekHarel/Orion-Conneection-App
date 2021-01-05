@@ -16,4 +16,10 @@ public class Settings extends BaseOrionActivity {
     public void clickSettings(View view) {
         closeDrawer();
     }
+
+    public void clickDeleteCon(View view) {
+    }
+
+    public void clickDeleteGroups(View view) {
+    }
 }

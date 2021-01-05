@@ -97,18 +97,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="PC Name"
-                android:inputType="number"
+                android:inputType="textCapWords"
+                android:digits="@string/password_valid_chars"
                 android:background="@color/transparent"
                 android:textCursorDrawable="@drawable/type_cursor"
                 android:maxLength="70"
-                android:textColor="@color/app_white"/>
+                android:textColor="@color/app_white"
+                android:text="My PC"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/confirm_btn"
-            android:digits="@string/password_valid_chars"
             android:layout_gravity="center_horizontal"
             android:onClick="clickConfirm"/>
 

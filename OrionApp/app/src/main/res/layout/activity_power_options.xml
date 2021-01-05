@@ -16,14 +16,94 @@
 
         <include layout="@layout/main_toolbar" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="PowerOptions"
-            android:textColor="@color/white"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="50dp"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:onClick="clickRestart"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:background="@drawable/ripple">
+
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
+                    android:src="@drawable/ic_restart" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Restart"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/app_white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+        </LinearLayout>
+
+       <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="50dp"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:onClick="clickRestart"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:background="@drawable/ripple">
+
+           <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
+                    android:src="@drawable/ic_sleep" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sleep"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/app_white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="50dp"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:onClick="clickLock"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:background="@drawable/ripple">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:src="@drawable/ic_lock" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lock"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/app_white"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout

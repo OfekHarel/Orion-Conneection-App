@@ -40,7 +40,8 @@
             android:text="@string/github_link"
             android:textColor="@color/link_color"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:background="@drawable/ripple"/>
 
     </LinearLayout>
 

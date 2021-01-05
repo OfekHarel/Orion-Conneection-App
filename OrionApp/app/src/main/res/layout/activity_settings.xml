@@ -17,13 +17,43 @@
         <include layout="@layout/main_toolbar" />
 
         <TextView
+            android:paddingVertical="22dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Settings"
-            android:textColor="@color/white"
-            android:textSize="50sp"
+            android:textColor="@color/app_white"
+            android:textSize="32sp"
             android:textStyle="bold"
-            android:gravity="center"/>
+            android:gravity="center_horizontal"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="35dp"
+            android:background="@color/app_white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="35dp"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="80dp"
+            android:layout_marginVertical="50dp"
+            android:text="Delete all singleConnections"
+            android:onClick="clickDeleteCon"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete all groups"
+            android:onClick="clickDeleteGroups"/>
+
+    </LinearLayout>
+
 
     </LinearLayout>
 

@@ -39,9 +39,8 @@ public class BaseOrionActivity extends AppCompatActivity {
         redirectActv(this, MainActivity.class);
     }
 
-    // TODO: change
     public void clickGroups(View view) {
-        redirectActv(this, Control.class);
+        redirectActv(this, Groups.class);
     }
 
     public void clickRoutines(View view) {

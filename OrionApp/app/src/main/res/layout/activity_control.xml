@@ -16,151 +16,118 @@
 
         <include layout="@layout/main_toolbar" />
 
-
-        <TableLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="40dp"
-            android:paddingVertical="40dp">
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:paddingHorizontal="20dp">
+            android:layout_gravity="center"
+            android:onClick="clickPowerToggle"
+            android:scaleX="2.3"
+            android:scaleY="2.3"
+            android:layout_marginVertical="50dp"
+            android:background="@drawable/ripple"
+            android:src="@drawable/ic_power" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="170dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:onClick="clickPowerToggle"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"
-                    android:src="@drawable/ic_power" />
-            </TableRow>
-        </TableLayout>
-
-        <TableLayout
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="40dp">
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="40dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginVertical="10dp">
 
-            <TableRow
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="40dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleX="1.7"
-                    android:scaleY="1.7"
-                    android:src="@drawable/ic_previous"
-                    android:layout_weight="1"
-                    android:layout_gravity="start"
-                    android:onClick="clickPrev"/>
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:onClick="clickMute"
-                    android:scaleX="1.7"
-                    android:scaleY="1.7"
-                    android:src="@drawable/ic_pause" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleX="1.7"
-                    android:scaleY="1.7"
-                    android:src="@drawable/ic_next"
-                    android:layout_weight="1"
-                    android:layout_gravity="end"
-                    android:onClick="clickNext"/>
-
-
-            </TableRow>
-
-            <TableRow
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="25dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:src="@drawable/ic_volume_down"
-                    android:layout_weight="1"
-                    android:layout_gravity="start"
-                    android:onClick="clickVolDown" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:onClick="clickMute"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:src="@drawable/ic_volume_off" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_weight="1"
-                    android:onClick="clickVolUp"
-                    tools:translationX="-2dp"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:src="@drawable/ic_volume_up" />
-
-            </TableRow>
-        </TableLayout>
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="40dp"
-            android:paddingVertical="15dp">
-
-            <TableRow
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingVertical="40dp">
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:src="@drawable/ic_previous"
+                android:layout_gravity="start"
+                android:onClick="clickPrev"
+                android:background="@drawable/ripple" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:scaleX="1"
-                    android:scaleY="1"
-                    android:src="@drawable/other_pow_btn"
-                    android:onClick="clickPowerOpt"/>
-            </TableRow>
-
-            <TableRow
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingVertical="10dp">
+                android:layout_gravity="center"
+                android:onClick="clickMute"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:src="@drawable/ic_pause"
+                android:background="@drawable/ripple"
+                android:layout_marginHorizontal="70dp"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:scaleX="1"
-                    android:scaleY="1"
-                    android:src="@drawable/pc_info_btn"
-                    android:onClick="clickPcInfo"/>
-            </TableRow>
-        </TableLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:src="@drawable/ic_next"
+                android:layout_gravity="end"
+                android:onClick="clickNext"
+                android:background="@drawable/ripple" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:src="@drawable/ic_volume_down"
+                android:layout_gravity="start"
+                android:onClick="clickVolDown"
+                android:background="@drawable/ripple"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="clickMute"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:src="@drawable/ic_volume_off"
+                android:background="@drawable/ripple"
+                android:layout_marginHorizontal="70dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:onClick="clickVolUp"
+                tools:translationX="-2dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:src="@drawable/ic_volume_up"
+                android:background="@drawable/ripple"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:src="@drawable/other_pow_btn"
+            android:onClick="clickPowerOpt"
+            android:layout_marginVertical="50dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:src="@drawable/pc_info_btn"
+            android:onClick="clickPcInfo"
+            android:layout_marginVertical="15dp"/>
     </LinearLayout>
 
     <RelativeLayout
