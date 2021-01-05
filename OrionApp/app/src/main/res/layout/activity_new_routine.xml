@@ -16,12 +16,34 @@
 
         <include layout="@layout/main_toolbar" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Device / Group:"
+                android:textSize="18dp"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:textColor="@color/app_white"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/device_spinner"
+                android:paddingVertical="30dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/routine_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="50dp"
-            android:paddingVertical="40dp"
+            android:paddingVertical="17dp"
             app:errorEnabled="true"
             android:layout_gravity="center"
             android:textColorHint="@color/app_white"
@@ -64,77 +86,55 @@
                 android:textColor="@color/app_white"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
-        android:paddingHorizontal="30dp">
-
-        <TableRow
+        <TextView
+            android:paddingVertical="15dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="Actions"
+            android:textColor="@color/app_white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="70dp"
+            android:layout_gravity="center"/>
 
-            <TextView
-                android:paddingVertical="15dp"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="35dp"
+            android:background="@color/app_white"/>
+
+        <ListView
+            android:id="@+id/actions_list"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center_vertical"
+            android:dividerHeight="5dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="35dp"
+            android:background="@color/app_white"
+            android:paddingVertical="10dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Actions"
-                android:textColor="@color/app_white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"/>
+                android:onClick="clickConfirm"
+                android:layout_marginVertical="20dp"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:src="@drawable/confirm_btn" />
 
-        </TableRow>
+        </RelativeLayout>
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="50dp"
-                android:background="@color/app_white"
-                android:layout_weight="1"/>
-
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Action:"
-                android:textSize="20sp"
-                android:layout_weight="0.25"
-                android:textColor="@color/app_white"/>
-
-            <Spinner
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/Spinner_Actions"
-                android:textAlignment="center"
-                android:layout_weight="0.75" />
-        </TableRow>
-    </TableLayout>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/confirm_btn"
-            android:layout_marginVertical="100dp"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
-            android:layout_gravity="center_horizontal"
-            android:onClick="clickConfirm"/>
 
     </LinearLayout>
 

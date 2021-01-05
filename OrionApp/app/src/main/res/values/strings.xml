@@ -8,6 +8,7 @@
     <string name="github_link"> https://github.com/OfekHarel</string>
 
     <string-array name="Spinner_Actions">
+        <item>None</item>
         <item>Volume Up</item>
         <item>Volume down</item>
         <item>Mute</item>

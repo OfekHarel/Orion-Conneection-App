@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="80dp"
             android:layout_marginVertical="50dp"
-            android:text="Delete all singleConnections"
+            android:text="Delete all Connections"
             android:onClick="clickDeleteCon"/>
 
         <Button
