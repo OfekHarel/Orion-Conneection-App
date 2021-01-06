@@ -16,6 +16,22 @@
 
         <include layout="@layout/home_toolbar" />
 
+        <TextView
+            android:paddingVertical="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Devices"
+            android:textColor="@color/app_white"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="35dp"
+            android:background="@color/app_white"/>
+
         <ListView
             android:id="@+id/main_list"
             android:layout_width="match_parent"

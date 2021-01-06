@@ -1,13 +1,21 @@
 package com.horizon.utils;
 
+import android.util.Log;
+
+import com.horizon.OrionConnection.Groups;
+import com.horizon.utils.conn.GroupConnection;
 import com.horizon.utils.conn.SingleConnection;
 import com.horizon.utils.routine.Routine;
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public class Data {
 
   public static Data inst = null;
   private static ArrayList<SingleConnection> connections;
+  private static ArrayList<GroupConnection> groupConnections;
   private static ArrayList<Routine> routines;
 
   private Data() {}
@@ -16,6 +24,7 @@ public class Data {
     if (inst == null) {
       inst = new Data();
       connections = new ArrayList<SingleConnection>();
+      groupConnections = new ArrayList<GroupConnection>();
       routines = new ArrayList<Routine>();
     }
     return inst;
@@ -25,8 +34,16 @@ public class Data {
     return connections;
   }
 
+  public ArrayList<GroupConnection> getGroupConnections() {
+    return groupConnections;
+  }
+
   public void addConnection(SingleConnection c) {
     connections.add(c);
+  }
+
+  public void addConnection(GroupConnection c) {
+    groupConnections.add(c);
   }
 
   public SingleConnection getConnectionName(String name) {
@@ -47,23 +64,16 @@ public class Data {
     return null;
   }
 
-  public ArrayList<String> getConnectionsAsStrings() {
-    ArrayList<String> arrayList = new ArrayList<>();
-    for (int i = 0; i < getConnections().size(); i++) {
-      arrayList.add(connections.get(i).getName());
-    }
-    return arrayList;
-  }
-
-  public ArrayList<Routine> getRoutines() {
-    return routines;
-  }
-
-  public void addRoutine(Routine r) {
-    routines.add(r);
-  }
-
   public void eraseConnections() {
-    connections.clear();
+    connections.clear();;
+  }
+
+  public ArrayList<String> getGroupsAsStringArr() {
+    ArrayList<String> arr = new ArrayList<>();
+    for (int i = 0; i < groupConnections.size(); i++) {
+      arr.add(groupConnections.get(i).getName());
+      Log.i("BLLLLLLLLLaaahh", groupConnections.get(i).getName());
+    }
+    return arr;
   }
 }

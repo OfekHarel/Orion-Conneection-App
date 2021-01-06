@@ -1,6 +1,6 @@
 package com.horizon.utils.conn;
 
-public class SingleConnection {
+public class SingleConnection extends Connection {
 
   private String name;
   private boolean isGroup;
@@ -10,11 +10,6 @@ public class SingleConnection {
     this.id = id;
     this.name = name;
     this.isGroup = false;
-  }
-
-  public SingleConnection(String name) {
-    this.name = name;
-    this.isGroup = true;
   }
 
   public String getName() {

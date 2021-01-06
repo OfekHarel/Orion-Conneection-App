@@ -1,10 +1,12 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 import com.horizon.utils.Data;
+import com.horizon.utils.Vars;
 import com.horizon.utils.conn.SingleConnection;
 import java.util.Objects;
 
@@ -67,11 +69,13 @@ public class Pair extends BaseOrionActivity {
     if (nameInput.isEmpty()) {
       name.setError(getResources().getString(R.string.empty_error));
       return false;
-    } else if (Data.getInstance().getConnectionName(nameInput) != null) {
+    } else if ((Data.getInstance().getConnectionName(nameInput) != null) ||
+            (Vars.isFromGroup && Vars.newGroup.isExist(nameInput))) {
       name.setError(
         "This name " + getResources().getString(R.string.taken_error)
       );
       return false;
+
     } else {
       name.setError(null);
       return true;
@@ -122,11 +126,17 @@ public class Pair extends BaseOrionActivity {
         this.passwordInfo,
         this.nameInfo
       );
-      Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-      Data
-        .getInstance()
-        .addConnection(new SingleConnection(this.nameInfo, this.idInfo));
-      redirectActv(this, MainActivity.class);
+
+      SingleConnection connection = new SingleConnection(this.nameInfo, this.idInfo);
+
+      if (Vars.isFromGroup) {
+        redirectActv(this, PairGroup.class);
+        Vars.newGroup.add(connection);
+      } else {
+        redirectActv(this, MainActivity.class);
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+        Data.getInstance().addConnection(connection);
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 package com.horizon.utils.routine;
 
-import com.horizon.utils.conn.SingleConnection;
+import com.horizon.utils.conn.Connection;
 import java.util.Date;
 
 public class Routine {
@@ -8,18 +8,21 @@ public class Routine {
   private String[] actions;
   private String name;
   private Date time;
-  private SingleConnection singleConnection;
+  private String [] days;
+  private Connection connection;
 
   public Routine(
     String[] actions,
     String name,
     Date time,
-    SingleConnection singleConnection
+    Connection connection,
+    String[] days
   ) {
     this.actions = actions;
     this.name = name;
     this.time = time;
-    this.singleConnection = singleConnection;
+    this.connection = connection;
+    this.days = days;
   }
 
   public String[] getActions() {
@@ -34,8 +37,8 @@ public class Routine {
     return time;
   }
 
-  public SingleConnection getSingleConnection() {
-    return singleConnection;
+  public Connection getSingleConnection() {
+    return connection;
   }
 
   public void setActions(String[] actions) {
@@ -48,9 +51,5 @@ public class Routine {
 
   public void setTime(Date time) {
     this.time = time;
-  }
-
-  public void setSingleConnection(SingleConnection singleConnection) {
-    this.singleConnection = singleConnection;
   }
 }

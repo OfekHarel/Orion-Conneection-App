@@ -15,8 +15,8 @@ public class MainActivity extends BaseOrionActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
     this.menu = findViewById(R.id.drawer);
+
     this.listView = findViewById(R.id.main_list);
     this.listadpt =
       new ConnectionListAdapter(
@@ -33,7 +33,7 @@ public class MainActivity extends BaseOrionActivity {
   }
 
   public void clickPair(View view) {
-    redirectActv(this, Pair.class);
+    redirectActv(this, Add.class);
   }
 
   public void clickControl(View view) {
