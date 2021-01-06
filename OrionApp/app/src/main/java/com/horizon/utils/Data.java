@@ -8,9 +8,6 @@ import com.horizon.utils.conn.SingleConnection;
 import com.horizon.utils.routine.Routine;
 import java.util.ArrayList;
 
-/**
- *
- */
 public class Data {
 
   public static Data inst = null;

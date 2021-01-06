@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.horizon.OrionConnection">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,11 +13,11 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.OrionApp">
-        <activity android:name=".PairGroup"></activity>
-        <activity android:name=".Add"></activity>
+        <activity android:name=".PairGroup" />
+        <activity android:name=".Add" />
         <activity
             android:name=".NewRoutine"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PCInfo"
             android:screenOrientation="portrait" />

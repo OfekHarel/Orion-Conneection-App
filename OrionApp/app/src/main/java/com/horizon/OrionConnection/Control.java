@@ -2,7 +2,10 @@ package com.horizon.OrionConnection;
 
 import android.os.Bundle;
 import android.view.View;
-import androidx.appcompat.app.AppCompatActivity;
+
+import com.horizon.networking.Executioner;
+
+import java.io.IOException;
 
 public class Control extends BaseOrionActivity {
 
@@ -21,7 +24,8 @@ public class Control extends BaseOrionActivity {
 
   public void clickVolDown(View view) {}
 
-  public void clickVolUp(View view) {}
+  public void clickVolUp(View view) {
+  }
 
   public void clickPowerOpt(View view) {
     redirectActv(this, PowerOptions.class);
