@@ -11,4 +11,5 @@
     <color name="app_white">#EBEBEB</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="link_color">#0066CC</color>
+    <color name="error_color">#E12800</color>
 </resources>

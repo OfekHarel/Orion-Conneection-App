@@ -42,14 +42,23 @@ public class Data {
     connections.add(c);
   }
 
-  public void addConnection(GroupConnection c) {
-    groupConnections.add(c);
-  }
+  public void addConnection(GroupConnection c) { groupConnections.add(c); }
+
+  public void addConnections(GroupConnection c) { connections.addAll(c.getList()); }
 
   public SingleConnection getConnectionName(String name) {
     for (int i = 0; i < connections.size(); i++) {
       if (connections.get(i).getName().equals(name)) {
         return connections.get(i);
+      }
+    }
+    return null;
+  }
+
+  public GroupConnection getGroupConnectionName(String name) {
+    for (int i = 0; i < groupConnections.size(); i++) {
+      if (groupConnections.get(i).getName().equals(name)) {
+        return groupConnections.get(i);
       }
     }
     return null;

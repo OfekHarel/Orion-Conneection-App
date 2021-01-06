@@ -16,11 +16,59 @@
 
         <include layout="@layout/main_toolbar" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Devices"
+                android:textSize="20dp"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/app_white"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_layout"
+                android:text="Add"
+                android:layout_marginVertical="20dp"
+                android:layout_gravity="center"
+                android:onClick="clickAdd"
+                android:scaleX="0.7"
+                android:scaleY="0.7"/>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="35dp"
+            android:background="@color/app_white"/>
+
+        <ListView
+            android:id="@+id/new_connection_group_list"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center_vertical"
+            android:dividerHeight="5dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="35dp"
+            android:background="@color/app_white"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/new_group_pair_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="40dp"
+            android:padding="35dp"
             app:errorEnabled="true"
             app:counterTextColor="@color/app_white"
             android:textColorHint="@color/app_white"
@@ -43,41 +91,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_layout"
-            android:text="Add"
-            android:layout_gravity="center"
-            android:onClick="clickAdd"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="35dp"
-            android:background="@color/app_white"
-            android:layout_marginVertical="20dp"/>
-
-        <ListView
-            android:id="@+id/new_connection_group_list"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_gravity="center_vertical"
-            android:dividerHeight="5dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="35dp"
-            android:background="@color/app_white"
-            android:layout_marginVertical="20dp"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_layout"
             android:text="Done"
             android:layout_gravity="center"
             android:onClick="clickDone"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_error_add_group"
+            android:textSize="18sp"
+            android:layout_marginVertical="20dp"
+            android:textColor="@color/error_color"
+            android:textAlignment="center"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
