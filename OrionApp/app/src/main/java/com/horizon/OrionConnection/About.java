@@ -9,9 +9,13 @@ public class About extends BaseOrionActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_about);
+
     this.menu = findViewById(R.id.drawer);
   }
 
+  /*
+   * Override to make a more efficient case.
+   */
   @Override
   public void clickAbout(View view) {
     closeDrawer();

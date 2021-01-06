@@ -13,7 +13,22 @@ public class PowerOptions extends BaseOrionActivity {
     this.menu = findViewById(R.id.drawer);
   }
 
+  /**
+   * This function's responsible of what happens when the restart btn is pressed.
+   * @param view -
+   */
   public void clickRestart(View view) {}
 
+  /**
+   * This function's responsible of what happens when the lock btn is pressed.
+   * @param view -
+   */
   public void clickLock(View view) {}
+
+  /**
+   * This function's responsible of what happens when the sleep btn is pressed.
+   * @param view -
+   */
+  public void clickSleep(View view) {
+  }
 }
