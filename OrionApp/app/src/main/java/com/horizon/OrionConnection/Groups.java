@@ -2,6 +2,7 @@ package com.horizon.OrionConnection;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -27,6 +28,17 @@ public class Groups extends BaseOrionActivity {
             (this, R.layout.list_row,
                     Data.getInstance().getGroupsAsStringArr());
     this.listView.setAdapter(adapter);
+
+    /*
+     * This code is responsible of what happens when a group widget is pressed.
+     */
+    Groups instance = this;
+    this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long id) {
+        redirectActv(instance, Control.class);
+      }
+    });
   }
 
   /*
@@ -35,13 +47,5 @@ public class Groups extends BaseOrionActivity {
   @Override
   public void clickGroups(View view) {
     closeDrawer();
-  }
-
-  /**
-   * This function's responsible of what happens when a group widget is pressed.
-   * @param view -
-   */
-  public void clickGroup(View view) {
-    redirectActv(this, Control.class);
   }
 }
