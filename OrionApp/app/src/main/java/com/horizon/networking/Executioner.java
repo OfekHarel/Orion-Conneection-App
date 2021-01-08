@@ -17,14 +17,22 @@ public class Executioner {
     public boolean sync(String id, String compName) throws IOException {
         this.client.setName(compName);
         this.client.send(NetworkPackets.assamble("APP", Actions.ID_VALIDATION.getAsString(), id));
-        String val = NetworkPackets.split(this.client.recieve())[0];
-        boolean is = val.equals(NetworkPackets.IncomingOperations.VALID.getAsString());
-        if (is) {
-            this.client.send(NetworkPackets.assamble(compName));
+        
+        String val = "";
+        while (val == "") {
+            val = this.client.recieve();
         }
-        return is;
+        System.out.println("This is america " + val);
+        boolean is = NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.VALID.getAsString());
+        if (!is) {
+            System.out.println("one");
+            return false;
+        }
+        this.client.send(NetworkPackets.assamble(compName));
+        System.out.println("one3339");
+        val = this.client.recieve();
+        return true;
     }
-
 
     public enum Actions {
         VOL_UP("VOL_UP"),
@@ -42,7 +50,6 @@ public class Executioner {
         ID_VALIDATION("ID_VAL");
 
         private final String str;
-
         private Actions(String str) {
             this.str = str;
         }
@@ -51,4 +58,6 @@ public class Executioner {
             return str;
         }
     }
+
 }
+

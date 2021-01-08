@@ -3,6 +3,9 @@ package com.horizon.OrionConnection;
 import android.os.Bundle;
 import android.view.View;
 
+import com.horizon.networking.Executioner.Actions;
+import com.horizon.networking.NetRunnable;
+
 public class Control extends BaseOrionActivity {
 
   @Override
@@ -23,32 +26,41 @@ public class Control extends BaseOrionActivity {
    * This function's responsible of what happens when the previous btn is pressed.
    * @param view -
    */
-  public void clickPrev(View view) {}
+  public void clickPrev(View view) {
+    NetRunnable.msgact = Actions.PREV;
+  }
 
   /**
    * This function's responsible of what happens when the next btn is pressed.
    * @param view -
    */
-  public void clickNext(View view) {}
+  public void clickNext(View view) {
+    NetRunnable.msgact = Actions.SKIP;
+  }
 
   /**
    * This function's responsible of what happens when the volume down btn is pressed.
    * @param view -
    */
-  public void clickVolDown(View view) {}
+  public void clickVolDown(View view) {
+    NetRunnable.msgact = Actions.VOL_DOWN;
+  }
 
   /**
    * This function's responsible of what happens when the volume up btn is pressed.
    * @param view -
    */
-  public void clickVolUp(View view) { }
+  public void clickVolUp(View view) {
+    NetRunnable.msgact = Actions.VOL_UP;
+  }
 
   /**
    * This function's responsible of what happens when the mute btn is pressed.
    * @param view -
    */
-  public void clickMute(View view) {}
-
+  public void clickMute(View view) {
+    NetRunnable.msgact = Actions.MUTE;
+  }
 
   /**
    * This function's responsible of what happens when the power options btn is pressed.
@@ -64,5 +76,13 @@ public class Control extends BaseOrionActivity {
    */
   public void clickPcInfo(View view) {
     redirectActv(this, PCInfo.class);
+  }
+
+  /**
+   * This function's responsible of what happens when the ppt btn is pressed.
+   * @param view -
+   */
+  public void clickPausePlayToggle(View view) {
+    NetRunnable.msgact = Actions.PAUSE_PLAY_TOGGLE;
   }
 }

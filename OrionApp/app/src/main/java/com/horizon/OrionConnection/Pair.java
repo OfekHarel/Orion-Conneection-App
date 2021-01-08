@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
+import com.horizon.networking.NetRunnable;
 import com.horizon.utils.Data;
 import com.horizon.utils.Vars;
 import com.horizon.utils.conn.SingleConnection;
@@ -156,6 +157,8 @@ public class Pair extends BaseOrionActivity {
         Vars.newGroup.add(connection);
 
       } else {
+        NetRunnable.pair(this.idInfo, this.nameInfo);
+        MainActivity.t.start();
         redirectActv(this, MainActivity.class);
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         Data.getInstance().addConnection(connection);

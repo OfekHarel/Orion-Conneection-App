@@ -18,7 +18,8 @@ public final class NetworkPackets {
 
     public enum IncomingOperations {
         INVALID("INVALID"),
-        VALID("VALID");
+        VALID("VALID"),
+        PAIRED("HELLO");
 
         private final String msg;
         private IncomingOperations(String msg) {
