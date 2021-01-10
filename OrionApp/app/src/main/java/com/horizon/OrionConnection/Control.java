@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.horizon.networking.Executioner.Actions;
-import com.horizon.networking.NetRunnable;
+import com.horizon.networking.NetCommRunnable;
 
 public class Control extends BaseOrionActivity {
 
@@ -20,14 +20,16 @@ public class Control extends BaseOrionActivity {
    * This function's responsible of what happens when the main power btn is pressed.
    * @param view -
    */
-  public void clickPowerToggle(View view) {}
+  public void clickPowerToggle(View view) {
+    NetCommRunnable.msgact = Actions.OFF;
+  }
 
   /**
    * This function's responsible of what happens when the previous btn is pressed.
    * @param view -
    */
   public void clickPrev(View view) {
-    NetRunnable.msgact = Actions.PREV;
+    NetCommRunnable.msgact = Actions.PREV;
   }
 
   /**
@@ -35,7 +37,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickNext(View view) {
-    NetRunnable.msgact = Actions.SKIP;
+    NetCommRunnable.msgact = Actions.SKIP;
   }
 
   /**
@@ -43,7 +45,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickVolDown(View view) {
-    NetRunnable.msgact = Actions.VOL_DOWN;
+    NetCommRunnable.msgact = Actions.VOL_DOWN;
   }
 
   /**
@@ -51,7 +53,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickVolUp(View view) {
-    NetRunnable.msgact = Actions.VOL_UP;
+    NetCommRunnable.msgact = Actions.VOL_UP;
   }
 
   /**
@@ -59,7 +61,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickMute(View view) {
-    NetRunnable.msgact = Actions.MUTE;
+    NetCommRunnable.msgact = Actions.MUTE;
   }
 
   /**
@@ -83,6 +85,6 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickPausePlayToggle(View view) {
-    NetRunnable.msgact = Actions.PAUSE_PLAY_TOGGLE;
+    NetCommRunnable.msgact = Actions.PAUSE_PLAY_TOGGLE;
   }
 }

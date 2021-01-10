@@ -3,6 +3,8 @@ package com.horizon.OrionConnection;
 import android.os.Bundle;
 import android.view.View;
 
+import com.horizon.utils.SharedData;
+
 public class Settings extends BaseOrionActivity {
 
   @Override
@@ -25,11 +27,15 @@ public class Settings extends BaseOrionActivity {
    * This function's responsible of what happens when the delete connection btn is pressed.
    * @param view -
    */
-  public void clickDeleteCon(View view) {}
+  public void clickDeleteCon(View view) {
+    SharedData.getInstance(this).cleanSingle();
+  }
 
   /**
    * This function's responsible of what happens when the delete groups btn is pressed.
    * @param view -
    */
-  public void clickDeleteGroups(View view) {}
+  public void clickDeleteGroups(View view) {
+    SharedData.getInstance(this).cleanGroups();
+  }
 }

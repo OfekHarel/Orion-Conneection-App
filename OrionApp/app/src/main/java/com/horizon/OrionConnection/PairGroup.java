@@ -7,7 +7,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.horizon.utils.Data;
+import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 import com.horizon.utils.conn.GroupConnection;
 
@@ -59,9 +59,9 @@ public class PairGroup extends BaseOrionActivity {
             name.setError(getResources().getString(R.string.empty_error));
             return false;
 
-        } else if ((Data.getInstance().getConnectionName(nameInput) != null) ||
+        } else if ((SharedData.getInstance(this).getSingleConnectionByName(nameInput) != null) ||
                 (Vars.newGroup.isExist(nameInput) ||
-                        Data.getInstance().getGroupConnectionName(nameInput) != null)) {
+                    SharedData.getInstance(this).getGroupConnectionByName(nameInput) != null)) {
             // already exists considering the current devices added and the former once
             name.setError("This name " + getResources().getString(R.string.taken_error));
             return false;
@@ -109,8 +109,8 @@ public class PairGroup extends BaseOrionActivity {
         GroupConnection groupConnection =
                 new GroupConnection(this.name.getEditText().getText().toString(),
                         Vars.newGroup.getList());
-        Data.getInstance().addConnections(groupConnection);
-        Data.getInstance().addConnection(groupConnection);
+        SharedData.getInstance(this).addGroupToSingles(groupConnection);
+        SharedData.getInstance(this).addGroupConnections(groupConnection);
         Vars.newGroup.clear();
     }
 }

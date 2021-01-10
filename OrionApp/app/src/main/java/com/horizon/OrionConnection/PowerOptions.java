@@ -1,5 +1,8 @@
 package com.horizon.OrionConnection;
 
+import com.horizon.networking.Executioner.Actions;
+import com.horizon.networking.NetCommRunnable;
+
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,7 +20,10 @@ public class PowerOptions extends BaseOrionActivity {
    * This function's responsible of what happens when the restart btn is pressed.
    * @param view -
    */
-  public void clickRestart(View view) {}
+  public void clickRestart(View view) {
+    NetCommRunnable.msgact = Actions.RESTART;
+
+  }
 
   /**
    * This function's responsible of what happens when the lock btn is pressed.

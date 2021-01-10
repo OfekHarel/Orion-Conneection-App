@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
-import com.horizon.networking.NetRunnable;
-import com.horizon.utils.Data;
+import com.horizon.networking.NetCommRunnable;
+import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 import com.horizon.utils.conn.SingleConnection;
 import java.util.Objects;
@@ -64,7 +64,7 @@ public class Pair extends BaseOrionActivity {
       id.setError(getResources().getString(R.string.short_error));
       return false;
 
-    } else if (Data.getInstance().getConnectionByID(idInput) != null) { // not being used
+    } else if (SharedData.getInstance(this).getSingleConnectionByID(idInput) != null) { // not being used
       id.setError("This ID " + getResources().getString(R.string.taken_error));
       return false;
 
@@ -89,7 +89,7 @@ public class Pair extends BaseOrionActivity {
       name.setError(getResources().getString(R.string.empty_error));
       return false;
 
-    } else if ((Data.getInstance().getConnectionName(nameInput) != null) ||
+    } else if ((SharedData.getInstance(this).getSingleConnectionByName(nameInput) != null) ||
             (Vars.isFromGroup && Vars.newGroup.isExist(nameInput))) { // not being used
       name.setError("This name " + getResources().getString(R.string.taken_error));
       return false;
@@ -157,11 +157,18 @@ public class Pair extends BaseOrionActivity {
         Vars.newGroup.add(connection);
 
       } else {
-        NetRunnable.pair(this.idInfo, this.nameInfo);
+        NetCommRunnable.pair(this.idInfo, this.nameInfo);
         MainActivity.t.start();
+
+//        if (!SharedData.getInstance(this).getIsPaired()) {
+//          this.id.setError("Cannot Connect to this ID");
+//          MainActivity.t.interrupt();
+//          return;
+//        }
+
         redirectActv(this, MainActivity.class);
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-        Data.getInstance().addConnection(connection);
+        SharedData.getInstance(this).addSingleConnection(connection);
       }
     }
   }

@@ -11,6 +11,11 @@ public class GroupConnection extends Connection {
         this.list = list;
     }
 
+    public GroupConnection() {
+        this.name = "";
+        this.list = new ArrayList<SingleConnection>();
+    }
+
     public String getName() {
         return name;
     }

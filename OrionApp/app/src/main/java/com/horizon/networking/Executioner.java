@@ -11,7 +11,6 @@ public class Executioner {
 
     public void Execute(Actions action) throws IOException {
         this.client.send(NetworkPackets.assamble(this.client.getName(), action.getAsString()));
-        System.out.println(NetworkPackets.assamble(this.client.getName(), action.getAsString()));
     }
 
     public boolean sync(String id, String compName) throws IOException {
@@ -22,14 +21,11 @@ public class Executioner {
         while (val == "") {
             val = this.client.recieve();
         }
-        System.out.println("This is america " + val);
         boolean is = NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.VALID.getAsString());
         if (!is) {
-            System.out.println("one");
             return false;
         }
         this.client.send(NetworkPackets.assamble(compName));
-        System.out.println("one3339");
         val = this.client.recieve();
         return true;
     }

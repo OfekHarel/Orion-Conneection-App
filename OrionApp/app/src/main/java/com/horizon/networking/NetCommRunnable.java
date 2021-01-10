@@ -1,8 +1,16 @@
 package com.horizon.networking;
 
+import android.os.Bundle;
+import android.os.PersistableBundle;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.horizon.utils.SharedData;
+
 import java.io.IOException;
 
-public class NetRunnable implements Runnable {
+public class NetCommRunnable implements Runnable {
     private Client c;
     private Executioner e;
     private String msg = "";
@@ -19,9 +27,18 @@ public class NetRunnable implements Runnable {
     @Override
     public void run() {
         try {
-            c = new Client("192.168.1.34", 1690);
+            c = new Client();
             e = new Executioner(c);
             a = e.sync(id, name);
+
+//            AppCompatActivity appCompatActivity = new AppCompatActivity() {
+//                @Override
+//                public void onCreate(@Nullable Bundle savedInstanceState,
+//                                     @Nullable PersistableBundle persistentState) {
+//                    SharedData.getInstance(this).setIsPaired(a);
+//                }
+//            };
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,7 @@
 package com.horizon.networking;
 
+import android.util.Log;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,7 +15,10 @@ public class Client {
     private PrintWriter output;
     private String name = "Comp";
 
-    public Client(String ip, int port) throws IOException {
+    private final String ip = "192.168.1.10";
+    private final int port = 1690;
+
+    public Client() throws IOException {
         this.address = new InetSocketAddress(ip, port);
         this.clientSocket = new Socket(ip, port);
         this.output = new PrintWriter(this.clientSocket.getOutputStream());

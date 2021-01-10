@@ -1,12 +1,12 @@
 package com.horizon.OrionConnection;
 
+import com.horizon.utils.SharedData;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import com.horizon.utils.Data;
 
 public class Groups extends BaseOrionActivity {
 
@@ -24,9 +24,8 @@ public class Groups extends BaseOrionActivity {
      * List view init.
      */
     this.listView = findViewById(R.id.group_list);
-    this.adapter = new ArrayAdapter<>
-            (this, R.layout.list_row,
-                    Data.getInstance().getGroupsAsStringArr());
+    this.adapter = new ArrayAdapter<>(this, R.layout.list_row,
+                    SharedData.getInstance(this).getGroupsAsStringArr());
     this.listView.setAdapter(adapter);
 
     /*

@@ -4,15 +4,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
-import com.horizon.networking.NetRunnable;
-import com.horizon.utils.Data;
+import com.horizon.networking.NetCommRunnable;
+import com.horizon.utils.SharedData;
 import com.horizon.utils.conn.ConnectionListAdapter;
 
 public class MainActivity extends BaseOrionActivity {
 
   private ListView listView; // List view of the device list.
   private ConnectionListAdapter listadpt;
-  public static Thread t = new Thread(new NetRunnable());
+
+  public static Thread t = new Thread(new NetCommRunnable());
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,7 @@ public class MainActivity extends BaseOrionActivity {
     setContentView(R.layout.activity_main);
 
     this.menu = findViewById(R.id.drawer);
+    SharedData.getInstance(this).load();
 
     /*
      * List view init.
@@ -29,7 +31,7 @@ public class MainActivity extends BaseOrionActivity {
       new ConnectionListAdapter(
         this,
         R.layout.single_conn,
-        Data.getInstance().getConnections()
+        SharedData.getInstance(this).getSingleConnections()
       );
     this.listView.setAdapter(this.listadpt);
 
