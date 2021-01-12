@@ -50,4 +50,8 @@ public class Groups extends BaseOrionActivity {
   public void clickGroups(View view) {
     closeDrawer();
   }
+
+  public void clickAddGroup(View view) {
+    redirectActv(this, AddGroup.class);
+  }
 }

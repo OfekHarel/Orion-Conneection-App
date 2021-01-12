@@ -13,7 +13,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.OrionApp">
-        <activity android:name=".Offline"></activity>
+        <activity android:name=".AddGroup"></activity>
+        <activity android:name=".Offline" />
         <activity android:name=".PairGroup" />
         <activity android:name=".Add" />
         <activity
