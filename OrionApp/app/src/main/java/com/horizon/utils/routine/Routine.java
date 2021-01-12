@@ -3,6 +3,9 @@ package com.horizon.utils.routine;
 import com.horizon.utils.conn.Connection;
 import java.util.Date;
 
+/**
+ * A class to represent the Routine object type.
+ */
 public class Routine {
 
   private String[] actions;

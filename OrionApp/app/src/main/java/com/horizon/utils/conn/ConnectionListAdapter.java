@@ -13,6 +13,9 @@ import androidx.core.content.ContextCompat;
 import com.horizon.OrionConnection.R;
 import java.util.ArrayList;
 
+/**
+ * An adpter to present the single connection in a list view.
+ */
 public class ConnectionListAdapter extends ArrayAdapter<SingleConnection> {
 
   private Context context;

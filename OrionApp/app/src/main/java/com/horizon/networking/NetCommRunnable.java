@@ -1,11 +1,5 @@
 package com.horizon.networking;
 
-import android.os.Bundle;
-import android.os.PersistableBundle;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.io.IOException;
 
 public class NetCommRunnable implements Runnable {
@@ -46,7 +40,7 @@ public class NetCommRunnable implements Runnable {
             }
 
             try {
-                msg = c.recieve();
+                msg = c.receive();
             } catch (NumberFormatException | IOException e) {
                 e.printStackTrace();
             } finally {

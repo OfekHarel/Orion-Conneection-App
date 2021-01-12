@@ -164,7 +164,6 @@ public class Pair extends BaseOrionActivity {
         redirectActv(this, MainActivity.class);
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         SharedData.getInstance(this).addSingleConnection(connection);
-        Log.i("99999999999999",SharedData.getInstance(this).toString());
       }
     }
   }

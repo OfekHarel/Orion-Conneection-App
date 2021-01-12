@@ -2,6 +2,9 @@ package com.horizon.utils.conn;
 
 import java.util.ArrayList;
 
+/**
+ * A bunch of single connections that shown as one to control them as if they were one.
+ */
 public class GroupConnection extends Connection {
     private String name;
     private ArrayList<SingleConnection> list;

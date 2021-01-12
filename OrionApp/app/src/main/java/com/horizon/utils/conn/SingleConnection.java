@@ -1,5 +1,8 @@
 package com.horizon.utils.conn;
 
+/**
+ * A bond to represent a connection between one comp to an app.
+ */
 public class SingleConnection extends Connection {
 
   private String name;

@@ -1,13 +1,14 @@
 package com.horizon.networking;
 
-import android.util.Log;
-
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+/**
+ * A client to connect the server.
+ */
 public class Client {
     private Socket clientSocket;
     private InetSocketAddress address;
@@ -25,6 +26,11 @@ public class Client {
         this.input = new DataInputStream(this.clientSocket.getInputStream());
     }
 
+    /**
+     * Sends a msg through the network
+     * @param msg the msg to send
+     * @throws IOException -
+     */
     public void send(String msg) throws IOException {
         String length = String.format("%03d",msg.length());
         this.output.write(length);
@@ -36,7 +42,13 @@ public class Client {
         System.out.println("send: " + msg);
     }
 
-    public String recieve() throws NumberFormatException, IOException {
+    /**
+     * Receives a msf through the network.
+     * @return the received net msg.
+     * @throws NumberFormatException -
+     * @throws IOException -
+     */
+    public String receive() throws NumberFormatException, IOException {
         if (input.available() < 2) {
             return "";
         }

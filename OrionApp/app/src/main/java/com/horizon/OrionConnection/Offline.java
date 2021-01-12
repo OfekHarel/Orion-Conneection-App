@@ -21,16 +21,4 @@ public class Offline extends AppCompatActivity {
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
             return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
-
-//    private boolean isServerOnline() {
-//        Thread t = new Thread(new NetRunnable());
-//        t.start();
-//        boolean is = NetRunnable.isOnline;
-//        t.interrupt();
-//        return is;
-//    }
-//
-//    public boolean isOffline() {
-//        return  !isNetavilable() || !isServerOnline();
-//    }
 }
