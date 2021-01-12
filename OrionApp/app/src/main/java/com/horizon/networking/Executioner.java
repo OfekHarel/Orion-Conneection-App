@@ -29,7 +29,6 @@ public class Executioner {
         val = this.client.recieve();
         return true;
     }
-
     public enum Actions {
         VOL_UP("VOL_UP"),
         VOL_DOWN("VOL_DOWN"),
@@ -54,6 +53,5 @@ public class Executioner {
             return str;
         }
     }
-
 }
 

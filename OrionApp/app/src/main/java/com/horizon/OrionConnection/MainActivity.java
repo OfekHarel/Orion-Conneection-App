@@ -1,6 +1,7 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -22,6 +23,7 @@ public class MainActivity extends BaseOrionActivity {
 
     this.menu = findViewById(R.id.drawer);
     SharedData.getInstance(this).load();
+    Log.i("asssssssssssssssssssss",SharedData.getInstance(this).toString());
 
     /*
      * List view init.

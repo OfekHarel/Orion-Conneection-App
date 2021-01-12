@@ -1,6 +1,7 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
@@ -160,15 +161,10 @@ public class Pair extends BaseOrionActivity {
         NetCommRunnable.pair(this.idInfo, this.nameInfo);
         MainActivity.t.start();
 
-//        if (!SharedData.getInstance(this).getIsPaired()) {
-//          this.id.setError("Cannot Connect to this ID");
-//          MainActivity.t.interrupt();
-//          return;
-//        }
-
         redirectActv(this, MainActivity.class);
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         SharedData.getInstance(this).addSingleConnection(connection);
+        Log.i("99999999999999",SharedData.getInstance(this).toString());
       }
     }
   }

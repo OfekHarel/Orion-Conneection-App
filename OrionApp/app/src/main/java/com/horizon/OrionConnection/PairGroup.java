@@ -110,7 +110,7 @@ public class PairGroup extends BaseOrionActivity {
                 new GroupConnection(this.name.getEditText().getText().toString(),
                         Vars.newGroup.getList());
         SharedData.getInstance(this).addGroupToSingles(groupConnection);
-        SharedData.getInstance(this).addGroupConnections(groupConnection);
+        SharedData.getInstance(this).addGroupConnection(groupConnection);
         Vars.newGroup.clear();
     }
 }
