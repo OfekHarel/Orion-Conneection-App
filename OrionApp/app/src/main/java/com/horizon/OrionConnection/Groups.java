@@ -1,6 +1,7 @@
 package com.horizon.OrionConnection;
 
 import com.horizon.utils.SharedData;
+import com.horizon.utils.Vars;
 
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,8 @@ public class Groups extends BaseOrionActivity {
     this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long id) {
+        Vars.isFromGroup = true;
+        Vars.newGroup = SharedData.getInstance(instance).getGroupConnectionByName(adapter.getItem(arg2));
         redirectActv(instance, Control.class);
       }
     });

@@ -18,6 +18,16 @@ public class Control extends BaseOrionActivity {
     this.menu = findViewById(R.id.drawer);
   }
 
+  private void readyAct(Actions action) {
+    if (Vars.isFromGroup) {
+      for (int i = 0; i < Vars.newGroup.getList().size(); i++) {
+        Vars.newGroup.getList().get(i).getRunnable().setAction(action);
+      }
+    } else {
+      Vars.connection.getRunnable().setAction(action);
+    }
+  }
+
   /**
    * This function's responsible of what happens when the main power btn is pressed.
    * @param view -

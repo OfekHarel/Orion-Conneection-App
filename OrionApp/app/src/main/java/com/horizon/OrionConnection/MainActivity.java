@@ -43,6 +43,7 @@ public class MainActivity extends BaseOrionActivity {
       @Override
       public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long id) {
         Vars.connection = listadpt.getItem(arg2);
+        Vars.isFromGroup = false;
         redirectActv(instance, Control.class);
       }
     });

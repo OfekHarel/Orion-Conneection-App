@@ -1,7 +1,5 @@
 package com.horizon.networking;
 
-import android.util.Log;
-
 import java.io.IOException;
 import com.horizon.networking.Executioner.Actions;
 
@@ -26,7 +24,6 @@ public class NetCommRunnable implements Runnable {
     }
 
     public void setAction(Actions action) {
-        executeReady = true;
         act = action;
     }
 
