@@ -158,12 +158,10 @@ public class Pair extends BaseOrionActivity {
         Vars.newGroup.add(connection);
 
       } else {
-        NetCommRunnable.pair(this.idInfo, this.nameInfo);
-        MainActivity.t.start();
-
-        redirectActv(this, MainActivity.class);
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         SharedData.getInstance(this).addSingleConnection(connection);
+        connection.initConnection();
+        redirectActv(this, MainActivity.class);
       }
     }
   }

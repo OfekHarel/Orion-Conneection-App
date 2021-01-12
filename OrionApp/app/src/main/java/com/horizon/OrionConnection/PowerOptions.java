@@ -1,7 +1,7 @@
 package com.horizon.OrionConnection;
 
 import com.horizon.networking.Executioner.Actions;
-import com.horizon.networking.NetCommRunnable;
+import com.horizon.utils.Vars;
 
 import android.os.Bundle;
 import android.view.View;
@@ -21,8 +21,7 @@ public class PowerOptions extends BaseOrionActivity {
    * @param view -
    */
   public void clickRestart(View view) {
-    NetCommRunnable.msgact = Actions.RESTART;
-
+    Vars.connection.getRunnable().setAction(Actions.RESTART);
   }
 
   /**

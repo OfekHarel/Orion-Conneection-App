@@ -1,54 +1,79 @@
 package com.horizon.networking;
 
+import android.util.Log;
+
 import java.io.IOException;
+import com.horizon.networking.Executioner.Actions;
 
 public class NetCommRunnable implements Runnable {
-    private Client c;
-    private Executioner e;
-    private String msg = "";
-    private static String id = "";
-    private static String name = "";
-    public static boolean a = false;
-    public static Executioner.Actions msgact = null;
+    private Client client;
+    private Executioner executioner;
+    private String recvMsg = "";
 
-    public static void pair(String idInfo, String nameInfo) {
+    private Actions act;
+    private String id = "";
+    private String name = "";
+
+    private boolean synced = false;
+
+    public void pair(String idInfo, String nameInfo) {
         id = idInfo;
         name = nameInfo;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setAction(Actions action) {
+        executeReady = true;
+        act = action;
+    }
+
+    private void act() throws IOException {
+        if(this.act != null) {
+            executioner.Execute(this.act);
+            this.act = null;
+        }
+    }
+
+    public NetCommRunnable() {
+    }
+
     @Override
     public void run() {
+        /*
+         * Trying to connect
+         */
         try {
-            c = new Client();
-            e = new Executioner(c);
-            a = e.sync(id, name);
-
+            client = new Client();
+            executioner = new Executioner(client);
+            synced = executioner.sync(id, name);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        while (a) {
-            if (msgact != null) {
-                System.out.println("blah");
-                try {
-                    e.Execute(msgact);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    msgact = null;
-                }
+        /*
+         * Connected
+         */
+        while (synced) {
+            /*
+             * send
+             */
+            try {
+                act();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
+            /*
+             * recv
+             */
             try {
-                msg = c.receive();
+                recvMsg = client.receive();
             } catch (NumberFormatException | IOException e) {
                 e.printStackTrace();
-            } finally {
-                if (msg != "") {
-                    System.out.println("I GOT THIS " + msg);
-                }
             }
         }
-
     }
 }

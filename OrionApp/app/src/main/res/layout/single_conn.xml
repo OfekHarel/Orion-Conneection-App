@@ -6,7 +6,6 @@
     android:layout_gravity="center_horizontal"
     android:background="@drawable/conn_back"
     android:padding="12dp"
-    android:onClick="clickControl"
     >
     <LinearLayout
         android:orientation="horizontal"

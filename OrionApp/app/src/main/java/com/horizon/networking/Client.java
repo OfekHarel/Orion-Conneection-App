@@ -16,7 +16,7 @@ public class Client {
     private PrintWriter output;
     private String name = "Comp";
 
-    private final String ip = "192.168.1.10";
+    private final String ip = "192.168.1.34";
     private final int port = 1690;
 
     public Client() throws IOException {
@@ -39,7 +39,7 @@ public class Client {
 
         this.output.write(msg);
         this.output.flush();
-        System.out.println("send: " + msg);
+        System.out.println("se vcx cnd: " + msg);
     }
 
     /**

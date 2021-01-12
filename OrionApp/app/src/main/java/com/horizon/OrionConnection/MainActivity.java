@@ -3,18 +3,17 @@ package com.horizon.OrionConnection;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.horizon.networking.NetCommRunnable;
 import com.horizon.utils.SharedData;
+import com.horizon.utils.Vars;
 import com.horizon.utils.conn.ConnectionListAdapter;
 
 public class MainActivity extends BaseOrionActivity {
 
   private ListView listView; // List view of the device list.
   private ConnectionListAdapter listadpt;
-
-  public static Thread t = new Thread(new NetCommRunnable());
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +22,6 @@ public class MainActivity extends BaseOrionActivity {
 
     this.menu = findViewById(R.id.drawer);
     SharedData.getInstance(this).load();
-    Log.i("asssssssssssssssssssss",SharedData.getInstance(this).toString());
 
     /*
      * List view init.
@@ -37,7 +35,19 @@ public class MainActivity extends BaseOrionActivity {
       );
     this.listView.setAdapter(this.listadpt);
 
+    /*
+     * This code is responsible of what happens when a connection widget is pressed.
+     */
+    MainActivity instance = this;
+    this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long id) {
+        Vars.connection = listadpt.getItem(arg2);
+        redirectActv(instance, Control.class);
+      }
+    });
   }
+
 
   /*
    * Override to make a more efficient case.
@@ -53,13 +63,5 @@ public class MainActivity extends BaseOrionActivity {
    */
   public void clickPair(View view) {
     redirectActv(this, Add.class);
-  }
-
-  /**
-   * This function's responsible of what happens when a device widget is pressed.
-   * @param view -
-   */
-  public void clickControl(View view) {
-    redirectActv(this, Control.class);
   }
 }

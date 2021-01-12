@@ -1,5 +1,7 @@
 package com.horizon.networking;
 
+import android.util.Log;
+
 import java.io.IOException;
 
 /**
@@ -18,6 +20,7 @@ public class Executioner {
      * @throws IOException -
      */
     public void Execute(Actions action) throws IOException {
+        Log.i("ppppppppppppppppppppppppppppp", action.getAsString());
         this.client.send(NetworkPackets.assamble(this.client.getName(), action.getAsString()));
     }
 

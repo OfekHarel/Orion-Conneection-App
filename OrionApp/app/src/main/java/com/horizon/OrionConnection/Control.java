@@ -1,10 +1,12 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.horizon.networking.Executioner.Actions;
 import com.horizon.networking.NetCommRunnable;
+import com.horizon.utils.Vars;
 
 public class Control extends BaseOrionActivity {
 
@@ -21,7 +23,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickPowerToggle(View view) {
-    NetCommRunnable.msgact = Actions.OFF;
+    Vars.connection.getRunnable().setAction(Actions.OFF);
   }
 
   /**
@@ -29,7 +31,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickPrev(View view) {
-    NetCommRunnable.msgact = Actions.PREV;
+    Vars.connection.getRunnable().setAction(Actions.PREV);
   }
 
   /**
@@ -37,7 +39,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickNext(View view) {
-    NetCommRunnable.msgact = Actions.SKIP;
+    Vars.connection.getRunnable().setAction(Actions.SKIP);
   }
 
   /**
@@ -45,7 +47,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickVolDown(View view) {
-    NetCommRunnable.msgact = Actions.VOL_DOWN;
+    Vars.connection.getRunnable().setAction(Actions.VOL_DOWN);
   }
 
   /**
@@ -53,7 +55,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickVolUp(View view) {
-    NetCommRunnable.msgact = Actions.VOL_UP;
+    Vars.connection.getRunnable().setAction(Actions.VOL_UP);
   }
 
   /**
@@ -61,7 +63,15 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickMute(View view) {
-    NetCommRunnable.msgact = Actions.MUTE;
+    Vars.connection.getRunnable().setAction(Actions.MUTE);
+  }
+
+  /**
+   * This function's responsible of what happens when the ppt btn is pressed.
+   * @param view -
+   */
+  public void clickPausePlayToggle(View view) {
+    Vars.connection.getRunnable().setAction(Actions.PAUSE_PLAY_TOGGLE);
   }
 
   /**
@@ -78,13 +88,5 @@ public class Control extends BaseOrionActivity {
    */
   public void clickPcInfo(View view) {
     redirectActv(this, PCInfo.class);
-  }
-
-  /**
-   * This function's responsible of what happens when the ppt btn is pressed.
-   * @param view -
-   */
-  public void clickPausePlayToggle(View view) {
-    NetCommRunnable.msgact = Actions.PAUSE_PLAY_TOGGLE;
   }
 }

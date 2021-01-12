@@ -47,15 +47,9 @@ public class ConnectionListAdapter extends ArrayAdapter<SingleConnection> {
     textView.setText(name);
 
     ImageView imageView = convertView.findViewById(R.id.conn_image);
-    if (getItem(position).isGroup()) {
-      imageView.setImageDrawable(
-        ContextCompat.getDrawable(context, R.drawable.ic_group)
-      );
-    } else {
       imageView.setImageDrawable(
         ContextCompat.getDrawable(context, R.drawable.ic_computer)
       );
-    }
 
     return convertView;
   }
