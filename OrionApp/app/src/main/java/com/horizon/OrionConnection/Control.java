@@ -2,6 +2,7 @@ package com.horizon.OrionConnection;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.horizon.networking.Executioner.Actions;
 import com.horizon.utils.Vars;
@@ -30,9 +31,7 @@ public class Control extends BaseOrionActivity {
    * This function's responsible of what happens when the main power btn is pressed.
    * @param view -
    */
-  public void clickPowerToggle(View view) {
-    Vars.connection.getRunnable().setAction(Actions.OFF);
-  }
+  public void clickPowerToggle(View view) { Vars.connection.getRunnable().setAction(Actions.OFF); }
 
   /**
    * This function's responsible of what happens when the previous btn is pressed.
