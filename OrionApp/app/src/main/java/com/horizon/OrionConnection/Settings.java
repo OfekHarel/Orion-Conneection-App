@@ -38,4 +38,8 @@ public class Settings extends BaseOrionActivity {
   public void clickDeleteGroups(View view) {
     SharedData.getInstance(this).cleanGroups();
   }
+
+    public void clickDeleteRoutines(View view) {
+      SharedData.getInstance(this).cleanRoutines();
+    }
 }

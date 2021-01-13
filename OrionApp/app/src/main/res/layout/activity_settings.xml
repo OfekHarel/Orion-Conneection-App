@@ -41,7 +41,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="80dp"
             android:layout_marginVertical="50dp"
             android:text="Delete all Connections"
             android:onClick="clickDeleteCon"/>
@@ -51,6 +50,14 @@
             android:layout_height="wrap_content"
             android:text="Delete all groups"
             android:onClick="clickDeleteGroups"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete all routines"
+            android:layout_marginVertical="50dp"
+
+            android:onClick="clickDeleteRoutines"/>
 
     </LinearLayout>
 

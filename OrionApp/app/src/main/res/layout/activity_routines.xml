@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/main_toolbar" />
+        <include layout="@layout/routines_toolbar" />
 
         <TextView
             android:paddingVertical="28dp"
@@ -37,19 +37,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="35dp"
             android:layout_gravity="center_vertical"
             android:dividerHeight="12dp"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="200dp"
-            android:scaleX="0.8"
-            android:scaleY="0.8"
-            android:src="@drawable/add_btn"
-            android:onClick="clickAdd"/>
     </LinearLayout>
 
     <RelativeLayout

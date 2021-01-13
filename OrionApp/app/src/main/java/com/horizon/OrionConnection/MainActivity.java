@@ -5,10 +5,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 import com.horizon.utils.conn.ConnectionListAdapter;
+import com.horizon.utils.routine.Time;
 
 public class MainActivity extends BaseOrionActivity {
 
@@ -64,5 +66,9 @@ public class MainActivity extends BaseOrionActivity {
    */
   public void clickPair(View view) {
     redirectActv(this, Add.class);
+  }
+
+  public void clickEdit(View view) {
+
   }
 }

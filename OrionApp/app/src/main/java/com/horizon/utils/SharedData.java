@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.reflect.TypeToken;
+import com.horizon.utils.conn.Connection;
 import com.horizon.utils.conn.GroupConnection;
 
 import com.google.gson.Gson;
 import com.horizon.utils.conn.SingleConnection;
+import com.horizon.utils.routine.Routine;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class SharedData {
     private final String NAME = "mem";
     private final String SINGLE_CONNS = "singleConns";
     private final String GROUP_CONNS = "groupConns";
+    private final String ROUTINES = "routines";
 
     private final SharedPreferences sharedPreferences;
     private final SharedPreferences.Editor editor;
@@ -47,6 +50,7 @@ public class SharedData {
             this.editor.putBoolean(FIRST_TIME, false);
             this.editor.putString(this.SINGLE_CONNS, null);
             this.editor.putString(this.GROUP_CONNS, null);
+            this.editor.putString(this.ROUTINES, null);
             this.editor.apply();
         }
     }
@@ -254,5 +258,74 @@ public class SharedData {
         return "[Single: " + getSingleConnections().toString() +
                 "Groups:" + getGroupConnections().toString() +
                 "]";
+    }
+
+    /**
+     * Sets the routines entry.
+     * @param routines The new val to set to.
+     */
+    public void setRoutines(ArrayList<Routine> routines) {
+        String json = this.gson.toJson(routines);
+        this.editor.putString(this.ROUTINES, json);
+        this.editor.apply();
+    }
+
+    /**
+     * Adds a routine to the shared mem.
+     * @param routine - to connection to add
+     */
+    public void addRoutines(Routine routine) {
+        ArrayList<Routine> arrayList = getRoutines();
+        arrayList.add(routine);
+        this.setRoutines(arrayList);
+    }
+
+    /**
+     * @return The routine list.
+     */
+    public ArrayList<Routine> getRoutines() {
+        String json = this.sharedPreferences.getString(this.ROUTINES, null);
+        Type type = new TypeToken<ArrayList<Routine>>() {}.getType();
+        ArrayList<Routine> routines = this.gson.fromJson(json, type);
+        if (routines == null) {
+            routines = new ArrayList<Routine>();
+        }
+        return routines;
+    }
+
+    public ArrayList<String> getAllConnectionAsString() {
+        ArrayList<String> arr = getSinglesAsStringArr();
+        arr.addAll(getGroupsAsStringArr());
+        return arr;
+    }
+
+    public Connection getConnectionByName(String name) {
+        GroupConnection g = getGroupConnectionByName(name);
+        SingleConnection s = getSingleConnectionByName(name);
+
+        if (g != null && s != null) {
+            return null;
+        }
+        else if (s != null) {
+            return s;
+        } else return g;
+    }
+
+    /**
+     * @return The routines name as a String list.
+     */
+    public ArrayList<String> getRoutinesAsArrayString() {
+        ArrayList<String> arr = new ArrayList<>();
+        ArrayList<Routine> conns = getRoutines();
+        for (int i = 0; i < conns.size(); i++) {
+            arr.add(conns.get(i).getName());
+        }
+        return arr;
+    }
+
+    public void cleanRoutines() {
+        this.editor.remove(ROUTINES);
+        this.editor.putString(ROUTINES, null);
+        this.editor.apply();
     }
 }

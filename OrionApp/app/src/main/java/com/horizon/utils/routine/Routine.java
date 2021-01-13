@@ -1,58 +1,45 @@
 package com.horizon.utils.routine;
 
 import com.horizon.utils.conn.Connection;
-import java.util.Date;
 
 /**
  * A class to represent the Routine object type.
  */
 public class Routine {
 
-  private String[] actions;
+  private String action;
   private String name;
-  private Date time;
-  private String [] days;
+  private Time time;
   private Connection connection;
 
-  public Routine(
-    String[] actions,
-    String name,
-    Date time,
-    Connection connection,
-    String[] days
-  ) {
-    this.actions = actions;
+  public Routine(String action, String name, Time time, Connection connection) {
+    this.action = action;
     this.name = name;
     this.time = time;
     this.connection = connection;
-    this.days = days;
   }
 
-  public String[] getActions() {
-    return actions;
+  public String getActions() {
+    return action;
   }
 
   public String getName() {
     return name;
   }
 
-  public Date getTime() {
-    return time;
-  }
-
   public Connection getSingleConnection() {
     return connection;
   }
 
-  public void setActions(String[] actions) {
-    this.actions = actions;
+  public void setActions(String action) {
+    this.action = action;
   }
 
   public void setName(String name) {
     this.name = name;
   }
 
-  public void setTime(Date time) {
-    this.time = time;
+  public Time getTime() {
+    return time;
   }
 }

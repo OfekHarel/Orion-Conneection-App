@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:padding="12dp"
     android:gravity="center_vertical">
@@ -26,14 +26,14 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="clickEdit"
+        android:onClick="clickEditRoutine"
         android:paddingHorizontal="10dp"
         android:src="@drawable/ic_edit"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="clickPair"
+        android:onClick="clickAddRoutine"
         android:paddingHorizontal="10dp"
         android:src="@drawable/ic_add"/>
 </LinearLayout>

@@ -1,11 +1,9 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.horizon.networking.Executioner.Actions;
-import com.horizon.networking.NetCommRunnable;
 import com.horizon.utils.Vars;
 
 public class Control extends BaseOrionActivity {
