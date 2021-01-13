@@ -13,7 +13,10 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.OrionApp">
-        <activity android:name=".AddGroup"></activity>
+        <activity android:name=".EditRoutines"></activity>
+        <activity android:name=".EditGroups" />
+        <activity android:name=".EditMainConnection" />
+        <activity android:name=".AddGroup" />
         <activity android:name=".Offline" />
         <activity android:name=".PairGroup" />
         <activity android:name=".Add" />

@@ -214,14 +214,22 @@ public class SharedData {
     }
 
     /**
+     * @param nameInput the name to check.
+     * @return The Single Connection that own the same name as the val, if not Null.
+     */
+    public GroupConnection getGroupConnectionByName(String nameInput) {
+        return getGroupConnectionByName(nameInput, getGroupConnections());
+    }
+
+
+    /**
      * @param nameInput the id to check.
      * @return The Group Connection that own the same name as the val, if not Null.
      */
-    public GroupConnection getGroupConnectionByName(String nameInput) {
-        ArrayList<GroupConnection> conns = getGroupConnections();
-        for (int i = 0; i < conns.size(); i++) {
-            if(nameInput.equals(conns.get(i).getName())) {
-                return conns.get(i);
+    public GroupConnection getGroupConnectionByName(String nameInput, ArrayList<GroupConnection> arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            if(nameInput.equals(arr.get(i).getName())) {
+                return arr.get(i);
             }
         }
         return null;
@@ -327,5 +335,54 @@ public class SharedData {
         this.editor.remove(ROUTINES);
         this.editor.putString(ROUTINES, null);
         this.editor.apply();
+    }
+
+    public void cleanSingle(ArrayList<SingleConnection> toDelete) {
+        ArrayList<SingleConnection> arr = getSingleConnections();
+        for (int i = 0; i < arr.size(); i++) {
+            for (int j = 0; j < toDelete.size(); j++) {
+                if (arr.get(i).getID().equals(toDelete.get(j).getID())) {
+                    arr.remove(i);
+                }
+            }
+        }
+        setSingleConnections(arr);
+    }
+
+    public void cleanGroups(ArrayList<GroupConnection> toDelete) {
+        ArrayList<GroupConnection> arr = getGroupConnections();
+        for (int i = 0; i < arr.size(); i++) {
+            for (int j = 0; j < toDelete.size(); j++) {
+                if (arr.get(i).getName().equals(toDelete.get(j).getName())) {
+                    arr.remove(i);
+                }
+            }
+        }
+        setGroupConnections(arr);
+    }
+
+    public void cleanRoutines(ArrayList<Routine> toDelete) {
+        ArrayList<Routine> arr = getRoutines();
+        for (int i = 0; i < arr.size(); i++) {
+            for (int j = 0; j < toDelete.size(); j++) {
+                if (arr.get(i).getName().equals(toDelete.get(j).getName())) {
+                    arr.remove(i);
+                }
+            }
+        }
+        setRoutines(arr);
+    }
+
+    public Routine getRoutineConnectionByName(String nameInput, ArrayList<Routine> arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            if(nameInput.equals(arr.get(i).getName())) {
+                return arr.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Routine getRoutineConnectionByName(String nameInput) {
+        return getRoutineConnectionByName(nameInput, getRoutines());
     }
 }

@@ -56,6 +56,7 @@ public class Groups extends BaseOrionActivity {
   }
 
   public void clickEditGroups(View view) {
+    redirectActv(this, EditGroups.class);
 
   }
 }

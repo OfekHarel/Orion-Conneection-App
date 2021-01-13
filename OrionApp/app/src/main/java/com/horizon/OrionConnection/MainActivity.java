@@ -69,6 +69,6 @@ public class MainActivity extends BaseOrionActivity {
   }
 
   public void clickEdit(View view) {
-
+      redirectActv(this, EditMainConnection.class);
   }
 }

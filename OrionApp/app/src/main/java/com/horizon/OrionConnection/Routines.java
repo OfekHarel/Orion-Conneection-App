@@ -42,6 +42,6 @@ public class Routines extends BaseOrionActivity {
   }
 
   public void clickEditRoutine(View view) {
-
+    redirectActv(this, EditRoutines.class);
   }
 }
