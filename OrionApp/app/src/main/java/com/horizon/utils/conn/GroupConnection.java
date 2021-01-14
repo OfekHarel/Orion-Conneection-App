@@ -1,5 +1,8 @@
 package com.horizon.utils.conn;
 
+import com.horizon.networking.Executioner.Actions;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -59,5 +62,17 @@ public class GroupConnection extends Connection {
             }
         }
         return false;
+    }
+
+    public void send(String msg) throws IOException {
+        for (int i = 0; i < this.list.size(); i++) {
+            this.list.get(i).getRunnable().getClient().send(msg);
+        }
+    }
+
+    public void send(Actions action) {
+        for (int i = 0; i < this.list.size(); i++) {
+            this.list.get(i).getRunnable().setAction(action);
+        }
     }
 }

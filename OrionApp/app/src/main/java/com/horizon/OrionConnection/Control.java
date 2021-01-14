@@ -2,12 +2,11 @@ package com.horizon.OrionConnection;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.horizon.networking.Executioner.Actions;
 import com.horizon.utils.Vars;
 
-public class Control extends BaseOrionActivity {
+public class Control extends OrionControlBaseActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -17,28 +16,20 @@ public class Control extends BaseOrionActivity {
     this.menu = findViewById(R.id.drawer);
   }
 
-  private void readyAct(Actions action) {
-    if (Vars.isFromGroup) {
-      for (int i = 0; i < Vars.newGroup.getList().size(); i++) {
-        Vars.newGroup.getList().get(i).getRunnable().setAction(action);
-      }
-    } else {
-      Vars.connection.getRunnable().setAction(action);
-    }
-  }
-
   /**
    * This function's responsible of what happens when the main power btn is pressed.
    * @param view -
    */
-  public void clickPowerToggle(View view) { Vars.connection.getRunnable().setAction(Actions.OFF); }
+  public void clickPowerToggle(View view) {
+    control(Actions.OFF);
+  }
 
   /**
    * This function's responsible of what happens when the previous btn is pressed.
    * @param view -
    */
   public void clickPrev(View view) {
-    Vars.connection.getRunnable().setAction(Actions.PREV);
+    control(Actions.PREV);
   }
 
   /**
@@ -46,7 +37,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickNext(View view) {
-    Vars.connection.getRunnable().setAction(Actions.SKIP);
+    control(Actions.SKIP);
   }
 
   /**
@@ -54,7 +45,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickVolDown(View view) {
-    Vars.connection.getRunnable().setAction(Actions.VOL_DOWN);
+    control(Actions.VOL_DOWN);
   }
 
   /**
@@ -62,7 +53,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickVolUp(View view) {
-    Vars.connection.getRunnable().setAction(Actions.VOL_UP);
+    control(Actions.VOL_UP);
   }
 
   /**
@@ -70,7 +61,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickMute(View view) {
-    Vars.connection.getRunnable().setAction(Actions.MUTE);
+    control(Actions.MUTE);
   }
 
   /**
@@ -78,7 +69,7 @@ public class Control extends BaseOrionActivity {
    * @param view -
    */
   public void clickPausePlayToggle(View view) {
-    Vars.connection.getRunnable().setAction(Actions.PAUSE_PLAY_TOGGLE);
+    control(Actions.PAUSE_PLAY_TOGGLE);
   }
 
   /**

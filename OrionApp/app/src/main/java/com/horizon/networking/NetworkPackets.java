@@ -35,7 +35,8 @@ public final class NetworkPackets {
     public enum IncomingOperations {
         INVALID("INVALID"),
         VALID("VALID"),
-        PAIRED("HELLO");
+        PAIRED("HELLO"),
+        ROUTINE("ROUT");
 
         private final String msg;
         private IncomingOperations(String msg) {

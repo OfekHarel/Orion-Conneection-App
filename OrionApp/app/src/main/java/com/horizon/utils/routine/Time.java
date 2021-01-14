@@ -30,11 +30,16 @@ public class Time {
         return this.min;
     }
 
-    public String getTimeZoneParam() {
+    public static String getTimeZoneParam() {
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"),
                 Locale.getDefault());
         Date currentLocalTime = calendar.getTime();
         DateFormat date = new SimpleDateFormat("Z");
         return date.format(currentLocalTime);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%2d:%2d", this.h, this.min);
     }
 }

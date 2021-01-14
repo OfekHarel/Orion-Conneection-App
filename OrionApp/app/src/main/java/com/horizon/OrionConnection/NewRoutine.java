@@ -3,11 +3,11 @@ package com.horizon.OrionConnection;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.horizon.networking.Executioner.Actions;
+import com.horizon.networking.NetworkPackets;
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 import com.horizon.utils.conn.Connection;
@@ -16,8 +16,7 @@ import com.horizon.utils.conn.SingleConnection;
 import com.horizon.utils.routine.Routine;
 import com.horizon.utils.routine.Time;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.io.IOException;
 import java.util.Objects;
 
 public class NewRoutine extends BaseOrionActivity {
@@ -116,10 +115,21 @@ public class NewRoutine extends BaseOrionActivity {
     } else {
       String name = Objects.requireNonNull(this.name.getEditText()).getText().toString();
       Connection conn = SharedData.getInstance(this).getConnectionByName(name);
+      Routine routine = new Routine(this.actSpinner.getSelectedItem().toString(), name,
+              new Time(this.timeFormatted), conn);
+      SharedData.getInstance(this).addRoutines(routine);
 
-      SharedData.getInstance(this).addRoutines(
-              new Routine(this.actSpinner.getSelectedItem().toString(), name,
-                      new Time(this.timeFormatted), conn));
+      GroupConnection group = SharedData.getInstance(this).getGroupConnectionByName(name);
+      SingleConnection single = SharedData.getInstance(this).getSingleConnectionByName(name);
+
+      if (group != null) {
+        try {
+          group.send(NetworkPackets.assamble(routine.getTime().toString(), Time.getTimeZoneParam(),
+                  routine.getActions()));
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
 
       redirectActv(this, Routines.class);
     }

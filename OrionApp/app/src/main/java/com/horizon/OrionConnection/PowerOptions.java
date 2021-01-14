@@ -6,7 +6,7 @@ import com.horizon.utils.Vars;
 import android.os.Bundle;
 import android.view.View;
 
-public class PowerOptions extends BaseOrionActivity {
+public class PowerOptions extends OrionControlBaseActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +21,22 @@ public class PowerOptions extends BaseOrionActivity {
    * @param view -
    */
   public void clickRestart(View view) {
-    Vars.connection.getRunnable().setAction(Actions.RESTART);
+    control(Actions.RESTART);
   }
 
   /**
    * This function's responsible of what happens when the lock btn is pressed.
    * @param view -
    */
-  public void clickLock(View view) {}
+  public void clickLock(View view) {
+    control(Actions.LOCK);
+  }
 
   /**
    * This function's responsible of what happens when the sleep btn is pressed.
    * @param view -
    */
   public void clickSleep(View view) {
+    control(Actions.SLEEP);
   }
 }

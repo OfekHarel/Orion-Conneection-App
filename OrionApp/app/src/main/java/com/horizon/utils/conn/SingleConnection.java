@@ -36,7 +36,6 @@ public class SingleConnection extends Connection {
   }
 
   public NetCommRunnable getRunnable() {
-    Log.i("1:asssssssssssssssssssssssssssaasasasas", Boolean.toString(runnable == null));
     return this.runnable;
   }
 

@@ -64,7 +64,8 @@ public class Executioner {
         LOCK("LCK"),
         LOG_OUT("LGOT"),
         DISCONNECT("DISCON"),
-        ID_VALIDATION("ID_VAL");
+        ID_VALIDATION("ID_VAL"),
+        ROUTINE("ROUT");
 
         private final String str;
         private Actions(String str) {
