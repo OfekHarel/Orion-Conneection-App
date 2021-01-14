@@ -1,7 +1,16 @@
 package com.horizon.networking;
 
+import android.util.Log;
+import android.util.Pair;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
+
 import com.horizon.networking.Executioner.Actions;
+import com.horizon.utils.SharedData;
+import com.horizon.utils.Vars;
+import com.horizon.utils.conn.SingleConnection;
 
 public class NetCommRunnable implements Runnable {
     private Client client;
@@ -13,6 +22,7 @@ public class NetCommRunnable implements Runnable {
     private String name = "";
 
     private boolean synced = false;
+
 
     public void pair(String idInfo, String nameInfo) {
         id = idInfo;
@@ -28,14 +38,16 @@ public class NetCommRunnable implements Runnable {
     }
 
     private void act() throws IOException {
-        if(this.act != null) {
-            executioner.Execute(this.act);
-            this.act = null;
+        if(act != null) {
+            executioner.Execute(act);
+            act = null;
         }
     }
 
     public NetCommRunnable() {
+        act = null;
     }
+
 
     @Override
     public void run() {
@@ -61,6 +73,7 @@ public class NetCommRunnable implements Runnable {
                 act();
             } catch (IOException e) {
                 e.printStackTrace();
+                Log.i("shitshitshitshitshitshitshitshitshitshitshitshitshitshit", "1");
             }
 
             /*

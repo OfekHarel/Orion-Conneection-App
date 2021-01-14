@@ -3,8 +3,11 @@ package com.horizon.utils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+import android.util.Pair;
 
 import com.google.gson.reflect.TypeToken;
+import com.horizon.networking.NetCommRunnable;
 import com.horizon.utils.conn.Connection;
 import com.horizon.utils.conn.GroupConnection;
 
@@ -26,6 +29,7 @@ public class SharedData {
     private final String SINGLE_CONNS = "singleConns";
     private final String GROUP_CONNS = "groupConns";
     private final String ROUTINES = "routines";
+    private final String RUNNABLE_NAMES = "run";
 
     private final SharedPreferences sharedPreferences;
     private final SharedPreferences.Editor editor;
@@ -51,6 +55,7 @@ public class SharedData {
             this.editor.putString(this.SINGLE_CONNS, null);
             this.editor.putString(this.GROUP_CONNS, null);
             this.editor.putString(this.ROUTINES, null);
+            this.editor.putString(this.RUNNABLE_NAMES, null);
             this.editor.apply();
         }
     }
@@ -67,6 +72,55 @@ public class SharedData {
         return instance;
     }
 
+    public static SharedData getInstance() {
+        return instance;
+    }
+
+
+    /**
+     * Sets the single connections entry.
+     * @param runs The new val to set to.
+     */
+    public void setRunName(ArrayList<Pair<String, NetCommRunnable>> runs) {
+        String json = this.gson.toJson(runs);
+        this.editor.putString(this.RUNNABLE_NAMES, json);
+        this.editor.apply();
+    }
+
+    /**
+     * Adds a connection to the shared mem.
+     * @param run - to connection to add
+     */
+    public void addRun(Pair<String, NetCommRunnable> run) {
+        ArrayList<Pair<String, NetCommRunnable>> arrayList = getRuns();
+        arrayList.add(run);
+        this.setRunName(arrayList);
+
+    }
+
+    /**
+     * @return The single connection list.
+     */
+    public ArrayList<Pair<String, NetCommRunnable>> getRuns() {
+        String json = this.sharedPreferences.getString(this.RUNNABLE_NAMES, null);
+        Type type = new TypeToken<ArrayList<Pair<String, NetCommRunnable>>>() {}.getType();
+        ArrayList<Pair<String, NetCommRunnable>> runs = this.gson.fromJson(json, type);
+        if (runs == null) {
+            runs = new ArrayList<>();
+        }
+        return runs;
+    }
+
+    public NetCommRunnable getRunByName(String nameInput) {
+        ArrayList<Pair<String, NetCommRunnable>> arr = getRuns();
+        for (int i = 0; i < arr.size(); i++) {
+            if(nameInput.equals(arr.get(i).first)) {
+                return arr.get(i).second;
+            }
+        }
+        return null;
+    }
+
     /**
      * Sets the single connections entry.
      * @param connections The new val to set to.
@@ -75,6 +129,16 @@ public class SharedData {
         String json = this.gson.toJson(connections);
         this.editor.putString(this.SINGLE_CONNS, json);
         this.editor.apply();
+
+        ArrayList<Pair<String, NetCommRunnable>> runs = getRuns(), arr = new ArrayList<>();
+        for (int i = 0; i < runs.size(); i++) {
+            for (int j = 0; j < connections.size(); j++) {
+                if (runs.get(i).first.equals(connections.get(j).getName())) {
+                    arr.add(runs.get(i));
+                }
+            }
+        }
+        setRunName(arr);
     }
 
     /**
@@ -85,6 +149,7 @@ public class SharedData {
         ArrayList<SingleConnection> arrayList = getSingleConnections();
         arrayList.add(connection);
         this.setSingleConnections(arrayList);
+
     }
 
     /**

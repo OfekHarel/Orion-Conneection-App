@@ -45,6 +45,9 @@ public class Executioner {
         }
         this.client.send(NetworkPackets.assamble(compName));
         val = this.client.receive();
+        while (!NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.PAIRED.getAsString())) {
+            val = this.client.receive();
+        }
         return true;
     }
 
@@ -64,8 +67,7 @@ public class Executioner {
         LOCK("LCK"),
         LOG_OUT("LGOT"),
         DISCONNECT("DISCON"),
-        ID_VALIDATION("ID_VAL"),
-        ROUTINE("ROUT");
+        ID_VALIDATION("ID_VAL");
 
         private final String str;
         private Actions(String str) {

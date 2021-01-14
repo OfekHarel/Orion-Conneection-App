@@ -1,8 +1,7 @@
 package com.horizon.utils.conn;
 
-import android.util.Log;
-
 import com.horizon.networking.NetCommRunnable;
+import com.horizon.networking.NetRunnableFactory;
 
 /**
  * A bond to represent a connection between one comp to an app.
@@ -18,7 +17,7 @@ public class SingleConnection extends Connection {
   public SingleConnection(String name, String id) {
     this.id = id;
     this.name = name;
-    this.runnable = new NetCommRunnable();
+    this.runnable = NetRunnableFactory.get(name);
   }
 
   public String getName() {
@@ -36,7 +35,7 @@ public class SingleConnection extends Connection {
   }
 
   public NetCommRunnable getRunnable() {
-    return this.runnable;
+    return NetRunnableFactory.get(name);
   }
 
   public Thread getThread() {

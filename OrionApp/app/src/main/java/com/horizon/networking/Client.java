@@ -1,5 +1,7 @@
 package com.horizon.networking;
 
+import android.annotation.SuppressLint;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,6 +34,7 @@ public class Client {
      * @throws IOException -
      */
     public void send(String msg) throws IOException {
+        @SuppressLint("DefaultLocale")
         String length = String.format("%03d",msg.length());
         this.output.write(length);
         this.output.flush();
