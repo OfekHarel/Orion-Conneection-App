@@ -1,6 +1,8 @@
 package com.horizon.utils.routine;
 
 import com.horizon.utils.conn.Connection;
+import com.horizon.utils.conn.GroupConnection;
+import com.horizon.utils.conn.SingleConnection;
 
 /**
  * A class to represent the Routine object type.
@@ -10,13 +12,21 @@ public class Routine {
   private String action;
   private String name;
   private Time time;
-  private Connection connection;
+  private SingleConnection singleConnection;
+  private GroupConnection groupConnection;
 
-  public Routine(String action, String name, Time time, Connection connection) {
+  public Routine(String action, String name, Time time, SingleConnection singleConnection) {
     this.action = action;
     this.name = name;
     this.time = time;
-    this.connection = connection;
+    this.singleConnection = singleConnection;
+  }
+
+  public Routine(String action, String name, Time time, GroupConnection groupConnection) {
+    this.action = action;
+    this.name = name;
+    this.time = time;
+    this.groupConnection = groupConnection;
   }
 
   public String getActions() {
@@ -27,8 +37,8 @@ public class Routine {
     return name;
   }
 
-  public Connection getSingleConnection() {
-    return connection;
+  public SingleConnection getSingleConnection() {
+    return singleConnection;
   }
 
   public void setActions(String action) {

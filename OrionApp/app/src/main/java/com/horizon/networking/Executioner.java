@@ -67,15 +67,50 @@ public class Executioner {
         LOCK("LCK"),
         LOG_OUT("LGOT"),
         DISCONNECT("DISCON"),
-        ID_VALIDATION("ID_VAL");
+        ID_VALIDATION("ID_VAL"),
+        ROUTINE("ROUT"),
+        ON("ON");
 
-        private final String str;
+        private String str;
         private Actions(String str) {
             this.str = str;
         }
 
         public String getAsString() {
             return str;
+        }
+
+        public void setStr(String str) {
+            this.str = str;
+        }
+
+        public static Actions getByFullName(String val) {
+            switch (val) {
+                case "Volume Up":
+                    return Actions.VOL_UP;
+                case "Volume Down":
+                    return Actions.VOL_DOWN;
+                case "Mute":
+                    return Actions.MUTE;
+                case "Next":
+                    return Actions.SKIP;
+                case "Previous":
+                    return Actions.PREV;
+                case "Pause Play Toggle":
+                    return Actions.PAUSE_PLAY_TOGGLE;
+                case "Power Off":
+                    return Actions.OFF;
+                case "Power On":
+                    return Actions.ON;
+                case "Sleep":
+                    return Actions.SLEEP;
+                case "Lock":
+                    return Actions.LOCK;
+                case "Restart":
+                    return Actions.RESTART;
+                default:
+                    return null;
+            }
         }
     }
 }

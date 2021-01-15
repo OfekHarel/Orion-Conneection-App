@@ -1,8 +1,10 @@
 package com.horizon.utils.conn;
 
-import com.horizon.networking.Executioner.Actions;
+import android.util.Log;
 
-import java.io.IOException;
+import com.horizon.networking.Executioner.Actions;
+import com.horizon.networking.NetRunnableFactory;
+
 import java.util.ArrayList;
 
 /**
@@ -64,15 +66,17 @@ public class GroupConnection extends Connection {
         return false;
     }
 
-    public void send(String msg) throws IOException {
+    public void routine() {
         for (int i = 0; i < this.list.size(); i++) {
-            this.list.get(i).getRunnable().getClient().send(msg);
+            Log.i("aaaaaaaaaaaaaaaaaaaaaaa", this.list.get(i).getName());
+            NetRunnableFactory.passAnAction(this.list.get(i).getName(), Actions.ROUTINE);
         }
     }
 
     public void send(Actions action) {
         for (int i = 0; i < this.list.size(); i++) {
             this.list.get(i).getRunnable().setAction(action);
+            NetRunnableFactory.passAnAction(this.list.get(i).getName(), action);
         }
     }
 }

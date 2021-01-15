@@ -1,12 +1,15 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.horizon.networking.Executioner.Actions;
+import com.horizon.networking.NetRunnableFactory;
 import com.horizon.networking.NetworkPackets;
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
@@ -29,7 +32,6 @@ public class NewRoutine extends BaseOrionActivity {
   private ArrayAdapter<String> devSpinnerAdapter;
 
   private String[] timeFormatted;
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -112,25 +114,41 @@ public class NewRoutine extends BaseOrionActivity {
   public void clickConfirm(View view) {
     if (!validateName() | !validateTime()) {
       return;
-    } else {
-      String name = Objects.requireNonNull(this.name.getEditText()).getText().toString();
-      Connection conn = SharedData.getInstance(this).getConnectionByName(name);
-      Routine routine = new Routine(this.actSpinner.getSelectedItem().toString(), name,
-              new Time(this.timeFormatted), conn);
-      SharedData.getInstance(this).addRoutines(routine);
+    }
+    else {
+      String d_name = this.devSpinner.getSelectedItem().toString();
+      Routine routine;
+      String r_name = Objects.requireNonNull(this.name.getEditText()).getText().toString();
 
-      GroupConnection group = SharedData.getInstance(this).getGroupConnectionByName(name);
-      SingleConnection single = SharedData.getInstance(this).getSingleConnectionByName(name);
+      GroupConnection group = SharedData.getInstance(this).getGroupConnectionByName(d_name);
+      SingleConnection single = SharedData.getInstance(this).getSingleConnectionByName(d_name);
+
+      String msg;
 
       if (group != null) {
-        try {
-          group.send(NetworkPackets.assamble(routine.getTime().toString(), Time.getTimeZoneParam(),
-                  routine.getActions()));
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
+        routine = new Routine(this.actSpinner.getSelectedItem().toString(), r_name,
+                new Time(this.timeFormatted), group);
+
+        msg = NetworkPackets.assamble("ROUT", routine.getTime().toString(),
+                Time.getTimeZoneParam(), Actions.getByFullName(routine.getActions()).getAsString());
+
+        Actions.ROUTINE.setStr(msg);
+
+        group.routine();
+
+      } else {
+        routine = new Routine(this.actSpinner.getSelectedItem().toString(), r_name,
+                new Time(this.timeFormatted), single);
+
+        msg = NetworkPackets.assamble("ROUT", routine.getTime().toString(),
+                Time.getTimeZoneParam(), Actions.getByFullName(routine.getActions()).getAsString());
+
+        Actions.ROUTINE.setStr(msg);
+
+        NetRunnableFactory.passAnAction(single.getName(), Actions.ROUTINE);
       }
 
+      SharedData.getInstance(this).addRoutines(routine);
       redirectActv(this, Routines.class);
     }
   }

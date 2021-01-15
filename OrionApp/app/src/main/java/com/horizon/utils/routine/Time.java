@@ -2,6 +2,8 @@ package com.horizon.utils.routine;
 
 
 
+import android.util.Log;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,6 +37,7 @@ public class Time {
                 Locale.getDefault());
         Date currentLocalTime = calendar.getTime();
         DateFormat date = new SimpleDateFormat("Z");
+        Log.i("dasdfsadfadsadsasdasdsadasda", date.format(currentLocalTime));
         return date.format(currentLocalTime);
     }
 

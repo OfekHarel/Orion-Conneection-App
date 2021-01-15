@@ -3,6 +3,7 @@ package com.horizon.networking;
 import android.util.Pair;
 
 import com.horizon.utils.Vars;
+import com.horizon.utils.conn.SingleConnection;
 
 import java.util.ArrayList;
 
@@ -29,5 +30,12 @@ public class NetRunnableFactory {
                 Vars.names.get(i).second.setAction(act);
             }
         }
+    }
+
+    public static ArrayList<SingleConnection> buildFromBlueprints(ArrayList<SingleConnection> arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            arr.get(i).setRunnable(NetRunnableFactory.get(arr.get(i).getName()));
+        }
+        return arr;
     }
 }

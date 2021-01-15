@@ -41,4 +41,8 @@ public class SingleConnection extends Connection {
   public Thread getThread() {
     return thread;
   }
+
+  public void setRunnable(NetCommRunnable runnable) {
+    this.runnable = runnable;
+  }
 }
