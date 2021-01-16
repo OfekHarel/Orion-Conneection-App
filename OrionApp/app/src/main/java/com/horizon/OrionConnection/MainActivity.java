@@ -65,6 +65,10 @@ public class MainActivity extends BaseOrionActivity {
     redirectActv(this, Add.class);
   }
 
+  /**
+  * This function's responsible of what happens when the edit btn is pressed
+  * @param view -
+  */
   public void clickEdit(View view) {
       redirectActv(this, EditMainConnection.class);
   }

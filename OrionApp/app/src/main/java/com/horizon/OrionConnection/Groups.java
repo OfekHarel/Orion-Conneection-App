@@ -51,10 +51,18 @@ public class Groups extends BaseOrionActivity {
     closeDrawer();
   }
 
+  /**
+  * This function's responsible of what happens when the add btn is pressed
+  * @param view -
+  */
   public void clickAddGroup(View view) {
     redirectActv(this, AddGroup.class);
   }
 
+  /**
+  * This function's responsible of what happens when the edit btn is pressed
+  * @param view -
+  */
   public void clickEditGroups(View view) {
     redirectActv(this, EditGroups.class);
 

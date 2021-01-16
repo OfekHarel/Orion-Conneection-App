@@ -15,7 +15,7 @@ public class Offline extends AppCompatActivity {
         setContentView(R.layout.activity_offline);
     }
 
-    private boolean isNetavilable() {
+    private boolean isNetAvilable() {
             ConnectivityManager connectivityManager
                     = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

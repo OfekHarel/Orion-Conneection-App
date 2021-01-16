@@ -39,7 +39,11 @@ public class Settings extends BaseOrionActivity {
     SharedData.getInstance(this).cleanGroups();
   }
 
-    public void clickDeleteRoutines(View view) {
-      SharedData.getInstance(this).cleanRoutines();
-    }
+  /**
+   * This function's responsible of what happens when the delete groups btn is pressed.
+   * @param view -
+   */
+  public void clickDeleteRoutines(View view) {
+    SharedData.getInstance(this).cleanRoutines();
+  }
 }

@@ -41,6 +41,10 @@ public class Routines extends BaseOrionActivity {
     redirectActv(this, NewRoutine.class);
   }
 
+  /**
+   * This function's responsible of what happens when the edit btn is pressed.
+   * @param view -
+   */
   public void clickEditRoutine(View view) {
     redirectActv(this, EditRoutines.class);
   }

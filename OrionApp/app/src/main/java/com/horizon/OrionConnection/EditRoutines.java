@@ -52,6 +52,10 @@ public class EditRoutines extends BaseOrionActivity {
         });
     }
 
+    /**
+    * This function's responsible of what happens when the delete btn is pressed
+    * @param view -
+    */
     public void clickDelete(View view) {
         SharedData.getInstance(this).cleanRoutines(this.choosen);
         redirectActv(this, Routines.class);

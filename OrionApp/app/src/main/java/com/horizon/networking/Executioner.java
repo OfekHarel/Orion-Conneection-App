@@ -86,10 +86,19 @@ public class Executioner {
             return str;
         }
 
+        /**
+         * For assembling the routine msg
+         * @param str the full description of the to routine.
+         */
         public void setStr(String str) {
             this.str = str;
         }
 
+        /**
+         * For handeling to input of a Action Spinner.
+         * @param val - The full variable English name
+         * @return The Action that matches the full name
+        */
         public static Actions getByFullName(String val) {
             switch (val) {
                 case "Volume Up":
@@ -120,4 +129,3 @@ public class Executioner {
         }
     }
 }
-

@@ -53,6 +53,10 @@ public class EditGroups extends BaseOrionActivity {
 
     }
 
+    /**
+    * This function's responsible of what happens when the delete btn is pressed
+    * @param view -
+    */
     public void clickDelete(View view) {
         SharedData.getInstance(this).cleanGroups(this.choosen);
         redirectActv(this, Groups.class);

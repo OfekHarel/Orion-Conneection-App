@@ -37,10 +37,6 @@ public class Routine {
     return name;
   }
 
-  public SingleConnection getSingleConnection() {
-    return singleConnection;
-  }
-
   public void setActions(String action) {
     this.action = action;
   }
@@ -52,5 +48,4 @@ public class Routine {
   public Time getTime() {
     return time;
   }
-
 }

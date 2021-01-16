@@ -53,6 +53,10 @@ public class EditMainConnection extends BaseOrionActivity {
 
     }
 
+    /**
+    * This function's responsible of what happens when the delete btn is pressed
+    * @param view -
+    */
     public void clickDelete(View view) {
         SharedData.getInstance(this).cleanSingle(this.choosen);
         redirectActv(this, MainActivity.class);

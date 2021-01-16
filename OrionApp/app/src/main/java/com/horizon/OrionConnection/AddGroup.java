@@ -113,6 +113,10 @@ public class AddGroup extends BaseOrionActivity {
         }
     }
 
+    /**
+    * This function's responsible of what happens when the done btn is pressed
+    * @param view -
+    */
     public void clickDone(View view) {
         if (!validateName() | !validateConnections()) {
             return;

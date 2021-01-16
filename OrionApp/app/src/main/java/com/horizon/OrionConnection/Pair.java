@@ -133,7 +133,7 @@ public class Pair extends BaseOrionActivity {
   }
 
   /**
-   * This function's responsible of what happens when the logo on the menu is pressed.
+   * This function's responsible of what happens when the confirm btn is pressed
    * @param view -
    */
   public void clickConfirm(View view) {

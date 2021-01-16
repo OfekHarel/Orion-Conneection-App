@@ -33,11 +33,9 @@ public class ConnectionListAdapter extends ArrayAdapter<SingleConnection> {
 
   @NonNull
   @Override
-  public View getView(
-    int position,
-    @Nullable View convertView,
-    @NonNull ViewGroup parent
-  ) {
+  public View getView (int position, @Nullable View convertView,
+          @NonNull ViewGroup parent) {
+            
     String name = getItem(position).getName();
 
     LayoutInflater inflater = LayoutInflater.from(this.context);

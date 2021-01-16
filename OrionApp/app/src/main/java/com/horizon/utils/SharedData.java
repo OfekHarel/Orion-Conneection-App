@@ -314,6 +314,15 @@ public class SharedData {
         this.editor.apply();
     }
 
+    /**
+     * cleans the Routine entry
+     */
+    public void cleanRoutines() {
+        this.editor.remove(ROUTINES);
+        this.editor.putString(ROUTINES, null);
+        this.editor.apply();
+    }
+
     @Override
     public String toString() {
         return "[Single: " + getSingleConnections().toString() +
@@ -372,12 +381,10 @@ public class SharedData {
         return arr;
     }
 
-    public void cleanRoutines() {
-        this.editor.remove(ROUTINES);
-        this.editor.putString(ROUTINES, null);
-        this.editor.apply();
-    }
-
+    /**
+     * Deletes the provided Single Connections 
+     * @param toDelete -
+     */
     public void cleanSingle(ArrayList<SingleConnection> toDelete) {
         ArrayList<SingleConnection> arr = getSingleConnections();
         for (int i = 0; i < arr.size(); i++) {
@@ -390,6 +397,10 @@ public class SharedData {
         setSingleConnections(arr);
     }
 
+     /**
+     * Deletes the provided Group Connections 
+     * @param toDelete -
+     */
     public void cleanGroups(ArrayList<GroupConnection> toDelete) {
         ArrayList<GroupConnection> arr = getGroupConnections();
         for (int i = 0; i < arr.size(); i++) {
@@ -402,6 +413,10 @@ public class SharedData {
         setGroupConnections(arr);
     }
 
+    /**
+    * Deletes the provided routines
+    * @param toDelete -
+    */
     public void cleanRoutines(ArrayList<Routine> toDelete) {
         ArrayList<Routine> arr = getRoutines();
         for (int i = 0; i < arr.size(); i++) {
@@ -414,6 +429,12 @@ public class SharedData {
         setRoutines(arr);
     }
 
+    /**
+     * 
+     * @param nameInput The name to check
+     * @param arr The arr to check
+     * @return The Single Connection that own the same name as the val, if not Null.
+     */
     public Routine getRoutineConnectionByName(String nameInput, ArrayList<Routine> arr) {
         for (int i = 0; i < arr.size(); i++) {
             if(nameInput.equals(arr.get(i).getName())) {
@@ -423,6 +444,10 @@ public class SharedData {
         return null;
     }
 
+    /**
+     * @param nameInput the name to check.
+     * @return The Single Connection that own the same name as the val, if not Null.
+     */
     public Routine getRoutineConnectionByName(String nameInput) {
         return getRoutineConnectionByName(nameInput, getRoutines());
     }
