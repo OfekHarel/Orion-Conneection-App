@@ -10,9 +10,7 @@ public class OrionControlBaseActivity extends BaseOrionActivity{
         if (Vars.isFromGroup) {
             Vars.newGroup.send(action);
         } else {
-//            NetRunnableFactory.get(Vars.connection.getName()).setAction(action);
             NetRunnableFactory.passAnAction(Vars.connection.getName(), action);
-
         }
     }
 }

@@ -68,7 +68,6 @@ public class GroupConnection extends Connection {
 
     public void routine() {
         for (int i = 0; i < this.list.size(); i++) {
-            Log.i("aaaaaaaaaaaaaaaaaaaaaaa", this.list.get(i).getName());
             NetRunnableFactory.passAnAction(this.list.get(i).getName(), Actions.ROUTINE);
         }
     }

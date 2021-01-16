@@ -1,6 +1,12 @@
 package com.horizon.networking;
 
+import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.horizon.OrionConnection.BaseOrionActivity;
+import com.horizon.OrionConnection.MainActivity;
+import com.horizon.OrionConnection.OrionControlBaseActivity;
 
 import java.io.IOException;
 
@@ -20,7 +26,6 @@ public class Executioner {
      * @throws IOException -
      */
     public void Execute(Actions action) throws IOException {
-        Log.i("ppppppppppppppppppppppppppppp", action.getAsString());
         this.client.send(NetworkPackets.assamble(this.client.getName(), action.getAsString()));
     }
 
@@ -36,11 +41,12 @@ public class Executioner {
         this.client.send(NetworkPackets.assamble("APP", Actions.ID_VALIDATION.getAsString(), id));
         
         String val = "";
-        while (val == "") {
+        while (val.equals("")) {
             val = this.client.receive();
         }
         boolean is = NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.VALID.getAsString());
         if (!is) {
+            Log.i("im here", "here");
             return false;
         }
         this.client.send(NetworkPackets.assamble(compName));

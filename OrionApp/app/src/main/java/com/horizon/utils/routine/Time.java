@@ -37,7 +37,6 @@ public class Time {
                 Locale.getDefault());
         Date currentLocalTime = calendar.getTime();
         DateFormat date = new SimpleDateFormat("Z");
-        Log.i("dasdfsadfadsadsasdasdsadasda", date.format(currentLocalTime));
         return date.format(currentLocalTime);
     }
 

@@ -1,16 +1,13 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 import com.horizon.utils.conn.ConnectionListAdapter;
-import com.horizon.utils.routine.Time;
 
 public class MainActivity extends BaseOrionActivity {
 
@@ -22,8 +19,8 @@ public class MainActivity extends BaseOrionActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+
     this.menu = findViewById(R.id.drawer);
-    SharedData.getInstance(this).load();
 
     /*
      * List view init.

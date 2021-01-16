@@ -1,6 +1,7 @@
 package com.horizon.networking;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -55,10 +56,10 @@ public class Client {
         if (input.available() < 2) {
             return "";
         }
+
         int length = 0;
         for (int i = 0, dev = 100; i < NetworkPackets.HEADER; i++, dev /= 10) {
             length += Character.getNumericValue(input.read()) * dev;
-            System.out.println(length);
         }
         String msg = "";
         for (int i = 0; i < length; i++) {

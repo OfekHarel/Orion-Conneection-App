@@ -8,6 +8,7 @@ import android.util.Pair;
 
 import com.google.gson.reflect.TypeToken;
 import com.horizon.networking.NetCommRunnable;
+import com.horizon.networking.NetRunnableFactory;
 import com.horizon.utils.conn.Connection;
 import com.horizon.utils.conn.GroupConnection;
 
@@ -58,6 +59,7 @@ public class SharedData {
             this.editor.putString(this.RUNNABLE_NAMES, null);
             this.editor.apply();
         }
+        setSingleConnections(NetRunnableFactory.buildFromBlueprints(getSingleConnections()));
     }
 
     /**
@@ -111,21 +113,15 @@ public class SharedData {
         return runs;
     }
 
-    public NetCommRunnable getRunByName(String nameInput) {
-        ArrayList<Pair<String, NetCommRunnable>> arr = getRuns();
-        for (int i = 0; i < arr.size(); i++) {
-            if(nameInput.equals(arr.get(i).first)) {
-                return arr.get(i).second;
-            }
-        }
-        return null;
-    }
-
     /**
      * Sets the single connections entry.
      * @param connections The new val to set to.
      */
     public void setSingleConnections(ArrayList<SingleConnection> connections) {
+        if (connections == null) {
+            return;
+        }
+
         String json = this.gson.toJson(connections);
         this.editor.putString(this.SINGLE_CONNS, json);
         this.editor.apply();
@@ -318,14 +314,6 @@ public class SharedData {
         this.editor.apply();
     }
 
-    /**
-     * loads the entries
-     */
-    public void load() {
-        ArrayList<GroupConnection> loadGroup = getGroupConnections();
-        ArrayList<SingleConnection> loadSingle = getSingleConnections();
-    }
-
     @Override
     public String toString() {
         return "[Single: " + getSingleConnections().toString() +
@@ -370,18 +358,6 @@ public class SharedData {
         ArrayList<String> arr = getSinglesAsStringArr();
         arr.addAll(getGroupsAsStringArr());
         return arr;
-    }
-
-    public Connection getConnectionByName(String name) {
-        GroupConnection g = getGroupConnectionByName(name);
-        SingleConnection s = getSingleConnectionByName(name);
-
-        if (g != null && s != null) {
-            return null;
-        }
-        else if (s != null) {
-            return s;
-        } else return g;
     }
 
     /**

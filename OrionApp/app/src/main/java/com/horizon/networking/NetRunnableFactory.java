@@ -1,5 +1,7 @@
 package com.horizon.networking;
 
+import android.os.Handler;
+import android.util.Log;
 import android.util.Pair;
 
 import com.horizon.utils.Vars;
@@ -12,7 +14,7 @@ public class NetRunnableFactory {
     public static NetCommRunnable get(String name) {
         ArrayList<Pair<String, NetCommRunnable>> arrayList = Vars.names;
 
-        for (int i = 0; i < arrayList.size() && !arrayList.isEmpty(); i++) {
+        for (int i = 0; i < arrayList.size(); i++) {
             if (arrayList.get(i).first.equals(name)) {
                 return arrayList.get(i).second;
             }
@@ -33,8 +35,13 @@ public class NetRunnableFactory {
     }
 
     public static ArrayList<SingleConnection> buildFromBlueprints(ArrayList<SingleConnection> arr) {
+        if (arr == null) {
+            return null;
+        }
+
         for (int i = 0; i < arr.size(); i++) {
             arr.get(i).setRunnable(NetRunnableFactory.get(arr.get(i).getName()));
+            arr.get(i).initConnection();
         }
         return arr;
     }
