@@ -9,6 +9,8 @@ import com.horizon.OrionConnection.MainActivity;
 import com.horizon.OrionConnection.OrionControlBaseActivity;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.util.Arrays;
 
 /**
  * A class that responsible to handle one client to execute it's income and outcomes.
@@ -29,6 +31,26 @@ public class Executioner {
         this.client.send(NetworkPackets.assamble(this.client.getName(), action.getAsString()));
     }
 
+    public void goCrypto() throws IOException {
+        String msg;
+        do {
+             msg = this.client.receive();
+        } while (msg.equals(""));
+
+        String[] msgArr = NetworkPackets.split(msg);
+
+        BigInteger g = new BigInteger(msgArr[1]);
+        BigInteger n = new BigInteger(msgArr[2]);
+        BigInteger g_Pow_a_Mod_n = new BigInteger(msgArr[3]);
+        Encryption crypto = new Encryption(g, n, g_Pow_a_Mod_n);
+        crypto.getFullKey(g_Pow_a_Mod_n);
+        this.client.send(NetworkPackets.assamble(NetworkPackets.IncomingOperations.CONNECT.
+                getAsString(),crypto.getPartialKey().toString()));
+
+        this.client.setEncryption(crypto);
+    }
+
+
     /**
      * A function that handles the sync state of the connections.
      * @param id - the device id
@@ -37,6 +59,8 @@ public class Executioner {
      * @throws IOException -
      */
     public boolean sync(String id, String compName) throws IOException {
+        this.goCrypto();
+
         this.client.setName(compName);
         this.client.send(NetworkPackets.assamble("APP", Actions.ID_VALIDATION.getAsString(), id));
         

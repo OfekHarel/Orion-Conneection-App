@@ -43,7 +43,6 @@ public class Encryption {
         char[] arr = msg.toCharArray();
         for (char c : arr) {
             encMsg += (char) ((int)(c) + this.fullKey.intValue());
-            System.out.println((int)(c) + this.fullKey.intValue());
         }
         return encMsg;
     }
