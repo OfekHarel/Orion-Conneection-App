@@ -23,20 +23,22 @@ public class Client {
     private final Socket clientSocket;
     private final DataInputStream input;
     private final InputStreamReader cryptoInput;
-    private final PrintWriter output;
+    private final OutputStreamWriter output;
     private final OutputStreamWriter cryptoOutput;
 
     private String name = "Comp";
 
-    private final String ip = "192.168.1.34";
-    private final int port = 1690;
+    private final String PUBLIC_IP = "192.46.233.145";
+    private final String LOCAL_IP = "192.168.1.34";
+    private final int PORT = 1691;
 
     private Encryption encryption = null;
 
     public Client() throws IOException {
-        this.clientSocket = new Socket(ip, port);
+        this.clientSocket = new Socket(PUBLIC_IP, PORT);
 
-        this.output = new PrintWriter(this.clientSocket.getOutputStream());
+        this.output = new OutputStreamWriter(this.clientSocket.getOutputStream(),
+                StandardCharsets.UTF_8);
         this.cryptoOutput = new OutputStreamWriter(this.clientSocket.getOutputStream(),
                 StandardCharsets.UTF_16LE);
 
@@ -68,18 +70,16 @@ public class Client {
 
         } else {
             System.out.println("fuck: " + encryption.getFullKey());
-            length = String.format("%03d", msg.length() * 4);
+            length = String.format("%03d", (msg.length() * 4));
             this.output.write(length);
             this.output.flush();
 
             msg = this.encryption.encryptMsg(msg);
 
             this.cryptoOutput.write(msg);
-            System.out.println(" send: " + cryptoOutput.getEncoding() );
-
+            System.out.println("send: " + msg);
             this.cryptoOutput.flush();
         }
-
     }
 
     /**
@@ -90,17 +90,21 @@ public class Client {
      */
     public String receive() throws NumberFormatException, IOException {
         if (input.available() < 2) {
+            System.out.println("bye");
             return "";
         }
+
         int length = 0;
         if(this.encryption == null) {
             for (int i = 0, dev = 100; i < NetworkPackets.HEADER; i++, dev /= 10) {
                 length += Character.getNumericValue(input.read()) * dev;
+                System.out.println(length);
             }
 
             StringBuilder msg = new StringBuilder();
             for (int i = 0; i < length; i++) {
                 msg.append((char) input.read());
+                System.out.println(msg.toString());
             }
 
             System.out.println("recv " + length +" " + msg);

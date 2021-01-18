@@ -43,7 +43,7 @@ public class Executioner {
         BigInteger g = new BigInteger(msgArr[1]);
         BigInteger n = new BigInteger(msgArr[2]);
         BigInteger g_Pow_a_Mod_n = new BigInteger(msgArr[3]);
-        Encryption crypto = new Encryption(g, n, BigInteger.probablePrime(16, new Random()));
+        Encryption crypto = new Encryption(g, n, BigInteger.probablePrime(8, new Random()));
         crypto.getFullKey(g_Pow_a_Mod_n);
         this.client.send(NetworkPackets.assamble(NetworkPackets.IncomingOperations.CONNECT.
                 getAsString(),crypto.getPartialKey().toString()));
