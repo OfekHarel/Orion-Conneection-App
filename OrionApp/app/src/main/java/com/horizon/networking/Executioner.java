@@ -11,6 +11,7 @@ import com.horizon.OrionConnection.OrionControlBaseActivity;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * A class that responsible to handle one client to execute it's income and outcomes.
@@ -42,7 +43,7 @@ public class Executioner {
         BigInteger g = new BigInteger(msgArr[1]);
         BigInteger n = new BigInteger(msgArr[2]);
         BigInteger g_Pow_a_Mod_n = new BigInteger(msgArr[3]);
-        Encryption crypto = new Encryption(g, n, g_Pow_a_Mod_n);
+        Encryption crypto = new Encryption(g, n, BigInteger.probablePrime(16, new Random()));
         crypto.getFullKey(g_Pow_a_Mod_n);
         this.client.send(NetworkPackets.assamble(NetworkPackets.IncomingOperations.CONNECT.
                 getAsString(),crypto.getPartialKey().toString()));
@@ -72,13 +73,14 @@ public class Executioner {
         if (!is) {
             Log.i("im here", "here");
             return false;
-        }
-        this.client.send(NetworkPackets.assamble(compName));
-        val = this.client.receive();
-        while (!NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.PAIRED.getAsString())) {
+        } else {
+            this.client.send(NetworkPackets.assamble(compName));
             val = this.client.receive();
+            while (!NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.PAIRED.getAsString())) {
+                val = this.client.receive();
+            }
+            return true;
         }
-        return true;
     }
 
     /**

@@ -38,11 +38,11 @@ public class Client {
 
         this.output = new PrintWriter(this.clientSocket.getOutputStream());
         this.cryptoOutput = new OutputStreamWriter(this.clientSocket.getOutputStream(),
-                StandardCharsets.UTF_16);
+                StandardCharsets.UTF_16LE);
 
         this.input = new DataInputStream(this.clientSocket.getInputStream());
         this.cryptoInput = new InputStreamReader(clientSocket.getInputStream(),
-                StandardCharsets.UTF_16);
+                StandardCharsets.UTF_16LE);
     }
 
     public void setEncryption(Encryption encryption) {
@@ -67,13 +67,16 @@ public class Client {
             System.out.println("send: " + msg);
 
         } else {
+            System.out.println("fuck: " + encryption.getFullKey());
             length = String.format("%03d", msg.length() * 4);
             this.output.write(length);
             this.output.flush();
 
-            System.out.println("send: " + msg);
             msg = this.encryption.encryptMsg(msg);
+
             this.cryptoOutput.write(msg);
+            System.out.println(" send: " + cryptoOutput.getEncoding() );
+
             this.cryptoOutput.flush();
         }
 
@@ -89,7 +92,6 @@ public class Client {
         if (input.available() < 2) {
             return "";
         }
-        System.out.println(1);
         int length = 0;
         if(this.encryption == null) {
             for (int i = 0, dev = 100; i < NetworkPackets.HEADER; i++, dev /= 10) {
@@ -104,17 +106,15 @@ public class Client {
             System.out.println("recv " + length +" " + msg);
             return msg.toString();
         } else {
-            System.out.println(2);
 
             for (int i = 0, dev = 100; i < NetworkPackets.HEADER; i++, dev /= 10) {
                 length += Character.getNumericValue(input.read()) * dev;
             }
-            System.out.println(length);
 
             StringBuilder msg = new StringBuilder();
             for (int i = 0; i < length / 4; i++) {
                 msg.append((char) cryptoInput.read());
-                System.out.println("r " + msg.toString());
+                System.out.println(msg.toString());
             }
             String finalMsg = encryption.decryptMsg(msg.toString());
             System.out.println("recv " + length +" " + finalMsg);
