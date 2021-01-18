@@ -1,11 +1,15 @@
 package com.horizon.OrionConnection;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.horizon.networking.Executioner.Actions;
@@ -111,11 +115,16 @@ public class NewRoutine extends BaseOrionActivity {
    * This function's responsible of what happens when the confirm btn is pressed.
    * @param view -
    */
+  @RequiresApi(api = Build.VERSION_CODES.R)
   public void clickConfirm(View view) {
+    view.setHapticFeedbackEnabled(true);
+
     if (!validateName() | !validateTime()) {
+      view.performHapticFeedback(HapticFeedbackConstants.REJECT);
       return;
     }
     else {
+      view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
       String d_name = this.devSpinner.getSelectedItem().toString();
       Routine routine;
       String r_name = Objects.requireNonNull(this.name.getEditText()).getText().toString();

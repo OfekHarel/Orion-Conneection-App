@@ -1,10 +1,12 @@
 package com.horizon.OrionConnection;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
+import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.horizon.utils.SharedData;
@@ -117,10 +121,14 @@ public class AddGroup extends BaseOrionActivity {
     * This function's responsible of what happens when the done btn is pressed
     * @param view -
     */
+    @RequiresApi(api = Build.VERSION_CODES.R)
     public void clickDone(View view) {
+        view.setHapticFeedbackEnabled(true);
         if (!validateName() | !validateConnections()) {
+            view.performHapticFeedback(HapticFeedbackConstants.REJECT);
             return;
         } else {
+            view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
             String nameInfo = Objects.requireNonNull(name.getEditText()).getText().toString();
             SharedData.getInstance(this).addGroupConnection(new GroupConnection(nameInfo, choosen),
                     false);

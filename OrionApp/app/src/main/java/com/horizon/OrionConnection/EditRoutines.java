@@ -1,11 +1,15 @@
 package com.horizon.OrionConnection;
 
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.annotation.RequiresApi;
 
 import com.horizon.utils.SharedData;
 import com.horizon.utils.routine.Routine;
@@ -56,7 +60,10 @@ public class EditRoutines extends BaseOrionActivity {
     * This function's responsible of what happens when the delete btn is pressed
     * @param view -
     */
+    @RequiresApi(api = Build.VERSION_CODES.R)
     public void clickDelete(View view) {
+        view.setHapticFeedbackEnabled(true);
+        view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         SharedData.getInstance(this).cleanRoutines(this.choosen);
         redirectActv(this, Routines.class);
     }

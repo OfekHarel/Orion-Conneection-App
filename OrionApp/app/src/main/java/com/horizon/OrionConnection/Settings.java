@@ -1,6 +1,7 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 
 import com.horizon.utils.SharedData;
@@ -15,12 +16,18 @@ public class Settings extends BaseOrionActivity {
     this.menu = findViewById(R.id.drawer);
   }
 
+  private void preformVibration(View view) {
+    view.setHapticFeedbackEnabled(true);
+    view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+  }
+
   /*
    * Override to make a more efficient case.
    */
   @Override
   public void clickSettings(View view) {
     closeDrawer();
+    preformVibration(view);
   }
 
   /**
@@ -29,6 +36,7 @@ public class Settings extends BaseOrionActivity {
    */
   public void clickDeleteCon(View view) {
     SharedData.getInstance(this).cleanSingle();
+    preformVibration(view);
   }
 
   /**
@@ -37,6 +45,7 @@ public class Settings extends BaseOrionActivity {
    */
   public void clickDeleteGroups(View view) {
     SharedData.getInstance(this).cleanGroups();
+    preformVibration(view);
   }
 
   /**
@@ -45,5 +54,6 @@ public class Settings extends BaseOrionActivity {
    */
   public void clickDeleteRoutines(View view) {
     SharedData.getInstance(this).cleanRoutines();
+    preformVibration(view);
   }
 }

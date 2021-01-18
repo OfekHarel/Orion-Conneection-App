@@ -56,31 +56,7 @@
                 android:textColor="@color/app_white"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/dev_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="40dp"
-            app:errorEnabled="true"
-            app:counterMaxLength="@integer/password_length"
-            app:counterEnabled="true"
-            app:counterTextColor="@color/app_white"
-            android:textColorHint="@color/app_white"
-            app:hintTextColor="@color/app_white"
-            app:boxStrokeColor="@color/app_white"
-            app:passwordToggleEnabled="true"
-            app:boxStrokeWidth="3dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password"
-                android:inputType="textVisiblePassword"
-                android:background="@color/transparent"
-                android:textCursorDrawable="@drawable/type_cursor"
-                android:digits="@string/password_valid_chars"
-                android:textColor="@color/app_white"/>
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/pc_name"
@@ -111,7 +87,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/confirm_btn"
             android:layout_gravity="center_horizontal"
-            android:onClick="clickConfirm"/>
+            android:onClick="clickConfirm"
+            android:layout_marginVertical="70dp"/>
 
 
     </LinearLayout>

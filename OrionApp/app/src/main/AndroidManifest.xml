@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
+        android:hapticFeedbackEnabled="true"
         android:theme="@style/Theme.OrionApp">
         <activity android:name=".EditRoutines"></activity>
         <activity android:name=".EditGroups" />

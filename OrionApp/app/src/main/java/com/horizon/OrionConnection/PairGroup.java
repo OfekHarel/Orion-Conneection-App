@@ -1,10 +1,14 @@
 package com.horizon.OrionConnection;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.horizon.utils.SharedData;
@@ -100,16 +104,20 @@ public class PairGroup extends BaseOrionActivity {
      * This function's responsible of what happens when the done btn is pressed.
      * @param view -
      */
+    @RequiresApi(api = Build.VERSION_CODES.R)
     public void clickDone(View view) {
+        view.setHapticFeedbackEnabled(true);
         if (!validateName() | !validateConnections()) {
+            view.performHapticFeedback(HapticFeedbackConstants.REJECT);
             return;
+        } else {
+            view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            redirectActv(this, MainActivity.class);
+            GroupConnection groupConnection =
+                    new GroupConnection(Objects.requireNonNull(this.name.getEditText()).
+                            getText().toString(), Vars.newGroup.getList());
+            SharedData.getInstance(this).addGroupConnection(groupConnection);
+            Vars.newGroup.clear();
         }
-
-        redirectActv(this, MainActivity.class);
-        GroupConnection groupConnection =
-                new GroupConnection(this.name.getEditText().getText().toString(),
-                        Vars.newGroup.getList());
-        SharedData.getInstance(this).addGroupConnection(groupConnection);
-        Vars.newGroup.clear();
     }
 }

@@ -1,5 +1,6 @@
 package com.horizon.OrionConnection;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,19 +12,21 @@ import com.horizon.utils.Vars;
 import com.horizon.utils.conn.SingleConnection;
 import java.util.Objects;
 
+import android.view.HapticFeedbackConstants;
+
+import androidx.annotation.RequiresApi;
+
 public class Pair extends BaseOrionActivity {
   /*
    * Widgets init
    */
   private TextInputLayout id;
-  private TextInputLayout password;
   private TextInputLayout name;
 
   /*
    *  Info vars init
    */
   private String idInfo;
-  private String passwordInfo;
   private String nameInfo;
 
   @Override
@@ -37,7 +40,6 @@ public class Pair extends BaseOrionActivity {
      * Widgets init
      */
     this.id = findViewById(R.id.dev_id);
-    this.password = findViewById(R.id.dev_password);
     this.name = findViewById(R.id.pc_name);
   }
 
@@ -101,52 +103,24 @@ public class Pair extends BaseOrionActivity {
     }
   }
 
-  /**
-   * This function will check whether the Password is valid.
-   * <p>The Conditions are:
-   * <p>- Not empty
-   * <p>- Longer / shorter then the matching defined length
-   * @return true or false according to the current conditions.
-   */
-  private boolean validatePassword() {
-    String passwordInput = Objects.requireNonNull(
-            password.getEditText()).getText().toString().trim(); // raw data
-
-    if (passwordInput.isEmpty()) { // empty
-      password.setError(getResources().getString(R.string.empty_error));
-      return false;
-
-    } else if (passwordInput.length() >
-            getResources().getInteger(R.integer.password_length)) { // longer...
-      password.setError(getResources().getString(R.string.long_error));
-      return false;
-
-    } else if (passwordInput.length() <
-            getResources().getInteger(R.integer.password_length)) { // shorter...
-      password.setError(getResources().getString(R.string.short_error));
-      return false;
-
-    } else { // valid
-      password.setError(null);
-      return true;
-    }
-  }
 
   /**
    * This function's responsible of what happens when the confirm btn is pressed
    * @param view -
    */
+  @RequiresApi(api = Build.VERSION_CODES.R)
   public void clickConfirm(View view) {
-    if (!validateID() | !validatePassword() | !validateName()) { // checking if valid
+    view.setHapticFeedbackEnabled(true);
+    if (!validateID()  | !validateName()) { // checking if valid
+      view.performHapticFeedback(HapticFeedbackConstants.REJECT);
       return;
 
     } else {
       this.idInfo = Objects.requireNonNull(id.getEditText()).getText().toString();
-      this.passwordInfo = Objects.requireNonNull(password.getEditText()).getText().toString();
       this.nameInfo = Objects.requireNonNull(name.getEditText()).getText().toString();
 
-      String text = String.format("ID: %s \nPassword: %s\nName: %s",
-              this.idInfo, this.passwordInfo, this.nameInfo);
+      String text = String.format("ID: %s \nName: %s",
+              this.idInfo, this.nameInfo);
 
       SingleConnection connection = new SingleConnection(this.nameInfo, this.idInfo);
 
@@ -158,6 +132,7 @@ public class Pair extends BaseOrionActivity {
         Vars.newGroup.add(connection);
 
       } else {
+        view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         SharedData.getInstance(this).addSingleConnection(connection);
         connection.initConnection();

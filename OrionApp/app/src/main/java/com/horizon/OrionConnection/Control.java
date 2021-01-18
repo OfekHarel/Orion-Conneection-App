@@ -22,7 +22,7 @@ public class Control extends OrionControlBaseActivity {
    * @param view -
    */
   public void clickPowerToggle(View view) {
-    control(Actions.OFF);
+    control(Actions.OFF, view);
   }
 
   /**
@@ -30,7 +30,7 @@ public class Control extends OrionControlBaseActivity {
    * @param view -
    */
   public void clickPrev(View view) {
-    control(Actions.PREV);
+    control(Actions.PREV, view);
   }
 
   /**
@@ -38,7 +38,7 @@ public class Control extends OrionControlBaseActivity {
    * @param view -
    */
   public void clickNext(View view) {
-    control(Actions.SKIP);
+    control(Actions.SKIP, view);
   }
 
   /**
@@ -46,7 +46,7 @@ public class Control extends OrionControlBaseActivity {
    * @param view -
    */
   public void clickVolDown(View view) {
-    control(Actions.VOL_DOWN);
+    control(Actions.VOL_DOWN, view);
   }
 
   /**
@@ -54,7 +54,7 @@ public class Control extends OrionControlBaseActivity {
    * @param view -
    */
   public void clickVolUp(View view) {
-    control(Actions.VOL_UP);
+    control(Actions.VOL_UP, view);
   }
 
   /**
@@ -62,7 +62,7 @@ public class Control extends OrionControlBaseActivity {
    * @param view -
    */
   public void clickMute(View view) {
-    control(Actions.MUTE);
+    control(Actions.MUTE, view);
   }
 
   /**
@@ -70,7 +70,7 @@ public class Control extends OrionControlBaseActivity {
    * @param view -
    */
   public void clickPausePlayToggle(View view) {
-    control(Actions.PAUSE_PLAY_TOGGLE);
+    control(Actions.PAUSE_PLAY_TOGGLE, view);
   }
 
   /**

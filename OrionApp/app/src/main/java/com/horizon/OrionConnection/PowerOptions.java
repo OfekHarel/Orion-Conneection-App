@@ -21,7 +21,7 @@ public class PowerOptions extends OrionControlBaseActivity {
    * @param view -
    */
   public void clickRestart(View view) {
-    control(Actions.RESTART);
+    control(Actions.RESTART, view);
   }
 
   /**
@@ -29,7 +29,7 @@ public class PowerOptions extends OrionControlBaseActivity {
    * @param view -
    */
   public void clickLock(View view) {
-    control(Actions.LOCK);
+    control(Actions.LOCK, view);
   }
 
   /**
@@ -37,6 +37,6 @@ public class PowerOptions extends OrionControlBaseActivity {
    * @param view -
    */
   public void clickSleep(View view) {
-    control(Actions.SLEEP);
+    control(Actions.SLEEP, view);
   }
 }
