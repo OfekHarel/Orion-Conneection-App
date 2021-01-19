@@ -4,7 +4,7 @@
 
     <string name="password_valid_chars">
         abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 123456789</string>
-    <string name="info_text">By the development of: Ofek Harel (AKA Horizon).\nYear: 2020 and 2021.\n\nThis software is part of the Orion Connection tools that allows\nto use the computer as if it was an I.O.T device.\nThis Project created using Java and XML.\n\nFor further info go to my GitHub:</string>
+    <string name="info_text">Developed By: Ofek Harel (AKA Horizon).\nYear: 2020 and 2021.\n\nThis software is part of the Orion Connection tools that allows\nto use the computer as if it was an I.O.T device.\nThis Project created using Java and XML.\n\nFor further info go to my GitHub:</string>
     <string name="github_link"> https://github.com/OfekHarel</string>
 
     <string-array name="Spinner_Actions">

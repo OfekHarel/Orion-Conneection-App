@@ -34,6 +34,7 @@
                 android:inputType="textCapWords"
                 android:background="@color/transparent"
                 android:textCursorDrawable="@drawable/type_cursor"
+                android:digits="@string/password_valid_chars"
                 android:textColor="@color/app_white"/>
         </com.google.android.material.textfield.TextInputLayout>
 
