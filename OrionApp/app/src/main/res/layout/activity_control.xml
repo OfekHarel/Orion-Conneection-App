@@ -16,16 +16,36 @@
 
         <include layout="@layout/main_toolbar" />
 
-        <ImageView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:onClick="clickPowerToggle"
-            android:scaleX="2.3"
-            android:scaleY="2.3"
-            android:layout_marginVertical="50dp"
-            android:background="@drawable/ripple"
-            android:src="@drawable/ic_power" />
+            android:orientation="horizontal"
+            android:layout_marginVertical="30dp">
+
+           <Button
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="On"
+               android:padding="10dp"
+               android:textSize="20sp"
+               android:textColor="@color/app_white"
+               android:background="@drawable/round_btn_layout"
+               android:layout_marginHorizontal="40dp"
+               android:onClick="clickPowerOn"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Off"
+                android:padding="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/app_white"
+                android:background="@drawable/round_btn_layout"
+                android:layout_marginHorizontal="40dp"
+                android:onClick="clickPowerOff"/>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="wrap_content"

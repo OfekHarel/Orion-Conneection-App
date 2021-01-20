@@ -4,6 +4,7 @@ import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,6 +43,20 @@ public class Groups extends BaseOrionActivity {
       }
     });
   }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if(event.getAction() == KeyEvent.ACTION_DOWN)
+    {
+      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
+        redirectActv(this, MainActivity.class);
+        return true;
+      }
+    }
+    return super.onKeyDown(keyCode, event);
+  }
+
+
 
   /*
    * Override to make a more efficient case.

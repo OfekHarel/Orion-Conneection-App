@@ -1,6 +1,7 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.horizon.utils.Vars;
@@ -14,6 +15,19 @@ public class Add extends BaseOrionActivity {
 
         this.menu = findViewById(R.id.drawer);
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(event.getAction() == KeyEvent.ACTION_DOWN)
+        {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                redirectActv(this, MainActivity.class);
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
     /**
      * This function's responsible of what happens when single device option btn is pressed.

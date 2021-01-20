@@ -3,6 +3,7 @@ package com.horizon.OrionConnection;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
@@ -41,6 +42,18 @@ public class Pair extends BaseOrionActivity {
      */
     this.id = findViewById(R.id.dev_id);
     this.name = findViewById(R.id.pc_name);
+  }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if(event.getAction() == KeyEvent.ACTION_DOWN)
+    {
+      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
+        redirectActv(this, Add.class);
+        return true;
+      }
+    }
+    return super.onKeyDown(keyCode, event);
   }
 
   /**

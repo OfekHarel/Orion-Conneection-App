@@ -3,6 +3,7 @@ package com.horizon.OrionConnection;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -46,6 +47,18 @@ public class PairGroup extends BaseOrionActivity {
          */
         this.name = findViewById(R.id.new_group_pair_name);
         this.errorDisp = findViewById(R.id.text_error_add_group);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(event.getAction() == KeyEvent.ACTION_DOWN)
+        {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
+                redirectActv(this, Add.class);
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     /**

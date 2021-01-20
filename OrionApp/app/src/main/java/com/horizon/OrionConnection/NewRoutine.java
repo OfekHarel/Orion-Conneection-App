@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -55,6 +56,20 @@ public class NewRoutine extends BaseOrionActivity {
     this.devSpinner.setAdapter(this.devSpinnerAdapter);
     this.devSpinnerAdapter.notifyDataSetChanged();
   }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if(event.getAction() == KeyEvent.ACTION_DOWN)
+    {
+      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
+        redirectActv(this, Routines.class);
+        return true;
+      }
+    }
+    return super.onKeyDown(keyCode, event);
+  }
+
+
 
   /**
    * This function will check whether the Name is valid.

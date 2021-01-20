@@ -1,6 +1,7 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -23,6 +24,18 @@ public class Routines extends BaseOrionActivity {
     this.adapter = new ArrayAdapter<>(this, R.layout.list_row,
             SharedData.getInstance(this).getRoutinesAsArrayString());
     this.listView.setAdapter(adapter);
+  }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if(event.getAction() == KeyEvent.ACTION_DOWN)
+    {
+      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
+        redirectActv(this, MainActivity.class);
+        return true;
+      }
+    }
+    return super.onKeyDown(keyCode, event);
   }
 
   /*

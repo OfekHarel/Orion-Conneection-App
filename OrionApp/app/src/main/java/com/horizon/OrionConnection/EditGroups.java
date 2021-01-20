@@ -4,6 +4,7 @@ package com.horizon.OrionConnection;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import androidx.annotation.RequiresApi;
 
 import com.horizon.utils.SharedData;
+import com.horizon.utils.Vars;
 import com.horizon.utils.conn.GroupConnection;
 
 import java.util.ArrayList;
@@ -54,7 +56,19 @@ public class EditGroups extends BaseOrionActivity {
                 }
             }
         });
+    }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(event.getAction() == KeyEvent.ACTION_DOWN)
+        {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                redirectActv(this, Groups.class);
+                return true;
+            }
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
     /**

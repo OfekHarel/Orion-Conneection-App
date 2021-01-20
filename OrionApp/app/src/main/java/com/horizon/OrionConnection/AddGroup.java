@@ -7,6 +7,7 @@ import android.text.Layout;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.HapticFeedbackConstants;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -73,7 +74,19 @@ public class AddGroup extends BaseOrionActivity {
                 }
             }
         });
+    }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(event.getAction() == KeyEvent.ACTION_DOWN)
+        {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                redirectActv(this, Groups.class);
+                return true;
+            }
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
     /**

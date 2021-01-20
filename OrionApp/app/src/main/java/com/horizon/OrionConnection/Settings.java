@@ -2,6 +2,7 @@ package com.horizon.OrionConnection;
 
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.horizon.utils.SharedData;
@@ -14,6 +15,18 @@ public class Settings extends BaseOrionActivity {
     setContentView(R.layout.activity_settings);
 
     this.menu = findViewById(R.id.drawer);
+  }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if(event.getAction() == KeyEvent.ACTION_DOWN)
+    {
+      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
+        redirectActv(this, MainActivity.class);
+        return true;
+      }
+    }
+    return super.onKeyDown(keyCode, event);
   }
 
   private void preformVibration(View view) {

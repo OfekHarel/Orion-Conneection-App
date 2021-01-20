@@ -4,6 +4,7 @@ package com.horizon.OrionConnection;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -55,6 +56,19 @@ public class EditRoutines extends BaseOrionActivity {
             }
         });
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(event.getAction() == KeyEvent.ACTION_DOWN)
+        {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
+                redirectActv(this, Routines.class);
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
     /**
     * This function's responsible of what happens when the delete btn is pressed

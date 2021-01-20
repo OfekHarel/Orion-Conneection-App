@@ -2,6 +2,7 @@ package com.horizon.OrionConnection;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.horizon.networking.Executioner.Actions;
@@ -17,14 +18,33 @@ public class Control extends OrionControlBaseActivity {
     this.menu = findViewById(R.id.drawer);
   }
 
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if(event.getAction() == KeyEvent.ACTION_DOWN)
+    {
+      if (keyCode == KeyEvent.KEYCODE_BACK) {
+        if(Vars.isFromGroup) {
+          redirectActv(this, Groups.class);
+        } else {
+          redirectActv(this, MainActivity.class);
+        }
+        return true;
+      }
+    }
+
+    return super.onKeyDown(keyCode, event);
+  }
+
   /**
-   * This function's responsible of what happens when the main power btn is pressed.
+   * This function's responsible of what happens when the off power btn is pressed.
    * @param view -
    */
-  public void clickPowerToggle(View view) {
+  public void clickPowerOff(View view) {
     control(Actions.OFF, view);
   }
 
+
+  public void clickPowerOn(View view) { control(Actions.OFF, view); }
   /**
    * This function's responsible of what happens when the previous btn is pressed.
    * @param view -
@@ -88,4 +108,6 @@ public class Control extends OrionControlBaseActivity {
   public void clickPcInfo(View view) {
     redirectActv(this, PCInfo.class);
   }
+
+
 }
