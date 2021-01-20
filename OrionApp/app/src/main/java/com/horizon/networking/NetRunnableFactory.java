@@ -1,6 +1,5 @@
 package com.horizon.networking;
 
-import android.os.Handler;
 import android.util.Log;
 import android.util.Pair;
 
@@ -64,12 +63,26 @@ public class NetRunnableFactory {
     public static ArrayList<SingleConnection> buildFromBlueprints(ArrayList<SingleConnection> arr) {
         if (arr == null) {
             return null;
-        }
+        } else {
+            ArrayList<SingleConnection> valid = new ArrayList<>();
 
-        for (int i = 0; i < arr.size(); i++) {
-            arr.get(i).setRunnable(NetRunnableFactory.get(arr.get(i).getName()));
-            arr.get(i).initConnection();
+            for (int i = 0; i < arr.size(); i++) {
+                NetRunnableFactory.get(arr.get(i).getName());
+                if(arr.get(i).initConnection()) {
+                    Log.i("aaaaaaaaaaaaaaaaaaaa", "a");
+                    valid.add(arr.get(i));
+                } else {
+                    Vars.toastText += arr.get(i).getName() + ", ";
+                }
+            }
+
+            return valid;
         }
-        return arr;
+    }
+
+    public static void backFromTheDead(ArrayList<SingleConnection> arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            arr.get(i).flowConnection();
+        }
     }
 }

@@ -90,7 +90,6 @@ public class Client {
      */
     public String receive() throws NumberFormatException, IOException {
         if (input.available() < 2) {
-            System.out.println("bye");
             return "";
         }
 

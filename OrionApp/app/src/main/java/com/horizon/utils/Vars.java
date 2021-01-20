@@ -36,4 +36,6 @@ public class Vars {
      * An arraylist that contains the connection between each connection to a runnable.
      */
     public static ArrayList<Pair<String, NetCommRunnable>> names = new ArrayList<>();
+
+    public static String toastText = "";
 }

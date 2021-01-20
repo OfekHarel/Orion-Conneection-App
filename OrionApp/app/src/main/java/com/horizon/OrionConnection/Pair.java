@@ -2,12 +2,10 @@ package com.horizon.OrionConnection;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
-import com.horizon.networking.NetCommRunnable;
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 import com.horizon.utils.conn.SingleConnection;
@@ -137,6 +135,12 @@ public class Pair extends BaseOrionActivity {
 
       SingleConnection connection = new SingleConnection(this.nameInfo, this.idInfo);
 
+      if(!connection.initConnection()) {
+        id.setError("Invalid ID - check for typos");
+        return;
+      } else {
+        id.setError(null);
+      }
       /*
        * Taking care of 2 scenarios that the use paired from single device or from a group devices.
        */
@@ -148,7 +152,8 @@ public class Pair extends BaseOrionActivity {
         view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         SharedData.getInstance(this).addSingleConnection(connection);
-        connection.initConnection();
+
+        connection.flowConnection();
         redirectActv(this, MainActivity.class);
       }
     }

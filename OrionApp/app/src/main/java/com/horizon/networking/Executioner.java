@@ -69,14 +69,16 @@ public class Executioner {
         while (val.equals("")) {
             val = this.client.receive();
         }
-        boolean is = NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.VALID.getAsString());
+        boolean is = NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.
+                VALID.getAsString());
         if (!is) {
             Log.i("im here", "here");
             return false;
         } else {
             this.client.send(NetworkPackets.assamble(compName));
             val = this.client.receive();
-            while (!NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.PAIRED.getAsString())) {
+            while (!NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.
+                    PAIRED.getAsString())) {
                 val = this.client.receive();
             }
             return true;

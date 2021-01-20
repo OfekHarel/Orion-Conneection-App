@@ -1,11 +1,14 @@
 package com.horizon.utils.conn;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.horizon.networking.NetCommRunnable;
 import com.horizon.networking.NetRunnableFactory;
 
-import java.util.logging.LogRecord;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * A bond to represent a connection between one comp to an app.
@@ -16,12 +19,10 @@ public class SingleConnection extends Connection {
   private final String id;
 
   private Thread thread;
-  private NetCommRunnable runnable;
 
   public SingleConnection(String name, String id) {
     this.id = id;
     this.name = name;
-    this.runnable = NetRunnableFactory.get(name);
   }
 
   public String getName() {
@@ -32,25 +33,26 @@ public class SingleConnection extends Connection {
     return id;
   }
 
-  public void initConnection() {
-    Handler h = new Handler();
-    h.post(() -> {
-      runnable.pair(id, name);
-      thread = new Thread(runnable);
+  public boolean initConnection() {
+    Future<Boolean> is = Executors.newSingleThreadExecutor().submit(
+            () -> getRunnable().pair(id, name));
+    try {
+      Log.i("aaaaaaaaaaaaaaa", Boolean.toString(is.get()));
+      return is.get();
+    } catch (ExecutionException | InterruptedException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public void flowConnection() {
+    new Handler().post(() -> {
+      thread = new Thread(getRunnable());
       thread.start();
     });
-
   }
 
   public NetCommRunnable getRunnable() {
     return NetRunnableFactory.get(name);
-  }
-
-  public Thread getThread() {
-    return thread;
-  }
-
-  public void setRunnable(NetCommRunnable runnable) {
-    this.runnable = runnable;
   }
 }

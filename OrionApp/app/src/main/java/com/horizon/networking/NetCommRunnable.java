@@ -1,5 +1,7 @@
 package com.horizon.networking;
 
+import android.util.Log;
+
 import java.io.IOException;
 
 import com.horizon.networking.Executioner.Actions;
@@ -18,6 +20,7 @@ public class NetCommRunnable implements Runnable {
     private String name = "";
 
     private boolean synced = false;
+    public boolean isDoneSynceProc = false;
 
     public NetCommRunnable() {
         act = null;
@@ -27,10 +30,28 @@ public class NetCommRunnable implements Runnable {
      * A function that responsible to pass the sync required
      * @param idInfo - The ID
      * @param nameInfo - The Connection's Name
+     * @return -
      */
-    public void pair(String idInfo, String nameInfo) {
+    public boolean pair(String idInfo, String nameInfo) {
         id = idInfo;
         name = nameInfo;
+
+        synced = false;
+        isDoneSynceProc = false;
+        /*
+         * Trying to connect
+         */
+        try {
+            client = new Client();
+            executioner = new Executioner(client);
+            synced = executioner.sync(id, name);
+        } catch (IOException e) {
+            synced = false;
+            e.printStackTrace();
+        }
+        Log.i("ooooooooooooooooooooooooooooooooo", Boolean.toString(synced));
+        isDoneSynceProc = true;
+        return synced;
     }
 
     public Client getClient() {
@@ -61,16 +82,6 @@ public class NetCommRunnable implements Runnable {
 
     @Override
     public void run() {
-        /*
-         * Trying to connect
-         */
-        try {
-            client = new Client();
-            executioner = new Executioner(client);
-            synced = executioner.sync(id, name);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         /*
          * Connected

@@ -5,6 +5,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
@@ -22,7 +23,7 @@ public class MainActivity extends BaseOrionActivity {
 
 
     this.menu = findViewById(R.id.drawer);
-
+    
     /*
      * List view init.
      */
@@ -47,6 +48,7 @@ public class MainActivity extends BaseOrionActivity {
         redirectActv(instance, Control.class);
       }
     });
+
   }
 
   @Override

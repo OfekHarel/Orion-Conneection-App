@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.util.Pair;
+import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
 import com.horizon.networking.NetCommRunnable;
@@ -23,10 +24,6 @@ import java.util.ArrayList;
 public class SharedData {
     private static SharedData instance = null;
 
-    /*
-     * Entry names
-     */
-    private final String NAME = "mem";
     private final String SINGLE_CONNS = "singleConns";
     private final String GROUP_CONNS = "groupConns";
     private final String ROUTINES = "routines";
@@ -43,7 +40,11 @@ public class SharedData {
      */
     @SuppressLint("CommitPrefEdits")
     private SharedData(Context context) {
-        this.sharedPreferences = context.getSharedPreferences(this.NAME, Context.MODE_PRIVATE);
+        /*
+         * Entry names
+         */
+        String NAME = "mem";
+        this.sharedPreferences = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         this.editor = this.sharedPreferences.edit();
         this.gson = new Gson();
 
@@ -58,8 +59,15 @@ public class SharedData {
             this.editor.putString(this.ROUTINES, null);
             this.editor.putString(this.RUNNABLE_NAMES, null);
             this.editor.apply();
+
         }
         setSingleConnections(NetRunnableFactory.buildFromBlueprints(getSingleConnections()));
+        NetRunnableFactory.backFromTheDead(getSingleConnections());
+        if (!Vars.toastText.equals("")) {
+            String text = "Lost Connection with: " + Vars.toastText;
+            Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+            Vars.toastText = "";
+        }
     }
 
     /**
@@ -90,17 +98,6 @@ public class SharedData {
     }
 
     /**
-     * Adds a connection to the shared mem.
-     * @param run - to connection to add
-     */
-    public void addRun(Pair<String, NetCommRunnable> run) {
-        ArrayList<Pair<String, NetCommRunnable>> arrayList = getRuns();
-        arrayList.add(run);
-        this.setRunName(arrayList);
-
-    }
-
-    /**
      * @return The single connection list.
      */
     public ArrayList<Pair<String, NetCommRunnable>> getRuns() {
@@ -122,7 +119,8 @@ public class SharedData {
             return;
         }
 
-        String json = this.gson.toJson(connections);
+        Type type = new TypeToken<ArrayList<SingleConnection>>() {}.getType();
+        String json = this.gson.toJson(connections, type);
         this.editor.putString(this.SINGLE_CONNS, json);
         this.editor.apply();
 
@@ -145,7 +143,6 @@ public class SharedData {
         ArrayList<SingleConnection> arrayList = getSingleConnections();
         arrayList.add(connection);
         this.setSingleConnections(arrayList);
-
     }
 
     /**
