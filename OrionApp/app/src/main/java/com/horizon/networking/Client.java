@@ -29,13 +29,13 @@ public class Client {
     private String name = "Comp";
 
     private final String PUBLIC_IP = "192.46.233.145";
-    private final String LOCAL_IP = "192.168.1.34";
+    private final String LOCAL_IP = "192.168.1.36";
     private final int PORT = 1691;
 
     private Encryption encryption = null;
 
     public Client() throws IOException {
-        this.clientSocket = new Socket(PUBLIC_IP, PORT);
+        this.clientSocket = new Socket(LOCAL_IP, PORT);
 
         this.output = new OutputStreamWriter(this.clientSocket.getOutputStream(),
                 StandardCharsets.UTF_8);

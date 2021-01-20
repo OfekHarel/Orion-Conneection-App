@@ -35,16 +35,7 @@ public class Control extends OrionControlBaseActivity {
     return super.onKeyDown(keyCode, event);
   }
 
-  /**
-   * This function's responsible of what happens when the off power btn is pressed.
-   * @param view -
-   */
-  public void clickPowerOff(View view) {
-    control(Actions.OFF, view);
-  }
 
-
-  public void clickPowerOn(View view) { control(Actions.OFF, view); }
   /**
    * This function's responsible of what happens when the previous btn is pressed.
    * @param view -

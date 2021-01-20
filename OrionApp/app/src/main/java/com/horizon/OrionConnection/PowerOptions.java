@@ -30,6 +30,17 @@ public class PowerOptions extends OrionControlBaseActivity {
   }
 
   /**
+   * This function's responsible of what happens when the off power btn is pressed.
+   * @param view -
+   */
+  public void clickPowerOff(View view) {
+    control(Actions.OFF, view);
+  }
+
+
+  public void clickPowerOn(View view) { control(Actions.OFF, view); }
+
+  /**
    * This function's responsible of what happens when the restart btn is pressed.
    * @param view -
    */

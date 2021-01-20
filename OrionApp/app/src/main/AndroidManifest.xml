@@ -14,13 +14,27 @@
         android:supportsRtl="true"
         android:hapticFeedbackEnabled="true"
         android:theme="@style/Theme.OrionApp">
-        <activity android:name=".EditRoutines"></activity>
-        <activity android:name=".EditGroups" />
-        <activity android:name=".EditMainConnection" />
-        <activity android:name=".AddGroup" />
-        <activity android:name=".Offline" />
-        <activity android:name=".PairGroup" />
-        <activity android:name=".Add" />
+        <activity 
+            android:name=".EditRoutines"
+            android:screenOrientation="portrait"/>
+        <activity 
+            android:name=".EditGroups"
+            android:screenOrientation="portrait" />
+        <activity 
+            android:name=".EditMainConnection"
+            android:screenOrientation="portrait" />
+        <activity 
+            android:name=".AddGroup"
+            android:screenOrientation="portrait" />
+        <activity 
+            android:name=".Offline"
+            android:screenOrientation="portrait" />
+        <activity 
+            android:name=".PairGroup"
+            android:screenOrientation="portrait" />
+        <activity 
+            android:name=".Add"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NewRoutine"
             android:screenOrientation="portrait" />
