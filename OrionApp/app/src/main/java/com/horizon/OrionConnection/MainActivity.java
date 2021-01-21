@@ -48,7 +48,6 @@ public class MainActivity extends BaseOrionActivity {
         redirectActv(instance, Control.class);
       }
     });
-
   }
 
   @Override

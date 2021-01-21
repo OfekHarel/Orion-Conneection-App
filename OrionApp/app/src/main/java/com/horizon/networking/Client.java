@@ -12,6 +12,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -34,8 +35,10 @@ public class Client {
 
     private Encryption encryption = null;
 
-    public Client() throws IOException {
-        this.clientSocket = new Socket(LOCAL_IP, PORT);
+    public Client() throws Exception {
+        this.clientSocket = new Socket();
+        this.clientSocket.setSoTimeout(1100);
+        this.clientSocket.connect(new InetSocketAddress(this.LOCAL_IP, this.PORT), 1100);
 
         this.output = new OutputStreamWriter(this.clientSocket.getOutputStream(),
                 StandardCharsets.UTF_8);

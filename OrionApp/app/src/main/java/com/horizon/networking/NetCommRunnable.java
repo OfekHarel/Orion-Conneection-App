@@ -45,7 +45,7 @@ public class NetCommRunnable implements Runnable {
             client = new Client();
             executioner = new Executioner(client);
             synced = executioner.sync(id, name);
-        } catch (IOException e) {
+        } catch (Exception e) {
             synced = false;
             e.printStackTrace();
         }
