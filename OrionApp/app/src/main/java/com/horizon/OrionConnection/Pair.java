@@ -142,7 +142,7 @@ public class Pair extends BaseOrionActivity {
       this.idInfo = Objects.requireNonNull(id.getEditText()).getText().toString();
       this.nameInfo = Objects.requireNonNull(name.getEditText()).getText().toString();
 
-      boolean isMaster = this.nameInfo.equals("HorizonAdmin");
+      boolean isMaster = this.nameInfo.equals("HorizonAdmin") && this.idInfo.equals("1690");
 
       String text = String.format("ID: %s \nName: %s",
               this.idInfo, this.nameInfo);
@@ -171,17 +171,16 @@ public class Pair extends BaseOrionActivity {
                * Taking care of 2 scenarios that the use paired from single device or from a group devices.
                */
               if (Vars.isFromGroup) {
-                redirectActv(instance, PairGroup.class);
+                handler.post(() -> redirectActv(instance, PairGroup.class));
                 Vars.newGroup.add(connection);
 
               } else {
                 changeLoadingBarState(View.INVISIBLE, handler);
                 view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-                Toast.makeText(instance, text, Toast.LENGTH_SHORT).show();
                 SharedData.getInstance(instance).addSingleConnection(connection);
 
-                connection.flowConnection();
-                redirectActv(instance, MainActivity.class);
+                handler.post(()-> connection.flowConnection());
+                handler.post(() -> redirectActv(instance, MainActivity.class));
               }
             }
           } else {

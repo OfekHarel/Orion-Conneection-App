@@ -3,6 +3,8 @@ package com.horizon.utils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Pair;
 import android.widget.Toast;
@@ -33,6 +35,8 @@ public class SharedData {
     private final SharedPreferences.Editor editor;
     private final Gson gson;
 
+    private Handler exeHandler;
+
 
     /**
      * Open the shared memory and its entries.
@@ -61,12 +65,11 @@ public class SharedData {
             this.editor.apply();
 
         }
+
         setSingleConnections(NetRunnableFactory.buildFromBlueprints(getSingleConnections()));
         NetRunnableFactory.backFromTheDead(getSingleConnections());
         if (!Vars.toastText.equals("")) {
-            String text = "Lost Connection with: " + Vars.toastText;
-            Toast.makeText(context, text, Toast.LENGTH_LONG).show();
-            Vars.toastText = "";
+            Vars.toastText = "Lost Connection with: " + Vars.toastText;
         }
     }
 
@@ -447,5 +450,15 @@ public class SharedData {
      */
     public Routine getRoutineConnectionByName(String nameInput) {
         return getRoutineConnectionByName(nameInput, getRoutines());
+    }
+
+    public void load(Context c) {
+        getSingleConnections();
+        getGroupConnections();
+        getRoutines();
+        if (!Vars.toastText.isEmpty()) {
+            Toast.makeText(c, Vars.toastText, Toast.LENGTH_SHORT).show();
+            Vars.toastText = "";
+        }
     }
 }

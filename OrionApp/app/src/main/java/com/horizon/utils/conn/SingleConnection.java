@@ -1,13 +1,9 @@
 package com.horizon.utils.conn;
 
-import android.os.Handler;
-import android.util.Log;
-
 import com.horizon.networking.NetCommRunnable;
 import com.horizon.networking.NetRunnableFactory;
 
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
@@ -46,10 +42,8 @@ public class SingleConnection extends Connection {
   }
 
   public void flowConnection() {
-    new Handler().post(() -> {
-      thread = new Thread(getRunnable());
-      thread.start();
-    });
+    thread = new Thread(getRunnable());
+    thread.start();
   }
 
   public NetCommRunnable getRunnable() {

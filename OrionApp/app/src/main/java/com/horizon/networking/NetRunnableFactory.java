@@ -1,5 +1,6 @@
 package com.horizon.networking;
 
+import android.os.Handler;
 import android.util.Log;
 import android.util.Pair;
 
@@ -61,6 +62,7 @@ public class NetRunnableFactory {
      * @return - The edited and updated arr.
      */
     public static ArrayList<SingleConnection> buildFromBlueprints(ArrayList<SingleConnection> arr) {
+
         if (arr == null) {
             return null;
         } else {

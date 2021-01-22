@@ -129,6 +129,6 @@ public class BaseOrionActivity extends AppCompatActivity {
   }
 
   protected void changeLoadingBarState(int mode, Handler handler) {
-    handler.postDelayed(() -> runOnUiThread(() -> loadingBar.setVisibility(mode)), 100);
+    handler.post(() -> runOnUiThread(() -> loadingBar.setVisibility(mode)));
   }
 }

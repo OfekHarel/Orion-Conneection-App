@@ -1,7 +1,10 @@
 package com.horizon.OrionConnection;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,7 +25,7 @@ public class MainActivity extends BaseOrionActivity {
   private ListView listView; // List view of the device list.
   private ConnectionListAdapter listadpt;
 
-
+  private int backBTNCounter = 0;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,10 @@ public class MainActivity extends BaseOrionActivity {
 
     this.menu = findViewById(R.id.drawer);
     this.loadingBar = findViewById(R.id.loader);
+    changeLoadingBarState(View.INVISIBLE, new Handler());
 
-    loadingBar.setVisibility(View.VISIBLE);
+   MainActivity instance = this;
+
 
     /*
      * List view init.
@@ -49,7 +54,6 @@ public class MainActivity extends BaseOrionActivity {
     /*
      * This code is responsible of what happens when a connection widget is pressed.
      */
-    MainActivity instance = this;
 
     listView.setOnItemClickListener((arg0, arg1, arg2, id) -> {
       Vars.connection = listadpt.getItem(arg2);
@@ -59,20 +63,22 @@ public class MainActivity extends BaseOrionActivity {
     loadingBar.setVisibility(View.INVISIBLE);
   }
 
-  @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if(event.getAction() == KeyEvent.ACTION_DOWN)
-    {
-      if (keyCode == KeyEvent.KEYCODE_BACK) {
-        return true;
+    @Override
+    public void onBackPressed() {
+      backBTNCounter++;
+      if (backBTNCounter == 1) {
+          Toast.makeText(this, "Alart! Hit back button again to Exit",
+                  Toast.LENGTH_SHORT).show();
+      } else if (backBTNCounter == 2){
+          backBTNCounter = 0;
+          Intent intent = new Intent(Intent.ACTION_MAIN);
+          intent.addCategory(Intent.CATEGORY_HOME);
+          intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+          startActivity(intent);
       }
     }
-    return super.onKeyDown(keyCode, event);
-  }
 
-
-
-  /*
+    /*
    * Override to make a more efficient case.
    */
   @Override
