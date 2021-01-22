@@ -7,6 +7,7 @@ import com.horizon.networking.NetCommRunnable;
 import com.horizon.networking.NetRunnableFactory;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
@@ -37,7 +38,6 @@ public class SingleConnection extends Connection {
     Future<Boolean> is = Executors.newSingleThreadExecutor().submit(
             () -> getRunnable().pair(id, name));
     try {
-      Log.i("aaaaaaaaaaaaaaa", Boolean.toString(is.get()));
       return is.get();
     } catch (ExecutionException | InterruptedException e) {
       e.printStackTrace();

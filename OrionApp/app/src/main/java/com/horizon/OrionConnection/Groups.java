@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Groups extends BaseOrionActivity {
 
@@ -79,7 +80,12 @@ public class Groups extends BaseOrionActivity {
   * @param view -
   */
   public void clickEditGroups(View view) {
-    redirectActv(this, EditGroups.class);
-
+    if (SharedData.getInstance(this).getGroupConnections().isEmpty()) {
+      Toast.makeText(this, "No groups have been added yet", Toast.LENGTH_SHORT).
+              show();
+      return;
+    } else {
+      redirectActv(this, EditGroups.class);
+    }
   }
 }

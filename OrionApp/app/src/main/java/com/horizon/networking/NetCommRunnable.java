@@ -1,5 +1,6 @@
 package com.horizon.networking;
 
+import android.os.Handler;
 import android.util.Log;
 
 import java.io.IOException;
@@ -45,11 +46,11 @@ public class NetCommRunnable implements Runnable {
             client = new Client();
             executioner = new Executioner(client);
             synced = executioner.sync(id, name);
+
         } catch (Exception e) {
             synced = false;
             e.printStackTrace();
         }
-        Log.i("ooooooooooooooooooooooooooooooooo", Boolean.toString(synced));
         isDoneSynceProc = true;
         return synced;
     }

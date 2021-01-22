@@ -9,28 +9,30 @@
     tools:context=".Pair"
     android:background="@drawable/grad_background">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <include layout="@layout/main_toolbar" />
 
         <TextView
-            android:paddingVertical="22dp"
+            android:id="@+id/pair_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="50dp"
+            android:gravity="center_horizontal"
             android:text="Pair new Device"
             android:textColor="@color/app_white"
             android:textSize="32sp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"/>
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginHorizontal="35dp"
-            android:background="@color/app_white"/>
+            android:background="@color/app_white"
+            android:layout_below="@id/pair_title"
+            android:id="@+id/pair_line"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dev_id"
@@ -44,7 +46,8 @@
             android:textColorHint="@color/app_white"
             app:hintTextColor="@color/app_white"
             app:boxStrokeColor="@color/app_white"
-            app:boxStrokeWidth="3dp">
+            app:boxStrokeWidth="3dp"
+            android:layout_below="@id/pair_line">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -67,7 +70,8 @@
             android:textColorHint="@color/app_white"
             app:hintTextColor="@color/app_white"
             app:boxStrokeColor="@color/app_white"
-            app:boxStrokeWidth="3dp">
+            app:boxStrokeWidth="3dp"
+            android:layout_below="@id/dev_id">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -83,15 +87,24 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
+            android:id="@+id/pair_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pc_name"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="70dp"
+            android:onClick="clickConfirm"
+            android:src="@drawable/confirm_btn" />
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/confirm_btn"
-            android:layout_gravity="center_horizontal"
-            android:onClick="clickConfirm"
-            android:layout_marginVertical="70dp"/>
+            android:padding="20dp"
+            android:layout_centerInParent="true">
 
-
-    </LinearLayout>
+            <include layout="@layout/loader"/>
+        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="300dp"

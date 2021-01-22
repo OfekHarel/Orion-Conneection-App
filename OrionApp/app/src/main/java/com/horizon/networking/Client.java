@@ -37,7 +37,7 @@ public class Client {
 
     public Client() throws Exception {
         this.clientSocket = new Socket();
-        this.clientSocket.setSoTimeout(1100);
+        this.clientSocket.setSoTimeout(1500);
         this.clientSocket.connect(new InetSocketAddress(this.LOCAL_IP, this.PORT), 1100);
 
         this.output = new OutputStreamWriter(this.clientSocket.getOutputStream(),

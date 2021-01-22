@@ -5,6 +5,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.horizon.utils.SharedData;
 
@@ -59,6 +60,13 @@ public class Routines extends BaseOrionActivity {
    * @param view -
    */
   public void clickEditRoutine(View view) {
-    redirectActv(this, EditRoutines.class);
+
+    if (SharedData.getInstance(this).getRoutines().isEmpty()) {
+      Toast.makeText(this, "No routines have been setup yet", Toast.LENGTH_SHORT).
+              show();
+      return;
+    } else {
+      redirectActv(this, EditRoutines.class);
+    }
   }
 }

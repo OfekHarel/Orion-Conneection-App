@@ -12,4 +12,15 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="link_color">#0066CC</color>
     <color name="error_color">#E12800</color>
+    <color name="gplus_color_1">#3e802f</color>
+    <color name="gplus_color_2">#f4b400</color>
+    <color name="gplus_color_3">#427fed</color>
+    <color name="gplus_color_4">#b23424</color>
+
+    <integer-array name="gplus_colors">
+        <item>@color/white</item>
+        <item>@color/white</item>
+        <item>@color/white</item>
+        <item>@color/white</item>
+    </integer-array>
 </resources>

@@ -3,7 +3,10 @@ package com.horizon.OrionConnection;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.ProgressBar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -20,6 +23,8 @@ public class BaseOrionActivity extends AppCompatActivity {
    * Need to be set in the onCreate() function.
    */
   protected DrawerLayout menu;
+
+  protected ProgressBar loadingBar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -121,5 +126,9 @@ public class BaseOrionActivity extends AppCompatActivity {
   protected void onPause() {
     super.onPause();
     closeDrawer();
+  }
+
+  protected void changeLoadingBarState(int mode, Handler handler) {
+    handler.postDelayed(() -> runOnUiThread(() -> loadingBar.setVisibility(mode)), 100);
   }
 }

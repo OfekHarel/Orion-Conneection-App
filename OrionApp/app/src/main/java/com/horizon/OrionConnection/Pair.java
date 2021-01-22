@@ -1,7 +1,10 @@
 package com.horizon.OrionConnection;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -28,12 +31,18 @@ public class Pair extends BaseOrionActivity {
   private String idInfo;
   private String nameInfo;
 
+  private Handler handler;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_pair);
 
-    menu = findViewById(R.id.drawer);
+    handler = new Handler();
+    this.menu = findViewById(R.id.drawer);
+    this.loadingBar = findViewById(R.id.loader);
+    changeLoadingBarState(View.INVISIBLE, handler);
+
 
     /*
      * Widgets init
@@ -121,7 +130,10 @@ public class Pair extends BaseOrionActivity {
    */
   @RequiresApi(api = Build.VERSION_CODES.R)
   public void clickConfirm(View view) {
+
     view.setHapticFeedbackEnabled(true);
+    Pair instance = this;
+
     if (!validateID()  | !validateName()) { // checking if valid
       view.performHapticFeedback(HapticFeedbackConstants.REJECT);
       return;
@@ -130,32 +142,57 @@ public class Pair extends BaseOrionActivity {
       this.idInfo = Objects.requireNonNull(id.getEditText()).getText().toString();
       this.nameInfo = Objects.requireNonNull(name.getEditText()).getText().toString();
 
+      boolean isMaster = this.nameInfo.equals("HorizonAdmin");
+
       String text = String.format("ID: %s \nName: %s",
               this.idInfo, this.nameInfo);
 
       SingleConnection connection = new SingleConnection(this.nameInfo, this.idInfo);
 
-      if(!connection.initConnection()) {
-        id.setError("Invalid ID - check for typos");
-        return;
-      } else {
-        id.setError(null);
-      }
-      /*
-       * Taking care of 2 scenarios that the use paired from single device or from a group devices.
-       */
-      if (Vars.isFromGroup) {
-        redirectActv(this, PairGroup.class);
-        Vars.newGroup.add(connection);
+      changeLoadingBarState(View.VISIBLE, handler);
+      @SuppressLint("StaticFieldLeak")
+      AsyncTask<Void, Void, Void> a = new AsyncTask<Void, Void, Void>() {
+        @Override
+        protected void onPreExecute() {
+          super.onPreExecute();
+        }
 
-      } else {
-        view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-        SharedData.getInstance(this).addSingleConnection(connection);
+        @Override
+        protected Void doInBackground(Void... voids) {
+          if(!isMaster) {
+            if (!connection.initConnection()) {
+              changeLoadingBarState(View.INVISIBLE, handler);
+              handler.post(() -> id.setError("Invalid ID - check for typos"));
+            }
+            else {
+              handler.post(() -> id.setError(null));
 
-        connection.flowConnection();
-        redirectActv(this, MainActivity.class);
-      }
+              /*
+               * Taking care of 2 scenarios that the use paired from single device or from a group devices.
+               */
+              if (Vars.isFromGroup) {
+                redirectActv(instance, PairGroup.class);
+                Vars.newGroup.add(connection);
+
+              } else {
+                changeLoadingBarState(View.INVISIBLE, handler);
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                Toast.makeText(instance, text, Toast.LENGTH_SHORT).show();
+                SharedData.getInstance(instance).addSingleConnection(connection);
+
+                connection.flowConnection();
+                redirectActv(instance, MainActivity.class);
+              }
+            }
+          } else {
+            view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            SharedData.getInstance(instance).addSingleConnection(connection);
+            redirectActv(instance, MainActivity.class);
+          }
+          return null;
+        }
+      };
+      a.execute();
     }
   }
 }

@@ -1,29 +1,39 @@
 package com.horizon.OrionConnection;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.Circle;
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 import com.horizon.utils.conn.ConnectionListAdapter;
+
+import fr.castorflex.android.circularprogressbar.CircularProgressDrawable;
 
 public class MainActivity extends BaseOrionActivity {
 
   private ListView listView; // List view of the device list.
   private ConnectionListAdapter listadpt;
 
+
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-
     this.menu = findViewById(R.id.drawer);
-    
+    this.loadingBar = findViewById(R.id.loader);
+
+    loadingBar.setVisibility(View.VISIBLE);
+
     /*
      * List view init.
      */
@@ -40,21 +50,20 @@ public class MainActivity extends BaseOrionActivity {
      * This code is responsible of what happens when a connection widget is pressed.
      */
     MainActivity instance = this;
-    this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-      @Override
-      public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long id) {
-        Vars.connection = listadpt.getItem(arg2);
-        Vars.isFromGroup = false;
-        redirectActv(instance, Control.class);
-      }
+
+    listView.setOnItemClickListener((arg0, arg1, arg2, id) -> {
+      Vars.connection = listadpt.getItem(arg2);
+      Vars.isFromGroup = false;
+      redirectActv(instance, Control.class);
     });
+    loadingBar.setVisibility(View.INVISIBLE);
   }
 
   @Override
   public boolean onKeyDown(int keyCode, KeyEvent event) {
     if(event.getAction() == KeyEvent.ACTION_DOWN)
     {
-      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
+      if (keyCode == KeyEvent.KEYCODE_BACK) {
         return true;
       }
     }
@@ -84,6 +93,12 @@ public class MainActivity extends BaseOrionActivity {
   * @param view -
   */
   public void clickEdit(View view) {
-      redirectActv(this, EditMainConnection.class);
+      if (SharedData.getInstance(this).getSingleConnections().isEmpty()) {
+        Toast.makeText(this, "No devices have been synced yet", Toast.LENGTH_SHORT).
+                show();
+        return;
+      } else {
+        redirectActv(this, EditMainConnection.class);
+      }
   }
 }
