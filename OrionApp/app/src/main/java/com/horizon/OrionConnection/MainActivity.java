@@ -33,6 +33,8 @@ public class MainActivity extends BaseOrionActivity {
     setContentView(R.layout.activity_main);
 
     this.menu = findViewById(R.id.drawer);
+    this.loadingBar = findViewById(R.id.loader);
+    changeLoadingBarState(View.INVISIBLE, new Handler());
 
     /*
      * List view init.
