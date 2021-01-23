@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.horizon.utils.SharedData;
+import com.horizon.utils.routine.Routine;
 
 public class Routines extends BaseOrionActivity {
 
@@ -52,7 +53,14 @@ public class Routines extends BaseOrionActivity {
    * @param view -
    */
   public void clickAddRoutine(View view) {
-    redirectActv(this, NewRoutine.class);
+    if (SharedData.getInstance(this).getRoutines().isEmpty()) {
+      setPopWin(this, "Warning",
+              "No devices have been added yet",
+              "Add device", (dialog, which) -> redirectActv(Routines.this,
+                      Add.class)).show();
+    } else {
+      redirectActv(this, NewRoutine.class);
+    }
   }
 
   /**
@@ -62,9 +70,10 @@ public class Routines extends BaseOrionActivity {
   public void clickEditRoutine(View view) {
 
     if (SharedData.getInstance(this).getRoutines().isEmpty()) {
-      Toast.makeText(this, "No routines have been setup yet", Toast.LENGTH_SHORT).
-              show();
-      return;
+        setPopWin(this, "Warning",
+                "No routines have been added yet",
+                "Add routine", (dialog, which) -> redirectActv(Routines.this,
+                        NewRoutine.class)).show();
     } else {
       redirectActv(this, EditRoutines.class);
     }

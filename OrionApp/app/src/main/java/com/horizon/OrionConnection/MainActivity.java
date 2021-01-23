@@ -33,11 +33,6 @@ public class MainActivity extends BaseOrionActivity {
     setContentView(R.layout.activity_main);
 
     this.menu = findViewById(R.id.drawer);
-    this.loadingBar = findViewById(R.id.loader);
-    changeLoadingBarState(View.INVISIBLE, new Handler());
-
-   MainActivity instance = this;
-
 
     /*
      * List view init.
@@ -58,7 +53,7 @@ public class MainActivity extends BaseOrionActivity {
     listView.setOnItemClickListener((arg0, arg1, arg2, id) -> {
       Vars.connection = listadpt.getItem(arg2);
       Vars.isFromGroup = false;
-      redirectActv(instance, Control.class);
+      redirectActv(MainActivity.this, Control.class);
     });
     loadingBar.setVisibility(View.INVISIBLE);
   }
@@ -100,9 +95,10 @@ public class MainActivity extends BaseOrionActivity {
   */
   public void clickEdit(View view) {
       if (SharedData.getInstance(this).getSingleConnections().isEmpty()) {
-        Toast.makeText(this, "No devices have been synced yet", Toast.LENGTH_SHORT).
-                show();
-        return;
+          setPopWin(this, "Warning",
+                  "No devices have been added yet",
+                  "Add device", (dialog, which) -> redirectActv(MainActivity.this,
+                          Add.class)).show();
       } else {
         redirectActv(this, EditMainConnection.class);
       }

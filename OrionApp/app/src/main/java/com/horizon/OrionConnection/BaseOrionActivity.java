@@ -1,6 +1,9 @@
 package com.horizon.OrionConnection;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -131,4 +134,16 @@ public class BaseOrionActivity extends AppCompatActivity {
   protected void changeLoadingBarState(int mode, Handler handler) {
     handler.post(() -> runOnUiThread(() -> loadingBar.setVisibility(mode)));
   }
+
+  protected AlertDialog.Builder setPopWin(Context context, String title, String msg,
+                                          String positiveBtn, DialogInterface.OnClickListener positiveListener) {
+    AlertDialog.Builder alert = new AlertDialog.Builder(context);
+    alert.setCancelable(true);
+    alert.setTitle(title);
+    alert.setMessage(msg);
+    alert.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+    alert.setPositiveButton(positiveBtn, positiveListener);
+    return  alert;
+  }
+
 }

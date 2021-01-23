@@ -3,6 +3,8 @@ package com.horizon.OrionConnection;
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,6 +17,7 @@ public class Groups extends BaseOrionActivity {
 
   private ListView listView; // List view of the groups
   private ArrayAdapter<String> adapter;
+  private Groups inst;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,7 @@ public class Groups extends BaseOrionActivity {
     setContentView(R.layout.activity_groups);
 
     this.menu = findViewById(R.id.drawer);
+    inst = this;
 
     /*
      * List view init.
@@ -72,7 +76,14 @@ public class Groups extends BaseOrionActivity {
   * @param view -
   */
   public void clickAddGroup(View view) {
-    redirectActv(this, AddGroup.class);
+    if (SharedData.getInstance(this).getSingleConnections().isEmpty()) {
+        setPopWin(this, "Warning",
+                "No devices have been added yet",
+                "Add device", (dialog, which) -> redirectActv(inst, Add.class)).show();
+
+    } else {
+      redirectActv(this, AddGroup.class);
+    }
   }
 
   /**
@@ -81,9 +92,16 @@ public class Groups extends BaseOrionActivity {
   */
   public void clickEditGroups(View view) {
     if (SharedData.getInstance(this).getGroupConnections().isEmpty()) {
-      Toast.makeText(this, "No groups have been added yet", Toast.LENGTH_SHORT).
-              show();
-      return;
+      setPopWin(this, "Warning",
+              "No groups have been added yet",
+              "Add group",
+              (dialog, which) -> {
+                if (SharedData.getInstance(this).getSingleConnections().isEmpty()) {
+                  redirectActv(inst, Add.class);
+                } else {
+                  redirectActv(inst, AddGroup.class);
+                }
+              }).show();
     } else {
       redirectActv(this, EditGroups.class);
     }
