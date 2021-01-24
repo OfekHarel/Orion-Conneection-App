@@ -8,8 +8,7 @@ import java.io.IOException;
 import com.horizon.networking.Executioner.Actions;
 
 /**
- * A runnable class that's responsible of 
- * the passing flow of the communication.
+ * A runnable class that's responsible of the passing flow of the communication.
  */
 public class NetCommRunnable implements Runnable {
     private Client client;
@@ -29,7 +28,8 @@ public class NetCommRunnable implements Runnable {
 
     /**
      * A function that responsible to pass the sync required
-     * @param idInfo - The ID
+     * 
+     * @param idInfo   - The ID
      * @param nameInfo - The Connection's Name
      * @return -
      */
@@ -65,10 +65,11 @@ public class NetCommRunnable implements Runnable {
 
     /**
      * Passes the action to the exeutioner.
+     * 
      * @throws IOException -
      */
     private void act() throws IOException {
-        if(act != null) {
+        if (act != null) {
             executioner.Execute(act);
             act = null;
         }
@@ -93,7 +94,7 @@ public class NetCommRunnable implements Runnable {
              */
             try {
                 act();
-            } catch (IOException  e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 

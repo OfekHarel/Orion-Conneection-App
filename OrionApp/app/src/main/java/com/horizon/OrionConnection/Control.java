@@ -18,26 +18,21 @@ public class Control extends OrionControlBaseActivity {
     this.menu = findViewById(R.id.drawer);
   }
 
+  /*
+   * What happens when return / back btn is pressed
+   */
   @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if(event.getAction() == KeyEvent.ACTION_DOWN)
-    {
-      if (keyCode == KeyEvent.KEYCODE_BACK) {
-        if(Vars.isFromGroup) {
-          redirectActv(this, Groups.class);
-        } else {
-          redirectActv(this, MainActivity.class);
-        }
-        return true;
-      }
+  public void onBackPressed() {
+    if (Vars.isFromGroup) {
+      redirectActv(this, Groups.class);
+    } else {
+      redirectActv(this, MainActivity.class);
     }
-
-    return super.onKeyDown(keyCode, event);
   }
-
 
   /**
    * This function's responsible of what happens when the previous btn is pressed.
+   * 
    * @param view -
    */
   public void clickPrev(View view) {
@@ -46,6 +41,7 @@ public class Control extends OrionControlBaseActivity {
 
   /**
    * This function's responsible of what happens when the next btn is pressed.
+   * 
    * @param view -
    */
   public void clickNext(View view) {
@@ -53,7 +49,9 @@ public class Control extends OrionControlBaseActivity {
   }
 
   /**
-   * This function's responsible of what happens when the volume down btn is pressed.
+   * This function's responsible of what happens when the volume down btn is
+   * pressed.
+   * 
    * @param view -
    */
   public void clickVolDown(View view) {
@@ -61,7 +59,9 @@ public class Control extends OrionControlBaseActivity {
   }
 
   /**
-   * This function's responsible of what happens when the volume up btn is pressed.
+   * This function's responsible of what happens when the volume up btn is
+   * pressed.
+   * 
    * @param view -
    */
   public void clickVolUp(View view) {
@@ -70,6 +70,7 @@ public class Control extends OrionControlBaseActivity {
 
   /**
    * This function's responsible of what happens when the mute btn is pressed.
+   * 
    * @param view -
    */
   public void clickMute(View view) {
@@ -78,6 +79,7 @@ public class Control extends OrionControlBaseActivity {
 
   /**
    * This function's responsible of what happens when the ppt btn is pressed.
+   * 
    * @param view -
    */
   public void clickPausePlayToggle(View view) {
@@ -85,7 +87,9 @@ public class Control extends OrionControlBaseActivity {
   }
 
   /**
-   * This function's responsible of what happens when the power options btn is pressed.
+   * This function's responsible of what happens when the power options btn is
+   * pressed.
+   * 
    * @param view -
    */
   public void clickPowerOpt(View view) {
@@ -94,11 +98,10 @@ public class Control extends OrionControlBaseActivity {
 
   /**
    * This function's responsible of what happens when the pc info btn is pressed.
+   * 
    * @param view -
    */
   public void clickPcInfo(View view) {
     redirectActv(this, PCInfo.class);
   }
-
-
 }

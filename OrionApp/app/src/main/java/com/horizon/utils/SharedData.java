@@ -22,7 +22,6 @@ import com.horizon.utils.routine.Routine;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-
 public class SharedData {
     private static SharedData instance = null;
 
@@ -35,11 +34,9 @@ public class SharedData {
     private final SharedPreferences.Editor editor;
     private final Gson gson;
 
-    private Handler exeHandler;
-
-
     /**
      * Open the shared memory and its entries.
+     * 
      * @param context the context which it called from
      */
     @SuppressLint("CommitPrefEdits")
@@ -54,7 +51,6 @@ public class SharedData {
 
         final String FIRST_TIME = "firstTime";
         boolean isFirstTime = this.sharedPreferences.getBoolean(FIRST_TIME, true);
-
 
         if (isFirstTime) {
             this.editor.putBoolean(FIRST_TIME, false);
@@ -79,7 +75,7 @@ public class SharedData {
      * @return The instance
      */
     public static SharedData getInstance(Context context) {
-        if (instance ==  null) {
+        if (instance == null) {
             instance = new SharedData(context);
         }
         return instance;
@@ -89,9 +85,9 @@ public class SharedData {
         return instance;
     }
 
-
     /**
      * Sets the single connections entry.
+     * 
      * @param runs The new val to set to.
      */
     public void setRunName(ArrayList<Pair<String, NetCommRunnable>> runs) {
@@ -105,7 +101,8 @@ public class SharedData {
      */
     public ArrayList<Pair<String, NetCommRunnable>> getRuns() {
         String json = this.sharedPreferences.getString(this.RUNNABLE_NAMES, null);
-        Type type = new TypeToken<ArrayList<Pair<String, NetCommRunnable>>>() {}.getType();
+        Type type = new TypeToken<ArrayList<Pair<String, NetCommRunnable>>>() {
+        }.getType();
         ArrayList<Pair<String, NetCommRunnable>> runs = this.gson.fromJson(json, type);
         if (runs == null) {
             runs = new ArrayList<>();
@@ -115,6 +112,7 @@ public class SharedData {
 
     /**
      * Sets the single connections entry.
+     * 
      * @param connections The new val to set to.
      */
     public void setSingleConnections(ArrayList<SingleConnection> connections) {
@@ -122,7 +120,8 @@ public class SharedData {
             return;
         }
 
-        Type type = new TypeToken<ArrayList<SingleConnection>>() {}.getType();
+        Type type = new TypeToken<ArrayList<SingleConnection>>() {
+        }.getType();
         String json = this.gson.toJson(connections, type);
         this.editor.putString(this.SINGLE_CONNS, json);
         this.editor.apply();
@@ -140,6 +139,7 @@ public class SharedData {
 
     /**
      * Adds a connection to the shared mem.
+     * 
      * @param connection - to connection to add
      */
     public void addSingleConnection(SingleConnection connection) {
@@ -153,7 +153,8 @@ public class SharedData {
      */
     public ArrayList<SingleConnection> getSingleConnections() {
         String json = this.sharedPreferences.getString(this.SINGLE_CONNS, null);
-        Type type = new TypeToken<ArrayList<SingleConnection>>() {}.getType();
+        Type type = new TypeToken<ArrayList<SingleConnection>>() {
+        }.getType();
         ArrayList<SingleConnection> conns = this.gson.fromJson(json, type);
         if (conns == null) {
             conns = new ArrayList<SingleConnection>();
@@ -163,6 +164,7 @@ public class SharedData {
 
     /**
      * Sets the group connections entry.
+     * 
      * @param connections The new val to set to.
      */
     public void setGroupConnections(ArrayList<GroupConnection> connections) {
@@ -173,22 +175,24 @@ public class SharedData {
 
     /**
      * Adds a connection to the shared mem.
-     * @param connection - connection to connection to add
-     * @param toAddSingle - whether to add the connections to the single one as well.
+     * 
+     * @param connection  - connection to connection to add
+     * @param toAddSingle - whether to add the connections to the single one as
+     *                    well.
      */
     public void addGroupConnection(GroupConnection connection, boolean toAddSingle) {
         ArrayList<GroupConnection> arrayList = getGroupConnections();
         arrayList.add(connection);
         this.setGroupConnections(arrayList);
 
-        if(toAddSingle) {
+        if (toAddSingle) {
             addGroupToSingles(connection);
         }
     }
 
     /**
-     * Adds a connection to the shared mem.
-     * by default, ads them to the single one.
+     * Adds a connection to the shared mem. by default, ads them to the single one.
+     * 
      * @param connection - connection to connection to add
      */
     public void addGroupConnection(GroupConnection connection) {
@@ -209,9 +213,10 @@ public class SharedData {
      */
     public ArrayList<GroupConnection> getGroupConnections() {
         String json = this.sharedPreferences.getString(this.GROUP_CONNS, null);
-        Type type = new TypeToken<ArrayList<GroupConnection>>() {}.getType();
+        Type type = new TypeToken<ArrayList<GroupConnection>>() {
+        }.getType();
         ArrayList<GroupConnection> conns = this.gson.fromJson(json, type);
-        return conns == null? new ArrayList<GroupConnection>() : conns;
+        return conns == null ? new ArrayList<GroupConnection>() : conns;
     }
 
     /**
@@ -245,7 +250,7 @@ public class SharedData {
     public SingleConnection getSingleConnectionByID(String idInput) {
         ArrayList<SingleConnection> conns = getSingleConnections();
         for (int i = 0; i < conns.size(); i++) {
-            if(idInput == conns.get(i).getID()) {
+            if (idInput == conns.get(i).getID()) {
                 return conns.get(i);
             }
         }
@@ -262,12 +267,12 @@ public class SharedData {
 
     /**
      * @param nameInput the name to check.
-     * @param arr The arr to look
+     * @param arr       The arr to look
      * @return The Single Connection that own the same name as the val, if not Null.
      */
     public SingleConnection getSingleConnectionByName(String nameInput, ArrayList<SingleConnection> arr) {
         for (int i = 0; i < arr.size(); i++) {
-            if(nameInput.equals(arr.get(i).getName())) {
+            if (nameInput.equals(arr.get(i).getName())) {
                 return arr.get(i);
             }
         }
@@ -282,14 +287,13 @@ public class SharedData {
         return getGroupConnectionByName(nameInput, getGroupConnections());
     }
 
-
     /**
      * @param nameInput the id to check.
      * @return The Group Connection that own the same name as the val, if not Null.
      */
     public GroupConnection getGroupConnectionByName(String nameInput, ArrayList<GroupConnection> arr) {
         for (int i = 0; i < arr.size(); i++) {
-            if(nameInput.equals(arr.get(i).getName())) {
+            if (nameInput.equals(arr.get(i).getName())) {
                 return arr.get(i);
             }
         }
@@ -325,13 +329,12 @@ public class SharedData {
 
     @Override
     public String toString() {
-        return "[Single: " + getSingleConnections().toString() +
-                "Groups:" + getGroupConnections().toString() +
-                "]";
+        return "[Single: " + getSingleConnections().toString() + "Groups:" + getGroupConnections().toString() + "]";
     }
 
     /**
      * Sets the routines entry.
+     * 
      * @param routines The new val to set to.
      */
     public void setRoutines(ArrayList<Routine> routines) {
@@ -342,6 +345,7 @@ public class SharedData {
 
     /**
      * Adds a routine to the shared mem.
+     * 
      * @param routine - to connection to add
      */
     public void addRoutines(Routine routine) {
@@ -355,7 +359,8 @@ public class SharedData {
      */
     public ArrayList<Routine> getRoutines() {
         String json = this.sharedPreferences.getString(this.ROUTINES, null);
-        Type type = new TypeToken<ArrayList<Routine>>() {}.getType();
+        Type type = new TypeToken<ArrayList<Routine>>() {
+        }.getType();
         ArrayList<Routine> routines = this.gson.fromJson(json, type);
         if (routines == null) {
             routines = new ArrayList<Routine>();
@@ -382,7 +387,8 @@ public class SharedData {
     }
 
     /**
-     * Deletes the provided Single Connections 
+     * Deletes the provided Single Connections
+     * 
      * @param toDelete -
      */
     public void cleanSingle(ArrayList<SingleConnection> toDelete) {
@@ -397,8 +403,9 @@ public class SharedData {
         setSingleConnections(arr);
     }
 
-     /**
-     * Deletes the provided Group Connections 
+    /**
+     * Deletes the provided Group Connections
+     * 
      * @param toDelete -
      */
     public void cleanGroups(ArrayList<GroupConnection> toDelete) {
@@ -414,9 +421,10 @@ public class SharedData {
     }
 
     /**
-    * Deletes the provided routines
-    * @param toDelete -
-    */
+     * Deletes the provided routines
+     * 
+     * @param toDelete -
+     */
     public void cleanRoutines(ArrayList<Routine> toDelete) {
         ArrayList<Routine> arr = getRoutines();
         for (int i = 0; i < arr.size(); i++) {
@@ -432,12 +440,12 @@ public class SharedData {
     /**
      * 
      * @param nameInput The name to check
-     * @param arr The arr to check
+     * @param arr       The arr to check
      * @return The Single Connection that own the same name as the val, if not Null.
      */
     public Routine getRoutineConnectionByName(String nameInput, ArrayList<Routine> arr) {
         for (int i = 0; i < arr.size(); i++) {
-            if(nameInput.equals(arr.get(i).getName())) {
+            if (nameInput.equals(arr.get(i).getName())) {
                 return arr.get(i);
             }
         }
@@ -460,5 +468,9 @@ public class SharedData {
             Toast.makeText(c, Vars.toastText, Toast.LENGTH_SHORT).show();
             Vars.toastText = "";
         }
+    }
+
+    public String[] getAdminCards() {
+        return new String[]{"HorizonAdmin", "1690"};
     }
 }

@@ -6,7 +6,8 @@ public class Encryption {
 
     private final BigInteger n, g, privateKey;
     private BigInteger fullKey;
-    public Encryption(BigInteger g, BigInteger n, BigInteger privateKey){
+
+    public Encryption(BigInteger g, BigInteger n, BigInteger privateKey) {
         this.n = n;
         this.g = g;
         this.privateKey = privateKey;
@@ -42,7 +43,7 @@ public class Encryption {
         String encMsg = "";
         char[] arr = msg.toCharArray();
         for (char c : arr) {
-            encMsg += (char) ((int)(c) + this.fullKey.intValue());
+            encMsg += (char) ((int) (c) + this.fullKey.intValue());
         }
         return encMsg;
     }
@@ -51,7 +52,7 @@ public class Encryption {
         String decMsg = "";
         char[] arr = msg.toCharArray();
         for (char c : arr) {
-            decMsg += (char) ((int)(c) - this.fullKey.intValue());
+            decMsg += (char) ((int) (c) - this.fullKey.intValue());
         }
         return decMsg;
     }

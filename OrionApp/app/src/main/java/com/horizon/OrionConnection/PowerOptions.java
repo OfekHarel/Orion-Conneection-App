@@ -17,31 +17,31 @@ public class PowerOptions extends OrionControlBaseActivity {
     this.menu = findViewById(R.id.drawer);
   }
 
+  /*
+   * What happens when return / back btn is pressed
+   */
   @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if(event.getAction() == KeyEvent.ACTION_DOWN)
-    {
-      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
-        redirectActv(this, Control.class);
-        return true;
-      }
-    }
-    return super.onKeyDown(keyCode, event);
+  public void onBackPressed() {
+    redirectActv(this, Control.class);
   }
 
   /**
-   * This function's responsible of what happens when the off power btn is pressed.
+   * This function's responsible of what happens when the off power btn is
+   * pressed.
+   * 
    * @param view -
    */
   public void clickPowerOff(View view) {
     control(Actions.OFF, view);
   }
 
-
-  public void clickPowerOn(View view) { control(Actions.OFF, view); }
+  public void clickPowerOn(View view) {
+    control(Actions.OFF, view);
+  }
 
   /**
    * This function's responsible of what happens when the restart btn is pressed.
+   * 
    * @param view -
    */
   public void clickRestart(View view) {
@@ -50,6 +50,7 @@ public class PowerOptions extends OrionControlBaseActivity {
 
   /**
    * This function's responsible of what happens when the lock btn is pressed.
+   * 
    * @param view -
    */
   public void clickLock(View view) {
@@ -58,6 +59,7 @@ public class PowerOptions extends OrionControlBaseActivity {
 
   /**
    * This function's responsible of what happens when the sleep btn is pressed.
+   * 
    * @param view -
    */
   public void clickSleep(View view) {

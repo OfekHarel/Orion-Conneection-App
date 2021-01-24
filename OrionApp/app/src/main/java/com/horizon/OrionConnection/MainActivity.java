@@ -1,24 +1,14 @@
 package com.horizon.OrionConnection;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.github.ybq.android.spinkit.sprite.Sprite;
-import com.github.ybq.android.spinkit.style.Circle;
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 import com.horizon.utils.conn.ConnectionListAdapter;
-
-import fr.castorflex.android.circularprogressbar.CircularProgressDrawable;
 
 public class MainActivity extends BaseOrionActivity {
 
@@ -40,18 +30,13 @@ public class MainActivity extends BaseOrionActivity {
      * List view init.
      */
     this.listView = findViewById(R.id.main_list);
-    this.listadpt =
-      new ConnectionListAdapter(
-        this,
-        R.layout.single_conn,
-        SharedData.getInstance(this).getSingleConnections()
-      );
+    this.listadpt = new ConnectionListAdapter(this, R.layout.single_conn,
+        SharedData.getInstance(this).getSingleConnections());
     this.listView.setAdapter(this.listadpt);
 
     /*
      * This code is responsible of what happens when a connection widget is pressed.
      */
-
     listView.setOnItemClickListener((arg0, arg1, arg2, id) -> {
       Vars.connection = listadpt.getItem(arg2);
       Vars.isFromGroup = false;
@@ -60,22 +45,21 @@ public class MainActivity extends BaseOrionActivity {
     loadingBar.setVisibility(View.INVISIBLE);
   }
 
-    @Override
-    public void onBackPressed() {
-      backBTNCounter++;
-      if (backBTNCounter == 1) {
-          Toast.makeText(this, "Alart! Hit back button again to Exit",
-                  Toast.LENGTH_SHORT).show();
-      } else if (backBTNCounter == 2){
-          backBTNCounter = 0;
-          Intent intent = new Intent(Intent.ACTION_MAIN);
-          intent.addCategory(Intent.CATEGORY_HOME);
-          intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-          startActivity(intent);
-      }
+  /*
+   * What happens when return / back btn is pressed
+   */
+  @Override
+  public void onBackPressed() {
+    backBTNCounter++;
+    if (backBTNCounter == 1) {
+      Toast.makeText(this, "Alert! Hit back button again to Exit", Toast.LENGTH_SHORT).show();
+    } else if (backBTNCounter == 2) {
+      backBTNCounter = 0;
+      exit();
     }
+  }
 
-    /*
+  /*
    * Override to make a more efficient case.
    */
   @Override
@@ -85,6 +69,7 @@ public class MainActivity extends BaseOrionActivity {
 
   /**
    * This function's responsible of what happens when the Pair btn is pressed.
+   * 
    * @param view -
    */
   public void clickPair(View view) {
@@ -92,17 +77,16 @@ public class MainActivity extends BaseOrionActivity {
   }
 
   /**
-  * This function's responsible of what happens when the edit btn is pressed
-  * @param view -
-  */
+   * This function's responsible of what happens when the edit btn is pressed
+   * 
+   * @param view -
+   */
   public void clickEdit(View view) {
-      if (SharedData.getInstance(this).getSingleConnections().isEmpty()) {
-          setPopWin(this, "Warning",
-                  "No devices have been added yet",
-                  "Add device", (dialog, which) -> redirectActv(MainActivity.this,
-                          Add.class)).show();
-      } else {
-        redirectActv(this, EditMainConnection.class);
-      }
+    if (SharedData.getInstance(this).getSingleConnections().isEmpty()) {
+      setPopWin(this, "Warning", "No devices have been added yet", "Add device",
+          (dialog, which) -> redirectActv(MainActivity.this, Add.class)).show();
+    } else {
+      redirectActv(this, EditMainConnection.class);
+    }
   }
 }

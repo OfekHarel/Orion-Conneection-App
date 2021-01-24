@@ -1,6 +1,5 @@
 package com.horizon.OrionConnection;
 
-
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Layout;
@@ -63,42 +62,37 @@ public class AddGroup extends BaseOrionActivity {
         /*
          * This code is responsible of what happens when a single widget is pressed.
          */
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String name = (String) parent.getItemAtPosition(position);
-                if(SharedData.getInstance(instance).getSingleConnectionByName(name, choosen) == null) {
-                    choosen.add(SharedData.getInstance(instance).getSingleConnectionByName(name));
-                } else {
-                    choosen.remove(SharedData.getInstance(instance).getSingleConnectionByName(name, choosen));
-                }
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            String name = (String) parent.getItemAtPosition(position);
+            if (SharedData.getInstance(instance).getSingleConnectionByName(name, choosen) == null) {
+                choosen.add(SharedData.getInstance(instance).getSingleConnectionByName(name));
+            } else {
+                choosen.remove(SharedData.getInstance(instance).getSingleConnectionByName(name, choosen));
             }
         });
     }
 
+    /*
+     * What happens when return / back btn is pressed
+     */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(event.getAction() == KeyEvent.ACTION_DOWN)
-        {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                redirectActv(this, Groups.class);
-                return true;
-            }
-        }
-
-        return super.onKeyDown(keyCode, event);
+    public void onBackPressed() {
+        redirectActv(this, Groups.class);
     }
 
     /**
      * This function will check whether the Name is valid.
-     * <p>The Conditions are:
-     * <p>- Not empty
-     * <p>- Not already used
+     * <p>
+     * The Conditions are:
+     * <p>
+     * - Not empty
+     * <p>
+     * - Not already used
+     * 
      * @return true or false according to the current conditions.
      */
     private boolean validateName() {
-        String nameInput = Objects.requireNonNull(
-                name.getEditText()).getText().toString().trim(); // raw data
+        String nameInput = Objects.requireNonNull(name.getEditText()).getText().toString().trim(); // raw data
 
         if (nameInput.isEmpty()) { // empty
             name.setError(getResources().getString(R.string.empty_error));
@@ -115,11 +109,13 @@ public class AddGroup extends BaseOrionActivity {
     }
 
     /**
-     * This function checks if the list stands in the min requirements to finish the pair.
+     * This function checks if the list stands in the min requirements to finish the
+     * pair.
+     * 
      * @return Whether it's valid or not.
      */
     private boolean validateConnections() {
-        if(choosen.isEmpty() || choosen.size() < 2) {
+        if (choosen.isEmpty() || choosen.size() < 2) {
             // at list 2 devices.
             this.errorDisp.setText("Must have at list 2 devices");
             return false;
@@ -131,9 +127,10 @@ public class AddGroup extends BaseOrionActivity {
     }
 
     /**
-    * This function's responsible of what happens when the done btn is pressed
-    * @param view -
-    */
+     * This function's responsible of what happens when the done btn is pressed
+     * 
+     * @param view -
+     */
     @RequiresApi(api = Build.VERSION_CODES.R)
     public void clickDone(View view) {
         view.setHapticFeedbackEnabled(true);
@@ -143,8 +140,7 @@ public class AddGroup extends BaseOrionActivity {
         } else {
             view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
             String nameInfo = Objects.requireNonNull(name.getEditText()).getText().toString();
-            SharedData.getInstance(this).addGroupConnection(new GroupConnection(nameInfo, choosen),
-                    false);
+            SharedData.getInstance(this).addGroupConnection(new GroupConnection(nameInfo, choosen), false);
             redirectActv(this, Groups.class);
         }
     }

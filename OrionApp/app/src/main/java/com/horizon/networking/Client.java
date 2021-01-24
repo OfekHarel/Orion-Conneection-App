@@ -40,14 +40,11 @@ public class Client {
         this.clientSocket.setSoTimeout(1500);
         this.clientSocket.connect(new InetSocketAddress(this.LOCAL_IP, this.PORT), 1100);
 
-        this.output = new OutputStreamWriter(this.clientSocket.getOutputStream(),
-                StandardCharsets.UTF_8);
-        this.cryptoOutput = new OutputStreamWriter(this.clientSocket.getOutputStream(),
-                StandardCharsets.UTF_16LE);
+        this.output = new OutputStreamWriter(this.clientSocket.getOutputStream(), StandardCharsets.UTF_8);
+        this.cryptoOutput = new OutputStreamWriter(this.clientSocket.getOutputStream(), StandardCharsets.UTF_16LE);
 
         this.input = new DataInputStream(this.clientSocket.getInputStream());
-        this.cryptoInput = new InputStreamReader(clientSocket.getInputStream(),
-                StandardCharsets.UTF_16LE);
+        this.cryptoInput = new InputStreamReader(clientSocket.getInputStream(), StandardCharsets.UTF_16LE);
     }
 
     public void setEncryption(Encryption encryption) {
@@ -56,13 +53,14 @@ public class Client {
 
     /**
      * Sends a msg through the network
+     * 
      * @param msg the msg to send
      * @throws IOException -
      */
     @SuppressLint("DefaultLocale")
     public void send(String msg) throws IOException {
         String length;
-        if(this.encryption == null) {
+        if (this.encryption == null) {
             length = String.format("%03d", msg.length());
             this.output.write(length);
             this.output.flush();
@@ -87,9 +85,10 @@ public class Client {
 
     /**
      * Receives a msf through the network.
+     * 
      * @return the received net msg.
      * @throws NumberFormatException -
-     * @throws IOException -
+     * @throws IOException           -
      */
     public String receive() throws NumberFormatException, IOException {
         if (input.available() < 2) {
@@ -97,7 +96,7 @@ public class Client {
         }
 
         int length = 0;
-        if(this.encryption == null) {
+        if (this.encryption == null) {
             for (int i = 0, dev = 100; i < NetworkPackets.HEADER; i++, dev /= 10) {
                 length += Character.getNumericValue(input.read()) * dev;
                 System.out.println(length);
@@ -109,7 +108,7 @@ public class Client {
                 System.out.println(msg.toString());
             }
 
-            System.out.println("recv " + length +" " + msg);
+            System.out.println("recv " + length + " " + msg);
             return msg.toString();
         } else {
 
@@ -123,7 +122,7 @@ public class Client {
                 System.out.println(msg.toString());
             }
             String finalMsg = encryption.decryptMsg(msg.toString());
-            System.out.println("recv " + length +" " + finalMsg);
+            System.out.println("recv " + length + " " + finalMsg);
             return finalMsg;
         }
 

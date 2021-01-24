@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -15,15 +16,16 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 /**
- * This class inherits from the AppCompatActivity and adds other layer of useful tool
- * and repeated functions and vars across most of the GUI activities.
- * <p>It contains the background implementation of the menu drawer.
+ * This class inherits from the AppCompatActivity and adds other layer of useful
+ * tool and repeated functions and vars across most of the GUI activities.
+ * <p>
+ * It contains the background implementation of the menu drawer.
  */
 public class BaseOrionActivity extends AppCompatActivity {
 
   /**
-   * The drawer layout that represent the menu preset.
-   * Need to be set in the onCreate() function.
+   * The drawer layout that represent the menu preset. Need to be set in the
+   * onCreate() function.
    */
   protected DrawerLayout menu;
 
@@ -36,6 +38,7 @@ public class BaseOrionActivity extends AppCompatActivity {
 
   /**
    * This function's responsible of what happens when the menu btn is pressed.
+   * 
    * @param view -
    */
   public void clickMenu(View view) {
@@ -50,7 +53,9 @@ public class BaseOrionActivity extends AppCompatActivity {
   }
 
   /**
-   * This function's responsible of what happens when the logo on the menu is pressed.
+   * This function's responsible of what happens when the logo on the menu is
+   * pressed.
+   * 
    * @param view -
    */
   public void clickLogo(View view) {
@@ -67,8 +72,11 @@ public class BaseOrionActivity extends AppCompatActivity {
   }
 
   /**
-   * This function's responsible of what happens when the Home btn on the menu is pressed.
-   * <p> Need's to be overridden in the Home activities class.
+   * This function's responsible of what happens when the Home btn on the menu is
+   * pressed.
+   * <p>
+   * Need's to be overridden in the Home activities class.
+   * 
    * @param view -
    */
   public void clickHome(View view) {
@@ -76,8 +84,11 @@ public class BaseOrionActivity extends AppCompatActivity {
   }
 
   /**
-   * This function's responsible of what happens when the Groups btn on the menu is pressed.
-   * <p> Need's to be overridden in the Groups activities class.
+   * This function's responsible of what happens when the Groups btn on the menu
+   * is pressed.
+   * <p>
+   * Need's to be overridden in the Groups activities class.
+   * 
    * @param view -
    */
   public void clickGroups(View view) {
@@ -85,8 +96,11 @@ public class BaseOrionActivity extends AppCompatActivity {
   }
 
   /**
-   * This function's responsible of what happens when the Routines btn on the menu is pressed.
-   * <p> Need's to be overridden in the Routines activities class.
+   * This function's responsible of what happens when the Routines btn on the menu
+   * is pressed.
+   * <p>
+   * Need's to be overridden in the Routines activities class.
+   * 
    * @param view -
    */
   public void clickRoutines(View view) {
@@ -94,8 +108,11 @@ public class BaseOrionActivity extends AppCompatActivity {
   }
 
   /**
-   * This function's responsible of what happens when the Settings btn on the menu is pressed.
-   * <p> Need's to be overridden in the Settings activities class.
+   * This function's responsible of what happens when the Settings btn on the menu
+   * is pressed.
+   * <p>
+   * Need's to be overridden in the Settings activities class.
+   * 
    * @param view -
    */
   public void clickSettings(View view) {
@@ -103,8 +120,11 @@ public class BaseOrionActivity extends AppCompatActivity {
   }
 
   /**
-   * This function's responsible of what happens when the About btn on the menu is pressed.
-   *<p> Need's to be overridden in the About activities class
+   * This function's responsible of what happens when the About btn on the menu is
+   * pressed.
+   * <p>
+   * Need's to be overridden in the About activities class
+   * 
    * @param view -
    */
   public void clickAbout(View view) {
@@ -113,8 +133,9 @@ public class BaseOrionActivity extends AppCompatActivity {
 
   /**
    * This function allows a simple transition between activities.
+   * 
    * @param activity The current activity (this)
-   * @param aClass The dest activity .class
+   * @param aClass   The dest activity .class
    */
   protected void redirectActv(AppCompatActivity activity, Class aClass) {
     Intent intent = new Intent(activity, aClass);
@@ -135,15 +156,26 @@ public class BaseOrionActivity extends AppCompatActivity {
     handler.post(() -> runOnUiThread(() -> loadingBar.setVisibility(mode)));
   }
 
-  protected AlertDialog.Builder setPopWin(Context context, String title, String msg,
-                                          String positiveBtn, DialogInterface.OnClickListener positiveListener) {
+  protected AlertDialog.Builder setPopWin(Context context, String title, String msg, String positiveBtn,
+      DialogInterface.OnClickListener positiveListener) {
     AlertDialog.Builder alert = new AlertDialog.Builder(context);
     alert.setCancelable(true);
     alert.setTitle(title);
     alert.setMessage(msg);
     alert.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
     alert.setPositiveButton(positiveBtn, positiveListener);
-    return  alert;
+    return alert;
   }
 
+  protected void exit() {
+    Intent intent = new Intent(Intent.ACTION_MAIN);
+    intent.addCategory(Intent.CATEGORY_HOME);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
+  }
+
+  protected void preformVibration(View view, int kind) {
+    view.setHapticFeedbackEnabled(true);
+    view.performHapticFeedback(kind);
+  }
 }

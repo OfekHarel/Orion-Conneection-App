@@ -21,7 +21,7 @@ public class EditRoutines extends BaseOrionActivity {
 
     private ListView listView; // List view of the singles
     private ArrayAdapter<String> adapter;
-    private ArrayList<Routine> choosen = new ArrayList<Routine>();
+    private ArrayList<Routine> chosen = new ArrayList<Routine>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,25 +48,21 @@ public class EditRoutines extends BaseOrionActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String name = (String) parent.getItemAtPosition(position);
-                if(SharedData.getInstance(instance).getRoutineConnectionByName(name, choosen) == null) {
-                    choosen.add(SharedData.getInstance(instance).getRoutineConnectionByName(name));
+                if(SharedData.getInstance(instance).getRoutineConnectionByName(name, chosen) == null) {
+                    chosen.add(SharedData.getInstance(instance).getRoutineConnectionByName(name));
                 } else {
-                    choosen.remove(SharedData.getInstance(instance).getRoutineConnectionByName(name, choosen));
+                    chosen.remove(SharedData.getInstance(instance).getRoutineConnectionByName(name, chosen));
                 }
             }
         });
     }
 
+    /*
+     * What happens when return / back btn is pressed
+     */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(event.getAction() == KeyEvent.ACTION_DOWN)
-        {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
-                redirectActv(this, Routines.class);
-                return true;
-            }
-        }
-        return super.onKeyDown(keyCode, event);
+    public void onBackPressed() {
+        redirectActv(this, Routines.class);
     }
 
 
@@ -78,7 +74,7 @@ public class EditRoutines extends BaseOrionActivity {
     public void clickDelete(View view) {
         view.setHapticFeedbackEnabled(true);
         view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-        SharedData.getInstance(this).cleanRoutines(this.choosen);
+        SharedData.getInstance(this).cleanRoutines(this.chosen);
         redirectActv(this, Routines.class);
     }
 }

@@ -16,21 +16,18 @@ public class Add extends BaseOrionActivity {
         this.menu = findViewById(R.id.drawer);
     }
 
+    /*
+     * What happens when return / back btn is pressed
+     */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(event.getAction() == KeyEvent.ACTION_DOWN)
-        {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                redirectActv(this, MainActivity.class);
-                return true;
-            }
-        }
-        return super.onKeyDown(keyCode, event);
+    public void onBackPressed() {
+        redirectActv(this, MainActivity.class);
     }
 
-
     /**
-     * This function's responsible of what happens when single device option btn is pressed.
+     * This function's responsible of what happens when single device option btn is
+     * pressed.
+     * 
      * @param view -
      */
     public void clickSingleDev(View view) {
@@ -39,7 +36,9 @@ public class Add extends BaseOrionActivity {
     }
 
     /**
-     * This function's responsible of what happens when the group device option btn is pressed.
+     * This function's responsible of what happens when the group device option btn
+     * is pressed.
+     * 
      * @param view -
      */
     public void clickGroupDev(View view) {

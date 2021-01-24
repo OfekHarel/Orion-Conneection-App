@@ -8,7 +8,8 @@ import com.horizon.networking.NetRunnableFactory;
 import java.util.ArrayList;
 
 /**
- * A bunch of single connections that shown as one to control them as if they were one.
+ * A bunch of single connections that shown as one to control them as if they
+ * were one.
  */
 public class GroupConnection extends Connection {
     private String name;
@@ -45,7 +46,7 @@ public class GroupConnection extends Connection {
         this.list.clear();
     }
 
-    public void add(SingleConnection c)  {
+    public void add(SingleConnection c) {
         this.list.add(c);
     }
 

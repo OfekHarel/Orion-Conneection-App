@@ -3,6 +3,7 @@ package com.horizon.OrionConnection;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.horizon.utils.Vars;
 
@@ -16,16 +17,12 @@ public class About extends BaseOrionActivity {
     this.menu = findViewById(R.id.drawer);
   }
 
+  /*
+   * What happens when return / back btn is pressed
+   */
   @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if(event.getAction() == KeyEvent.ACTION_DOWN)
-    {
-      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
-        redirectActv(this, MainActivity.class);
-        return true;
-      }
-    }
-    return super.onKeyDown(keyCode, event);
+  public void onBackPressed() {
+    redirectActv(this, MainActivity.class);
   }
 
   /*

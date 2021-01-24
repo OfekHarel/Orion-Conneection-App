@@ -20,7 +20,7 @@ public class EditMainConnection extends BaseOrionActivity {
 
     private ListView listView; // List view of the singles
     private ArrayAdapter<String> adapter;
-    private ArrayList<SingleConnection> choosen = new ArrayList<SingleConnection>();
+    private ArrayList<SingleConnection> chosen = new ArrayList<SingleConnection>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,6 @@ public class EditMainConnection extends BaseOrionActivity {
         setContentView(R.layout.activity_edit_main_connection);
 
         this.menu = findViewById(R.id.drawer);
-
 
         /*
          * List view init.
@@ -48,37 +47,33 @@ public class EditMainConnection extends BaseOrionActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String name = (String) parent.getItemAtPosition(position);
-                if(SharedData.getInstance(instance).getSingleConnectionByName(name, choosen) == null) {
-                    choosen.add(SharedData.getInstance(instance).getSingleConnectionByName(name));
+                if (SharedData.getInstance(instance).getSingleConnectionByName(name, chosen) == null) {
+                    chosen.add(SharedData.getInstance(instance).getSingleConnectionByName(name));
                 } else {
-                    choosen.remove(SharedData.getInstance(instance).getSingleConnectionByName(name, choosen));
+                    chosen.remove(SharedData.getInstance(instance).getSingleConnectionByName(name, chosen));
                 }
             }
         });
     }
 
+    /*
+     * What happens when return / back btn is pressed
+     */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(event.getAction() == KeyEvent.ACTION_DOWN)
-        {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
-                redirectActv(this, MainActivity.class);
-                return true;
-            }
-        }
-        return super.onKeyDown(keyCode, event);
+    public void onBackPressed() {
+        redirectActv(this, MainActivity.class);
     }
 
-
     /**
-    * This function's responsible of what happens when the delete btn is pressed
-    * @param view -
-    */
+     * This function's responsible of what happens when the delete btn is pressed
+     * 
+     * @param view -
+     */
     @RequiresApi(api = Build.VERSION_CODES.R)
     public void clickDelete(View view) {
         view.setHapticFeedbackEnabled(true);
         view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-        SharedData.getInstance(this).cleanSingle(this.choosen);
+        SharedData.getInstance(this).cleanSingle(this.chosen);
         redirectActv(this, MainActivity.class);
     }
 }

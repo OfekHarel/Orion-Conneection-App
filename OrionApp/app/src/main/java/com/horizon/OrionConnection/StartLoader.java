@@ -24,16 +24,15 @@ public class StartLoader extends BaseOrionActivity {
         Handler handler = new Handler();
         changeLoadingBarState(View.VISIBLE, handler);
 
-
         @SuppressLint("StaticFieldLeak")
-        AsyncTask<Void, Void, Void> a = new AsyncTask<Void, Void, Void>() {
+        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                handler.post(()-> SharedData.getInstance(instance).load(instance));
-                handler.post(()-> redirectActv(instance, MainActivity.class));
+                handler.post(() -> SharedData.getInstance(instance).load(instance));
+                handler.post(() -> redirectActv(instance, MainActivity.class));
                 return null;
             }
         };
-        a.execute();
+        task.execute();
     }
 }

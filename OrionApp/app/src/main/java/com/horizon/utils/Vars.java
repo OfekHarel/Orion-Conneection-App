@@ -14,26 +14,26 @@ import java.util.ArrayList;
  */
 public class Vars {
     /**
-     * A boolean var to provide info about the pair / control process.
-     * whether it's a group or not.
+     * A boolean var to provide info about the pair / control process. whether it's
+     * a group or not.
      */
     public static boolean isFromGroup = false;
 
     /**
-     * A GroupConnection var to help and provide a temp var
-     * of a group connection. Used in the pair / control group process.
+     * A GroupConnection var to help and provide a temp var of a group connection.
+     * Used in the pair / control group process.
      */
-    public static GroupConnection newGroup = new GroupConnection("",
-            new ArrayList<SingleConnection>());
-    
+    public static GroupConnection newGroup = new GroupConnection("", new ArrayList<SingleConnection>());
+
     /**
-     * A Single Connection var to help and provide a temp var
-     * of a group connection. Used in the pair / control group process.
+     * A Single Connection var to help and provide a temp var of a group connection.
+     * Used in the pair / control group process.
      */
     public static SingleConnection connection = null;
 
     /**
-     * An arraylist that contains the connection between each connection to a runnable.
+     * An array list that contains the connection between each connection to a
+     * runnable.
      */
     public static ArrayList<Pair<String, NetCommRunnable>> names = new ArrayList<>();
 

@@ -17,16 +17,12 @@ public class Settings extends BaseOrionActivity {
     this.menu = findViewById(R.id.drawer);
   }
 
+  /*
+   * What happens when return / back btn is pressed
+   */
   @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if(event.getAction() == KeyEvent.ACTION_DOWN)
-    {
-      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
-        redirectActv(this, MainActivity.class);
-        return true;
-      }
-    }
-    return super.onKeyDown(keyCode, event);
+  public void onBackPressed() {
+    redirectActv(this, MainActivity.class);
   }
 
   private void preformVibration(View view) {
@@ -44,7 +40,9 @@ public class Settings extends BaseOrionActivity {
   }
 
   /**
-   * This function's responsible of what happens when the delete connection btn is pressed.
+   * This function's responsible of what happens when the delete connection btn is
+   * pressed.
+   * 
    * @param view -
    */
   public void clickDeleteCon(View view) {
@@ -53,7 +51,9 @@ public class Settings extends BaseOrionActivity {
   }
 
   /**
-   * This function's responsible of what happens when the delete groups btn is pressed.
+   * This function's responsible of what happens when the delete groups btn is
+   * pressed.
+   * 
    * @param view -
    */
   public void clickDeleteGroups(View view) {
@@ -62,7 +62,9 @@ public class Settings extends BaseOrionActivity {
   }
 
   /**
-   * This function's responsible of what happens when the delete groups btn is pressed.
+   * This function's responsible of what happens when the delete groups btn is
+   * pressed.
+   * 
    * @param view -
    */
   public void clickDeleteRoutines(View view) {

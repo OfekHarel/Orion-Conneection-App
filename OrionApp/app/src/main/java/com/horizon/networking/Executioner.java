@@ -14,7 +14,8 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * A class that responsible to handle one client to execute it's income and outcomes.
+ * A class that responsible to handle one client to execute it's income and
+ * outcomes.
  */
 public class Executioner {
     private Client client;
@@ -25,6 +26,7 @@ public class Executioner {
 
     /**
      * The main function to run periodically that handles the wanted action.
+     * 
      * @param action the wanted action to execute.
      * @throws IOException -
      */
@@ -35,7 +37,7 @@ public class Executioner {
     public void goCrypto() throws IOException {
         String msg;
         do {
-             msg = this.client.receive();
+            msg = this.client.receive();
         } while (msg.equals(""));
 
         String[] msgArr = NetworkPackets.split(msg);
@@ -45,16 +47,16 @@ public class Executioner {
         BigInteger g_Pow_a_Mod_n = new BigInteger(msgArr[3]);
         Encryption crypto = new Encryption(g, n, BigInteger.probablePrime(8, new Random()));
         crypto.getFullKey(g_Pow_a_Mod_n);
-        this.client.send(NetworkPackets.assamble(NetworkPackets.IncomingOperations.CONNECT.
-                getAsString(),crypto.getPartialKey().toString()));
+        this.client.send(NetworkPackets.assamble(NetworkPackets.IncomingOperations.CONNECT.getAsString(),
+                crypto.getPartialKey().toString()));
 
         this.client.setEncryption(crypto);
     }
 
-
     /**
      * A function that handles the sync state of the connections.
-     * @param id - the device id
+     * 
+     * @param id       - the device id
      * @param compName - the connections name
      * @return whether it synced
      * @throws IOException -
@@ -64,21 +66,19 @@ public class Executioner {
 
         this.client.setName(compName);
         this.client.send(NetworkPackets.assamble("APP", Actions.ID_VALIDATION.getAsString(), id));
-        
+
         String val = "";
         while (val.equals("")) {
             val = this.client.receive();
         }
-        boolean is = NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.
-                VALID.getAsString());
+        boolean is = NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.VALID.getAsString());
         if (!is) {
             Log.i("im here", "here");
             return false;
         } else {
             this.client.send(NetworkPackets.assamble(compName));
             val = this.client.receive();
-            while (!NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.
-                    PAIRED.getAsString())) {
+            while (!NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.PAIRED.getAsString())) {
                 val = this.client.receive();
             }
             return true;
@@ -89,23 +89,12 @@ public class Executioner {
      * An enum that represent the actions that can be done through the app.
      */
     public enum Actions {
-        VOL_UP("VOL_UP"),
-        VOL_DOWN("VOL_DOWN"),
-        PAUSE_PLAY_TOGGLE("PTT"),
-        SKIP("SKIP"),
-        PREV("PREV"),
-        MUTE("MUTE"),
-        OFF("OFF"),
-        SLEEP("SLEEP"),
-        RESTART("RESTRT"),
-        LOCK("LCK"),
-        LOG_OUT("LGOT"),
-        DISCONNECT("DISCON"),
-        ID_VALIDATION("ID_VAL"),
-        ROUTINE("ROUT"),
-        ON("ON");
+        VOL_UP("VOL_UP"), VOL_DOWN("VOL_DOWN"), PAUSE_PLAY_TOGGLE("PTT"), SKIP("SKIP"), PREV("PREV"), MUTE("MUTE"),
+        OFF("OFF"), SLEEP("SLEEP"), RESTART("RESTRT"), LOCK("LCK"), LOG_OUT("LGOT"), DISCONNECT("DISCON"),
+        ID_VALIDATION("ID_VAL"), ROUTINE("ROUT"), ON("ON");
 
         private String str;
+
         private Actions(String str) {
             this.str = str;
         }
@@ -116,6 +105,7 @@ public class Executioner {
 
         /**
          * For assembling the routine msg
+         * 
          * @param str the full description of the to routine.
          */
         public void setStr(String str) {
@@ -124,9 +114,10 @@ public class Executioner {
 
         /**
          * For handeling to input of a Action Spinner.
+         * 
          * @param val - The full variable English name
          * @return The Action that matches the full name
-        */
+         */
         public static Actions getByFullName(String val) {
             switch (val) {
                 case "Volume Up":

@@ -38,8 +38,7 @@ public class PairGroup extends BaseOrionActivity {
          * List view init.
          */
         this.listView = findViewById(R.id.new_connection_group_list);
-        this.adapter = new ArrayAdapter<String>
-                (this, R.layout.list_row, Vars.newGroup.get());
+        this.adapter = new ArrayAdapter<String>(this, R.layout.list_row, Vars.newGroup.get());
         this.listView.setAdapter(adapter);
 
         /*
@@ -49,36 +48,35 @@ public class PairGroup extends BaseOrionActivity {
         this.errorDisp = findViewById(R.id.text_error_add_group);
     }
 
+    /*
+     * What happens when return / back btn is pressed
+     */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(event.getAction() == KeyEvent.ACTION_DOWN)
-        {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
-                redirectActv(this, Add.class);
-                return true;
-            }
-        }
-        return super.onKeyDown(keyCode, event);
+    public void onBackPressed() {
+        redirectActv(this, Add.class);
     }
 
     /**
      * This function will check whether the Name is valid.
-     * <p>The Conditions are:
-     * <p>- Not empty
-     * <p>- Not already used
+     * <p>
+     * The Conditions are:
+     * <p>
+     * - Not empty
+     * <p>
+     * - Not already used
+     * 
      * @return true or false according to the current conditions.
      */
     private boolean validateName() {
-        String nameInput = Objects.requireNonNull(
-                name.getEditText()).getText().toString().trim(); // raw data
+        String nameInput = Objects.requireNonNull(name.getEditText()).getText().toString().trim(); // raw data
 
         if (nameInput.isEmpty()) { // empty
             name.setError(getResources().getString(R.string.empty_error));
             return false;
 
-        } else if ((SharedData.getInstance(this).getSingleConnectionByName(nameInput) != null) ||
-                (Vars.newGroup.isExist(nameInput) ||
-                    SharedData.getInstance(this).getGroupConnectionByName(nameInput) != null)) {
+        } else if ((SharedData.getInstance(this).getSingleConnectionByName(nameInput) != null)
+                || (Vars.newGroup.isExist(nameInput)
+                        || SharedData.getInstance(this).getGroupConnectionByName(nameInput) != null)) {
             // already exists considering the current devices added and the former once
             name.setError("This name " + getResources().getString(R.string.taken_error));
             return false;
@@ -90,11 +88,13 @@ public class PairGroup extends BaseOrionActivity {
     }
 
     /**
-     * This function checks if the list stands in the min requirements to finish the pair.
+     * This function checks if the list stands in the min requirements to finish the
+     * pair.
+     * 
      * @return Whether it's valid or not.
      */
     private boolean validateConnections() {
-        if(Vars.newGroup.getList().isEmpty() || Vars.newGroup.getList().size() < 2) {
+        if (Vars.newGroup.getList().isEmpty() || Vars.newGroup.getList().size() < 2) {
             // at list 2 devices.
             this.errorDisp.setText("Must have at list 2 devices");
             return false;
@@ -107,6 +107,7 @@ public class PairGroup extends BaseOrionActivity {
 
     /**
      * This function's responsible of what happens when the add btn is pressed.
+     * 
      * @param view -
      */
     public void clickAdd(View view) {
@@ -115,6 +116,7 @@ public class PairGroup extends BaseOrionActivity {
 
     /**
      * This function's responsible of what happens when the done btn is pressed.
+     * 
      * @param view -
      */
     @RequiresApi(api = Build.VERSION_CODES.R)
@@ -126,9 +128,8 @@ public class PairGroup extends BaseOrionActivity {
         } else {
             view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
             redirectActv(this, MainActivity.class);
-            GroupConnection groupConnection =
-                    new GroupConnection(Objects.requireNonNull(this.name.getEditText()).
-                            getText().toString(), Vars.newGroup.getList());
+            GroupConnection groupConnection = new GroupConnection(
+                    Objects.requireNonNull(this.name.getEditText()).getText().toString(), Vars.newGroup.getList());
             SharedData.getInstance(this).addGroupConnection(groupConnection);
             Vars.newGroup.clear();
         }

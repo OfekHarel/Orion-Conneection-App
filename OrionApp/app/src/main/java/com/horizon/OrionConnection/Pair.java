@@ -26,7 +26,7 @@ public class Pair extends BaseOrionActivity {
   private TextInputLayout name;
 
   /*
-   *  Info vars init
+   * Info vars init
    */
   private String idInfo;
   private String nameInfo;
@@ -43,7 +43,6 @@ public class Pair extends BaseOrionActivity {
     this.loadingBar = findViewById(R.id.loader);
     changeLoadingBarState(View.INVISIBLE, handler);
 
-
     /*
      * Widgets init
      */
@@ -51,29 +50,29 @@ public class Pair extends BaseOrionActivity {
     this.name = findViewById(R.id.pc_name);
   }
 
+  /*
+   * What happens when return / back btn is pressed
+   */
   @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if(event.getAction() == KeyEvent.ACTION_DOWN)
-    {
-      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
-        redirectActv(this, Add.class);
-        return true;
-      }
-    }
-    return super.onKeyDown(keyCode, event);
+  public void onBackPressed() {
+    redirectActv(this, Add.class);
   }
 
   /**
    * This function will check whether the ID is valid.
-   * <p>The Conditions are:
-   * <p>- Not empty
-   * <p>- Longer / shorter then the matching defined length
-   * <p>- Not already used
+   * <p>
+   * The Conditions are:
+   * <p>
+   * - Not empty
+   * <p>
+   * - Longer / shorter then the matching defined length
+   * <p>
+   * - Not already used
+   * 
    * @return true or false according to the current conditions.
    */
   private boolean validateID() {
-    String idInput = Objects.requireNonNull(
-            id.getEditText()).getText().toString().trim(); // raw data
+    String idInput = Objects.requireNonNull(id.getEditText()).getText().toString().trim(); // raw data
 
     if (idInput.isEmpty()) { // empty.
       id.setError(getResources().getString(R.string.empty_error));
@@ -99,21 +98,24 @@ public class Pair extends BaseOrionActivity {
 
   /**
    * This function will check whether the Name is valid.
-   * <p>The Conditions are:
-   * <p>- Not empty
-   * <p>- Not already used
+   * <p>
+   * The Conditions are:
+   * <p>
+   * - Not empty
+   * <p>
+   * - Not already used
+   * 
    * @return true or false according to the current conditions.
    */
   private boolean validateName() {
-    String nameInput = Objects.requireNonNull(
-            name.getEditText()).getText().toString().trim(); // raw data
+    String nameInput = Objects.requireNonNull(name.getEditText()).getText().toString().trim(); // raw data
 
     if (nameInput.isEmpty()) { // empty
       name.setError(getResources().getString(R.string.empty_error));
       return false;
 
-    } else if ((SharedData.getInstance(this).getSingleConnectionByName(nameInput) != null) ||
-            (Vars.isFromGroup && Vars.newGroup.isExist(nameInput))) { // not being used
+    } else if ((SharedData.getInstance(this).getSingleConnectionByName(nameInput) != null)
+        || (Vars.isFromGroup && Vars.newGroup.isExist(nameInput))) { // not being used
       name.setError("This name " + getResources().getString(R.string.taken_error));
       return false;
 
@@ -123,9 +125,9 @@ public class Pair extends BaseOrionActivity {
     }
   }
 
-
   /**
    * This function's responsible of what happens when the confirm btn is pressed
+   * 
    * @param view -
    */
   @RequiresApi(api = Build.VERSION_CODES.R)
@@ -134,24 +136,22 @@ public class Pair extends BaseOrionActivity {
     view.setHapticFeedbackEnabled(true);
     Pair instance = this;
 
-    if (!validateID()  | !validateName()) { // checking if valid
-      view.performHapticFeedback(HapticFeedbackConstants.REJECT);
+    if (!validateID() | !validateName()) { // checking if valid
+      preformVibration(view, HapticFeedbackConstants.REJECT);
       return;
 
     } else {
       this.idInfo = Objects.requireNonNull(id.getEditText()).getText().toString();
       this.nameInfo = Objects.requireNonNull(name.getEditText()).getText().toString();
 
-      boolean isMaster = this.nameInfo.equals("HorizonAdmin") && this.idInfo.equals("1690");
-
-      String text = String.format("ID: %s \nName: %s",
-              this.idInfo, this.nameInfo);
+      boolean isMaster = this.nameInfo.equals(SharedData.getInstance(this).getAdminCards()[0])
+              && this.idInfo.equals(SharedData.getInstance(this).getAdminCards()[1]);
 
       SingleConnection connection = new SingleConnection(this.nameInfo, this.idInfo);
 
       changeLoadingBarState(View.VISIBLE, handler);
       @SuppressLint("StaticFieldLeak")
-      AsyncTask<Void, Void, Void> a = new AsyncTask<Void, Void, Void>() {
+      AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
         @Override
         protected void onPreExecute() {
           super.onPreExecute();
@@ -159,16 +159,17 @@ public class Pair extends BaseOrionActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-          if(!isMaster) {
+          if (!isMaster) {
             if (!connection.initConnection()) {
               changeLoadingBarState(View.INVISIBLE, handler);
+              preformVibration(view, HapticFeedbackConstants.REJECT);
               handler.post(() -> id.setError("Invalid ID - check for typos"));
-            }
-            else {
+            } else {
               handler.post(() -> id.setError(null));
 
               /*
-               * Taking care of 2 scenarios that the use paired from single device or from a group devices.
+               * Taking care of 2 scenarios that the use paired from single device or from a
+               * group devices.
                */
               if (Vars.isFromGroup) {
                 handler.post(() -> redirectActv(instance, PairGroup.class));
@@ -176,22 +177,22 @@ public class Pair extends BaseOrionActivity {
 
               } else {
                 changeLoadingBarState(View.INVISIBLE, handler);
-                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                preformVibration(view, HapticFeedbackConstants.CONFIRM);
                 SharedData.getInstance(instance).addSingleConnection(connection);
 
-                handler.post(()-> connection.flowConnection());
+                handler.post(connection::flowConnection);
                 handler.post(() -> redirectActv(instance, MainActivity.class));
               }
             }
           } else {
-            view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            preformVibration(view, HapticFeedbackConstants.CONFIRM);
             SharedData.getInstance(instance).addSingleConnection(connection);
             redirectActv(instance, MainActivity.class);
           }
           return null;
         }
       };
-      a.execute();
+      task.execute();
     }
   }
 }

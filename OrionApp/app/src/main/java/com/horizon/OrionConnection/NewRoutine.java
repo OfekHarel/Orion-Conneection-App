@@ -2,11 +2,8 @@ package com.horizon.OrionConnection;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.HapticFeedbackConstants;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -18,13 +15,11 @@ import com.horizon.networking.NetRunnableFactory;
 import com.horizon.networking.NetworkPackets;
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
-import com.horizon.utils.conn.Connection;
 import com.horizon.utils.conn.GroupConnection;
 import com.horizon.utils.conn.SingleConnection;
 import com.horizon.utils.routine.Routine;
 import com.horizon.utils.routine.Time;
 
-import java.io.IOException;
 import java.util.Objects;
 
 public class NewRoutine extends BaseOrionActivity {
@@ -49,45 +44,41 @@ public class NewRoutine extends BaseOrionActivity {
     this.actSpinner = findViewById(R.id.act_spinner);
     this.devSpinner = findViewById(R.id.device_spinner);
 
-    this.devSpinnerAdapter = new ArrayAdapter<String>(this,
-            android.R.layout.simple_spinner_item,
-            SharedData.getInstance(this).getAllConnectionAsString());
+    this.devSpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+        SharedData.getInstance(this).getAllConnectionAsString());
     this.devSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     this.devSpinner.setAdapter(this.devSpinnerAdapter);
     this.devSpinnerAdapter.notifyDataSetChanged();
   }
 
+  /*
+   * What happens when return / back btn is pressed
+   */
   @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if(event.getAction() == KeyEvent.ACTION_DOWN)
-    {
-      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
-        redirectActv(this, Routines.class);
-        return true;
-      }
-    }
-    return super.onKeyDown(keyCode, event);
+  public void onBackPressed() {
+    redirectActv(this, Routines.class);
   }
-
-
 
   /**
    * This function will check whether the Name is valid.
-   * <p>The Conditions are:
-   * <p>- Not empty
-   * <p>- Not already used
+   * <p>
+   * The Conditions are:
+   * <p>
+   * - Not empty
+   * <p>
+   * - Not already used
+   * 
    * @return true or false according to the current conditions.
    */
   private boolean validateName() {
-    String nameInput = Objects.requireNonNull(
-            name.getEditText()).getText().toString().trim(); // raw data
+    String nameInput = Objects.requireNonNull(name.getEditText()).getText().toString().trim(); // raw data
 
     if (nameInput.isEmpty()) { // empty
       name.setError(getResources().getString(R.string.empty_error));
       return false;
 
-    } else if ((SharedData.getInstance(this).getSingleConnectionByName(nameInput) != null) ||
-            (Vars.isFromGroup && Vars.newGroup.isExist(nameInput))) { // not being used
+    } else if ((SharedData.getInstance(this).getSingleConnectionByName(nameInput) != null)
+        || (Vars.isFromGroup && Vars.newGroup.isExist(nameInput))) { // not being used
       name.setError("This name " + getResources().getString(R.string.taken_error));
       return false;
 
@@ -99,22 +90,24 @@ public class NewRoutine extends BaseOrionActivity {
 
   /**
    * This function will check whether the Name is valid.
-   * <p>The Conditions are:
-   * <p>- Not empty
-   * <p>- Not formatted
+   * <p>
+   * The Conditions are:
+   * <p>
+   * - Not empty
+   * <p>
+   * - Not formatted
+   * 
    * @return true or false according to the current conditions.
    */
   private boolean validateTime() {
-    String timeInput = Objects.requireNonNull(
-            time.getEditText()).getText().toString().trim(); // raw data
+    String timeInput = Objects.requireNonNull(time.getEditText()).getText().toString().trim(); // raw data
 
     String[] timeFormatted = timeInput.split(":");
     if (timeInput.isEmpty() || timeInput.equals("hh:mm") || timeFormatted.length < 2) { // empty
       time.setError(getResources().getString(R.string.empty_error));
       return false;
 
-    } else if (Integer.parseInt(timeFormatted[0]) >= 24 ||
-            Integer.parseInt(timeFormatted[1]) >= 60) { // not formatted
+    } else if (Integer.parseInt(timeFormatted[0]) >= 24 || Integer.parseInt(timeFormatted[1]) >= 60) { // not formatted
       time.setError("Not in the right time format");
       return false;
 
@@ -125,9 +118,9 @@ public class NewRoutine extends BaseOrionActivity {
     }
   }
 
-
   /**
    * This function's responsible of what happens when the confirm btn is pressed.
+   * 
    * @param view -
    */
   @RequiresApi(api = Build.VERSION_CODES.R)
@@ -137,8 +130,7 @@ public class NewRoutine extends BaseOrionActivity {
     if (!validateName() | !validateTime()) {
       view.performHapticFeedback(HapticFeedbackConstants.REJECT);
       return;
-    }
-    else {
+    } else {
       view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
       String d_name = this.devSpinner.getSelectedItem().toString();
       Routine routine;
@@ -150,22 +142,22 @@ public class NewRoutine extends BaseOrionActivity {
       String msg;
 
       if (group != null) {
-        routine = new Routine(this.actSpinner.getSelectedItem().toString(), r_name,
-                new Time(this.timeFormatted), group);
+        routine = new Routine(this.actSpinner.getSelectedItem().toString(), r_name, new Time(this.timeFormatted),
+            group);
 
-        msg = NetworkPackets.assamble("ROUT", routine.getTime().toString(),
-                Time.getTimeZoneParam(), Actions.getByFullName(routine.getActions()).getAsString());
+        msg = NetworkPackets.assamble("ROUT", routine.getTime().toString(), Time.getTimeZoneParam(),
+            Actions.getByFullName(routine.getActions()).getAsString());
 
         Actions.ROUTINE.setStr(msg);
 
         group.routine();
 
       } else {
-        routine = new Routine(this.actSpinner.getSelectedItem().toString(), r_name,
-                new Time(this.timeFormatted), single);
+        routine = new Routine(this.actSpinner.getSelectedItem().toString(), r_name, new Time(this.timeFormatted),
+            single);
 
-        msg = NetworkPackets.assamble("ROUT", routine.getTime().toString(),
-                Time.getTimeZoneParam(), Actions.getByFullName(routine.getActions()).getAsString());
+        msg = NetworkPackets.assamble("ROUT", routine.getTime().toString(), Time.getTimeZoneParam(),
+            Actions.getByFullName(routine.getActions()).getAsString());
 
         Actions.ROUTINE.setStr(msg);
 

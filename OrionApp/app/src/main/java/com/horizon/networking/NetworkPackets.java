@@ -9,6 +9,7 @@ public final class NetworkPackets {
 
     /**
      * Creates a msg that follows the protocol rules.
+     * 
      * @param msg the msg parts to send
      * @return the protocol based built msg
      */
@@ -22,6 +23,7 @@ public final class NetworkPackets {
 
     /**
      * splits the msg to a list by the net protocol.
+     * 
      * @param msg the raw msg from the net
      * @return String array that each index contains the value of the msg's parts
      */
@@ -33,12 +35,10 @@ public final class NetworkPackets {
      * An enum that contains the incoming network state msgs.
      */
     public enum IncomingOperations {
-        INVALID("INVALID"),
-        VALID("VALID"),
-        PAIRED("HELLO"),
-        CONNECT("CONN");
-        
+        INVALID("INVALID"), VALID("VALID"), PAIRED("HELLO"), CONNECT("CONN");
+
         private final String msg;
+
         private IncomingOperations(String msg) {
             this.msg = msg;
         }

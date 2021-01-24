@@ -17,7 +17,6 @@ public class Groups extends BaseOrionActivity {
 
   private ListView listView; // List view of the groups
   private ArrayAdapter<String> adapter;
-  private Groups inst;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -25,43 +24,34 @@ public class Groups extends BaseOrionActivity {
     setContentView(R.layout.activity_groups);
 
     this.menu = findViewById(R.id.drawer);
-    inst = this;
 
     /*
      * List view init.
      */
     this.listView = findViewById(R.id.group_list);
-    this.adapter = new ArrayAdapter<>(this, R.layout.list_row,
-                    SharedData.getInstance(this).getGroupsAsStringArr());
+    this.adapter = new ArrayAdapter<>(this, R.layout.list_row, SharedData.getInstance(this).getGroupsAsStringArr());
     this.listView.setAdapter(adapter);
 
     /*
      * This code is responsible of what happens when a group widget is pressed.
      */
-    Groups instance = this;
     this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long id) {
         Vars.isFromGroup = true;
-        Vars.newGroup = SharedData.getInstance(instance).getGroupConnectionByName(adapter.getItem(arg2));
-        redirectActv(instance, Control.class);
+        Vars.newGroup = SharedData.getInstance(Groups.this).getGroupConnectionByName(adapter.getItem(arg2));
+        redirectActv(Groups.this, Control.class);
       }
     });
   }
 
+  /*
+   * What happens when return / back btn is pressed
+   */
   @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if(event.getAction() == KeyEvent.ACTION_DOWN)
-    {
-      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
-        redirectActv(this, MainActivity.class);
-        return true;
-      }
-    }
-    return super.onKeyDown(keyCode, event);
+  public void onBackPressed() {
+    redirectActv(this, MainActivity.class);
   }
-
-
 
   /*
    * Override to make a more efficient case.
@@ -72,14 +62,14 @@ public class Groups extends BaseOrionActivity {
   }
 
   /**
-  * This function's responsible of what happens when the add btn is pressed
-  * @param view -
-  */
+   * This function's responsible of what happens when the add btn is pressed
+   * 
+   * @param view -
+   */
   public void clickAddGroup(View view) {
     if (SharedData.getInstance(this).getSingleConnections().isEmpty()) {
-        setPopWin(this, "Warning",
-                "No devices have been added yet",
-                "Add device", (dialog, which) -> redirectActv(inst, Add.class)).show();
+      setPopWin(this, "Warning", "No devices have been added yet", "Add device",
+          (dialog, which) -> redirectActv(Groups.this, Add.class)).show();
 
     } else {
       redirectActv(this, AddGroup.class);
@@ -87,21 +77,19 @@ public class Groups extends BaseOrionActivity {
   }
 
   /**
-  * This function's responsible of what happens when the edit btn is pressed
-  * @param view -
-  */
+   * This function's responsible of what happens when the edit btn is pressed
+   * 
+   * @param view -
+   */
   public void clickEditGroups(View view) {
     if (SharedData.getInstance(this).getGroupConnections().isEmpty()) {
-      setPopWin(this, "Warning",
-              "No groups have been added yet",
-              "Add group",
-              (dialog, which) -> {
-                if (SharedData.getInstance(this).getSingleConnections().isEmpty()) {
-                  redirectActv(inst, Add.class);
-                } else {
-                  redirectActv(inst, AddGroup.class);
-                }
-              }).show();
+      setPopWin(this, "Warning", "No groups have been added yet", "Add group", (dialog, which) -> {
+        if (SharedData.getInstance(this).getSingleConnections().isEmpty()) {
+          redirectActv(Groups.this, Add.class);
+        } else {
+          redirectActv(Groups.this, AddGroup.class);
+        }
+      }).show();
     } else {
       redirectActv(this, EditGroups.class);
     }

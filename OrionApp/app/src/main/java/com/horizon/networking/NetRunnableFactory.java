@@ -10,17 +10,19 @@ import com.horizon.utils.conn.SingleConnection;
 import java.util.ArrayList;
 
 /**
- * A factory class to create and manage the instances of each runnable.
- * It's responsible of connection between each Single 
- * Connection and for it's runnable.<p>
- * This class came from the need to maitain a somekind of association between
- * a Connection to it's matching runnable for future reffernces.
- * Duo to the Shared Preffernce the instances are not in a static mem address.
+ * A factory class to create and manage the instances of each runnable. It's
+ * responsible of connection between each Single Connection and for it's
+ * runnable.
+ * <p>
+ * This class came from the need to maintain a some kind of association between
+ * a Connection to it's matching runnable for future references. Duo to the
+ * Shared Preference the instances are not in a static mem address.
  */
 public class NetRunnableFactory {
 
-    /** 
+    /**
      * Returns or creates an instance of a NetCommRunnable according to the name.
+     * 
      * @param name - the connection's name
      * @return the runnable instance that's associated with the name.
      */
@@ -40,11 +42,12 @@ public class NetRunnableFactory {
     }
 
     /**
-     * This function's resposible of passing an action to the runnable.
-     * Call this function when need to create a communiction flow to the 
-     * connection's computer.
+     * This function's resposible of passing an action to the runnable. Call this
+     * function when need to create a communiction flow to the connection's
+     * computer.
+     * 
      * @param name - The name of the connection
-     * @param act - The Action to pass
+     * @param act  - The Action to pass
      */
     public static void passAnAction(String name, Executioner.Actions act) {
         for (int i = 0; i < Vars.names.size(); i++) {
@@ -55,10 +58,12 @@ public class NetRunnableFactory {
     }
 
     /**
-     * This Function builds the factory from scartch and it's respnible of 
-     * remaping any association between the connection to it's runnable.
-     * This function allows to maintain the paired connections.
-     * @param arr - An array list of Single connections right from the Shared Preffrences
+     * This Function builds the factory from scartch and it's respnible of remaping
+     * any association between the connection to it's runnable. This function allows
+     * to maintain the paired connections.
+     * 
+     * @param arr - An array list of Single connections right from the Shared
+     *            Preffrences
      * @return - The edited and updated arr.
      */
     public static ArrayList<SingleConnection> buildFromBlueprints(ArrayList<SingleConnection> arr) {
@@ -70,7 +75,7 @@ public class NetRunnableFactory {
 
             for (int i = 0; i < arr.size(); i++) {
                 NetRunnableFactory.get(arr.get(i).getName());
-                if(arr.get(i).initConnection()) {
+                if (arr.get(i).initConnection()) {
                     Log.i("aaaaaaaaaaaaaaaaaaaa", "a");
                     valid.add(arr.get(i));
                 } else {

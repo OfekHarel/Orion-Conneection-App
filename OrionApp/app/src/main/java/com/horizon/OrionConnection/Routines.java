@@ -5,10 +5,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.horizon.utils.SharedData;
-import com.horizon.utils.routine.Routine;
 
 public class Routines extends BaseOrionActivity {
 
@@ -23,21 +21,16 @@ public class Routines extends BaseOrionActivity {
     this.menu = findViewById(R.id.drawer);
 
     this.listView = findViewById(R.id.routine_list);
-    this.adapter = new ArrayAdapter<>(this, R.layout.list_row,
-            SharedData.getInstance(this).getRoutinesAsArrayString());
+    this.adapter = new ArrayAdapter<>(this, R.layout.list_row, SharedData.getInstance(this).getRoutinesAsArrayString());
     this.listView.setAdapter(adapter);
   }
 
+  /*
+   * What happens when return / back btn is pressed
+   */
   @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if(event.getAction() == KeyEvent.ACTION_DOWN)
-    {
-      if (keyCode == KeyEvent.KEYCODE_BACK) {//ENTER WAS PRESSED!
-        redirectActv(this, MainActivity.class);
-        return true;
-      }
-    }
-    return super.onKeyDown(keyCode, event);
+  public void onBackPressed() {
+    redirectActv(this, MainActivity.class);
   }
 
   /*
@@ -50,14 +43,13 @@ public class Routines extends BaseOrionActivity {
 
   /**
    * This function's responsible of what happens when the add btn is pressed.
+   * 
    * @param view -
    */
   public void clickAddRoutine(View view) {
     if (SharedData.getInstance(this).getRoutines().isEmpty()) {
-      setPopWin(this, "Warning",
-              "No devices have been added yet",
-              "Add device", (dialog, which) -> redirectActv(Routines.this,
-                      Add.class)).show();
+      setPopWin(this, "Warning", "No devices have been added yet", "Add device",
+          (dialog, which) -> redirectActv(Routines.this, Add.class)).show();
     } else {
       redirectActv(this, NewRoutine.class);
     }
@@ -65,15 +57,19 @@ public class Routines extends BaseOrionActivity {
 
   /**
    * This function's responsible of what happens when the edit btn is pressed.
+   * 
    * @param view -
    */
   public void clickEditRoutine(View view) {
 
     if (SharedData.getInstance(this).getRoutines().isEmpty()) {
-        setPopWin(this, "Warning",
-                "No routines have been added yet",
-                "Add routine", (dialog, which) -> redirectActv(Routines.this,
-                        NewRoutine.class)).show();
+      if (SharedData.getInstance().getSingleConnections().isEmpty()) {
+        setPopWin(this, "Warning", "No routines have been added yet", "Add routine",
+            (dialog, which) -> redirectActv(Routines.this, Add.class)).show();
+      } else {
+        setPopWin(this, "Warning", "No routines have been added yet", "Add routine",
+            (dialog, which) -> redirectActv(Routines.this, NewRoutine.class)).show();
+      }
     } else {
       redirectActv(this, EditRoutines.class);
     }

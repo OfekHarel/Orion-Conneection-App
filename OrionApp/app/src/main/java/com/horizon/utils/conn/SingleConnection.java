@@ -31,8 +31,7 @@ public class SingleConnection extends Connection {
   }
 
   public boolean initConnection() {
-    Future<Boolean> is = Executors.newSingleThreadExecutor().submit(
-            () -> getRunnable().pair(id, name));
+    Future<Boolean> is = Executors.newSingleThreadExecutor().submit(() -> getRunnable().pair(id, name));
     try {
       return is.get();
     } catch (ExecutionException | InterruptedException e) {
