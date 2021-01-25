@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/main_toolbar" />
+        <include layout="@layout/control_toolbar" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -110,14 +109,17 @@
             android:layout_marginVertical="80dp"/>
 
         <ImageView
+            android:id="@+id/magic_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:scaleX="1"
-            android:scaleY="1"
-            android:src="@drawable/pc_info_btn"
-            android:onClick="clickPcInfo"
-            android:layout_marginVertical="15dp"/>
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            android:src="@drawable/ic_magic"
+            android:onClick="clickMagic"
+            android:layout_marginVertical="15dp"
+            android:visibility="invisible"
+            android:background="@drawable/ripple_magic"/>
     </LinearLayout>
 
     <RelativeLayout

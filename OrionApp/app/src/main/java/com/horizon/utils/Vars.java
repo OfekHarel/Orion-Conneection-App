@@ -38,4 +38,6 @@ public class Vars {
     public static ArrayList<Pair<String, NetCommRunnable>> names = new ArrayList<>();
 
     public static String toastText = "";
+
+    public static boolean DEBUG = true;
 }

@@ -159,7 +159,7 @@ public class Pair extends BaseOrionActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-          if (!isMaster) {
+          if (!isMaster && !Vars.DEBUG) {
             if (!connection.initConnection()) {
               changeLoadingBarState(View.INVISIBLE, handler);
               preformVibration(view, HapticFeedbackConstants.REJECT);
@@ -172,8 +172,8 @@ public class Pair extends BaseOrionActivity {
                * group devices.
                */
               if (Vars.isFromGroup) {
-                handler.post(() -> redirectActv(instance, PairGroup.class));
                 Vars.newGroup.add(connection);
+                redirectActv(instance, PairGroup.class);
 
               } else {
                 changeLoadingBarState(View.INVISIBLE, handler);

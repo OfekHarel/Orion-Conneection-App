@@ -4,11 +4,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.horizon.networking.Executioner.Actions;
+import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 
 public class Control extends OrionControlBaseActivity {
+
+  private ImageView magicBTN;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +21,13 @@ public class Control extends OrionControlBaseActivity {
     setContentView(R.layout.activity_control);
 
     this.menu = findViewById(R.id.drawer);
+
+    this.magicBTN = findViewById(R.id.magic_btn);
+    if (SharedData.getInstance(this).isMagic()) {
+      this.magicBTN.setVisibility(View.VISIBLE);
+    } else {
+      this.magicBTN.setVisibility(View.INVISIBLE);
+    }
   }
 
   /*
@@ -101,7 +113,19 @@ public class Control extends OrionControlBaseActivity {
    * 
    * @param view -
    */
-  public void clickPcInfo(View view) {
-    redirectActv(this, PCInfo.class);
+  public void clickControlInfo(View view) {
+    if (Vars.isFromGroup) {
+      redirectActv(this, GroupInfo.class);
+    } else {
+      redirectActv(this, PCInfo.class);
+    }
+  }
+
+  public void clickMagic(View view) {
+    if (SharedData.getInstance(this).isMagic()) {
+      control(Actions.MAGIC, view);
+    } else {
+      Toast.makeText(this, "Your not ready for that yet.", Toast.LENGTH_SHORT).show();
+    }
   }
 }

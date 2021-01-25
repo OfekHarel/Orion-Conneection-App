@@ -89,9 +89,21 @@ public class Executioner {
      * An enum that represent the actions that can be done through the app.
      */
     public enum Actions {
-        VOL_UP("VOL_UP"), VOL_DOWN("VOL_DOWN"), PAUSE_PLAY_TOGGLE("PTT"), SKIP("SKIP"), PREV("PREV"), MUTE("MUTE"),
-        OFF("OFF"), SLEEP("SLEEP"), RESTART("RESTRT"), LOCK("LCK"), LOG_OUT("LGOT"), DISCONNECT("DISCON"),
-        ID_VALIDATION("ID_VAL"), ROUTINE("ROUT"), ON("ON");
+        VOL_UP("VOL_UP"),
+        VOL_DOWN("VOL_DOWN"),
+        PAUSE_PLAY_TOGGLE("PTT"),
+        SKIP("SKIP"), PREV("PREV"),
+        MUTE("MUTE"),
+        OFF("OFF"),
+        SLEEP("SLEEP"),
+        RESTART("RESTRT"),
+        LOCK("LCK"),
+        LOG_OUT("LGOT"),
+        DISCONNECT("DISCON"),
+        ID_VALIDATION("ID_VAL"),
+        ROUTINE("ROUT"),
+        ON("ON"),
+        MAGIC("MAGIC");
 
         private String str;
 
@@ -105,7 +117,7 @@ public class Executioner {
 
         /**
          * For assembling the routine msg
-         * 
+         *
          * @param str the full description of the to routine.
          */
         public void setStr(String str) {
@@ -114,7 +126,7 @@ public class Executioner {
 
         /**
          * For handeling to input of a Action Spinner.
-         * 
+         *
          * @param val - The full variable English name
          * @return The Action that matches the full name
          */

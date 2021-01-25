@@ -14,8 +14,7 @@
     <color name="error_color">#E12800</color>
     <color name="on">#2A9F45</color>
     <color name="off">#B72828</color>
-
-
+    <color name="magic">#FFFC83</color>
 
     <integer-array name="gplus_colors">
         <item>@color/white</item>

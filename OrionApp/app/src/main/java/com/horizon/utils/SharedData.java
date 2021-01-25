@@ -3,16 +3,12 @@ package com.horizon.utils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.util.Log;
 import android.util.Pair;
 import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
 import com.horizon.networking.NetCommRunnable;
 import com.horizon.networking.NetRunnableFactory;
-import com.horizon.utils.conn.Connection;
 import com.horizon.utils.conn.GroupConnection;
 
 import com.google.gson.Gson;
@@ -29,6 +25,8 @@ public class SharedData {
     private final String GROUP_CONNS = "groupConns";
     private final String ROUTINES = "routines";
     private final String RUNNABLE_NAMES = "run";
+    private final String MAGIC_SETTINGS = "MagicSettings";
+
 
     private final SharedPreferences sharedPreferences;
     private final SharedPreferences.Editor editor;
@@ -44,13 +42,13 @@ public class SharedData {
         /*
          * Entry names
          */
-        String NAME = "mem";
+        final String NAME = "mem";
         this.sharedPreferences = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         this.editor = this.sharedPreferences.edit();
         this.gson = new Gson();
 
         final String FIRST_TIME = "firstTime";
-        boolean isFirstTime = this.sharedPreferences.getBoolean(FIRST_TIME, true);
+        final boolean isFirstTime = this.sharedPreferences.getBoolean(FIRST_TIME, true);
 
         if (isFirstTime) {
             this.editor.putBoolean(FIRST_TIME, false);
@@ -58,8 +56,8 @@ public class SharedData {
             this.editor.putString(this.GROUP_CONNS, null);
             this.editor.putString(this.ROUTINES, null);
             this.editor.putString(this.RUNNABLE_NAMES, null);
+            this.editor.putBoolean(this.MAGIC_SETTINGS, false);
             this.editor.apply();
-
         }
 
         setSingleConnections(NetRunnableFactory.buildFromBlueprints(getSingleConnections()));
@@ -472,5 +470,14 @@ public class SharedData {
 
     public String[] getAdminCards() {
         return new String[]{"HorizonAdmin", "1690"};
+    }
+
+    public boolean isMagic() {
+        return sharedPreferences.getBoolean(this.MAGIC_SETTINGS, false);
+    }
+
+    public void setMagic(boolean is) {
+        this.editor.putBoolean(this.MAGIC_SETTINGS, is);
+        this.editor.apply();
     }
 }

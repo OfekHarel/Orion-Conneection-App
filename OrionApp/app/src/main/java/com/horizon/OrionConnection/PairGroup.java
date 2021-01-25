@@ -46,6 +46,8 @@ public class PairGroup extends BaseOrionActivity {
          */
         this.name = findViewById(R.id.new_group_pair_name);
         this.errorDisp = findViewById(R.id.text_error_add_group);
+
+        Vars.isFromGroup = true;
     }
 
     /*
