@@ -39,7 +39,8 @@
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="35dp"
             android:layout_gravity="center_vertical"
-            android:dividerHeight="5dp" />
+            android:dividerHeight="5dp"
+            android:divider="@android:color/transparent"/>
 
         <View
             android:layout_width="match_parent"

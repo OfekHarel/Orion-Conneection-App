@@ -2,10 +2,13 @@ package com.horizon.OrionConnection;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.horizon.utils.SharedData;
+import com.horizon.utils.Vars;
+import com.horizon.utils.routine.Routine;
 
 public class Routines extends BaseOrionActivity {
 
@@ -22,6 +25,16 @@ public class Routines extends BaseOrionActivity {
     this.listView = findViewById(R.id.routine_list);
     this.adapter = new ArrayAdapter<>(this, R.layout.list_row, SharedData.getInstance(this).getRoutinesAsArrayString());
     this.listView.setAdapter(adapter);
+
+    /*
+     * This code is responsible of what happens when a single widget is pressed.
+     */
+    listView.setOnItemClickListener((parent, view, position, id) -> {
+      String name = (String) parent.getItemAtPosition(position);
+      Vars.routine = SharedData.getInstance(Routines.this).getRoutineConnectionByName(name);
+      redirectActv(this, RoutineInfo.class);
+    });
+
   }
 
   /*
@@ -46,7 +59,7 @@ public class Routines extends BaseOrionActivity {
    * @param view -
    */
   public void clickAddRoutine(View view) {
-    if (SharedData.getInstance(this).getRoutines().isEmpty()) {
+    if (SharedData.getInstance(this).getSingleConnections().isEmpty()) {
       setPopWin(this, "Warning", "No devices have been added yet", "Add device",
           (dialog, which) -> redirectActv(Routines.this, Add.class)).show();
     } else {

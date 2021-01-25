@@ -5,41 +5,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center_horizontal"
     android:background="@drawable/conn_back"
-    android:padding="12dp">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:padding="12dp"
-        tools:context=".MainActivity"
-        android:layout_gravity="center_horizontal"
+    android:paddingVertical="10dp">
+
+    <TextView
+        android:id="@+id/conn_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingVertical="60dp">
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-1dp"
+        android:gravity="start"
+        android:maxLength="@integer/PC_length"
+        android:paddingHorizontal="20dp"
+        android:text="Blank"
+        android:textColor="@color/app_grey"
+        android:layout_marginVertical="10dp"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-black"/>
 
-
-        <TextView
-            android:id="@+id/conn_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="20dp"
-            android:text="Blank"
-            android:maxLength="@integer/PC_length"
-            android:textColor="@color/app_grey"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_horizontal"/>
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/conn_image"
+    <TextView
+        android:id="@+id/conn_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleX="1.1"
-        android:scaleY="1.1"
-        android:layout_marginHorizontal="195dp"
-        android:translationX="60dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginVertical="2.5dp"
-        android:src="@drawable/ic_computer" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginVertical="20dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="end"
+        android:maxLength="@integer/PC_length"
+        android:paddingHorizontal="10dp"
+        android:text="ID: 1690"
+        android:textColor="@color/app_grey"
+        android:textSize="12sp"
+        android:translationY="11dp" />
 
 </RelativeLayout>

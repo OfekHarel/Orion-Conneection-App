@@ -14,7 +14,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.OrionApp">
-        <activity android:name=".GroupInfo"></activity>
+        <activity android:name=".RoutineInfo"></activity>
+        <activity android:name=".GroupInfo" />
         <activity android:name=".StartLoader">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,7 +70,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

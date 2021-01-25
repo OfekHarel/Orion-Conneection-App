@@ -45,7 +45,8 @@
                 android:layout_marginHorizontal="32dp"
                 android:layout_gravity="center_vertical"
                 android:dividerHeight="12dp"
-                android:layout_below="@id/group_i_title"/>
+                android:layout_below="@id/group_i_title"
+                android:divider="@android:color/transparent"/>
 
         </RelativeLayout>
     </RelativeLayout>

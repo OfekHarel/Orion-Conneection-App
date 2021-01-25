@@ -59,8 +59,6 @@
                 android:textColor="@color/app_white"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/pc_name"
             android:layout_width="match_parent"
@@ -116,5 +114,4 @@
             layout="@layout/main_nav_drawer"/>
 
     </RelativeLayout>
-
 </androidx.drawerlayout.widget.DrawerLayout>

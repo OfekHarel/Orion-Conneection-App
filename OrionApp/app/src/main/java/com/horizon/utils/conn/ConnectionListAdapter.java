@@ -1,5 +1,6 @@
 package com.horizon.utils.conn;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,20 +28,22 @@ public class ConnectionListAdapter extends ArrayAdapter<SingleConnection> {
     this.res = res;
   }
 
+  @SuppressLint({"SetTextI18n", "ViewHolder"})
   @NonNull
   @Override
   public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
     String name = getItem(position).getName();
+    String id = getItem(position).getID();
 
     LayoutInflater inflater = LayoutInflater.from(this.context);
     convertView = inflater.inflate(this.res, parent, false);
 
-    TextView textView = convertView.findViewById(R.id.conn_name);
-    textView.setText(name);
+    TextView textViewName = convertView.findViewById(R.id.conn_name);
+    textViewName.setText(name);
 
-    ImageView imageView = convertView.findViewById(R.id.conn_image);
-    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_computer));
+    TextView textViewID = convertView.findViewById(R.id.conn_id);
+    textViewID.setText("ID: " + id);
 
     return convertView;
   }

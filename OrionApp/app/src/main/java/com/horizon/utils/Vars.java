@@ -5,6 +5,7 @@ import android.util.Pair;
 import com.horizon.networking.NetCommRunnable;
 import com.horizon.utils.conn.GroupConnection;
 import com.horizon.utils.conn.SingleConnection;
+import com.horizon.utils.routine.Routine;
 
 import java.util.ArrayList;
 
@@ -44,5 +45,7 @@ public class Vars {
     /**
      * A boolean var to enable debug skipping on net reliability.
      */
-    public static boolean DEBUG = false;
+    public static boolean DEBUG = true;
+
+    public static Routine routine = null;
 }

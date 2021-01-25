@@ -45,7 +45,8 @@
                 android:layout_marginVertical="20dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_gravity="center_vertical"
-                android:dividerHeight="12dp"/>
+                android:dividerHeight="12dp"
+                android:divider="@android:color/transparent"/>
         </LinearLayout>
 
     </LinearLayout>

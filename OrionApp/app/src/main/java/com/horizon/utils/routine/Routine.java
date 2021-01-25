@@ -10,7 +10,8 @@ public class Routine {
 
   private String action;
   private String name;
-  private Time time;
+  private String devName;
+  private final Time time;
   private SingleConnection singleConnection;
   private GroupConnection groupConnection;
 
@@ -19,6 +20,7 @@ public class Routine {
     this.name = name;
     this.time = time;
     this.singleConnection = singleConnection;
+    this.devName = singleConnection.getName();
   }
 
   public Routine(String action, String name, Time time, GroupConnection groupConnection) {
@@ -26,6 +28,7 @@ public class Routine {
     this.name = name;
     this.time = time;
     this.groupConnection = groupConnection;
+    this.devName = groupConnection.getName();
   }
 
   public String getActions() {
@@ -46,5 +49,9 @@ public class Routine {
 
   public Time getTime() {
     return time;
+  }
+
+  public String getDevName() {
+    return devName;
   }
 }

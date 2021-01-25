@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -37,20 +36,15 @@ public class EditGroups extends BaseOrionActivity {
         this.listView.setAdapter(adapter);
         this.listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        EditGroups instance = this;
-
         /*
          * This code is responsible of what happens when a single widget is pressed.
          */
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String name = (String) parent.getItemAtPosition(position);
-                if (SharedData.getInstance(instance).getGroupConnectionByName(name, chosen) == null) {
-                    chosen.add(SharedData.getInstance(instance).getGroupConnectionByName(name));
-                } else {
-                    chosen.remove(SharedData.getInstance(instance).getGroupConnectionByName(name, chosen));
-                }
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            String name = (String) parent.getItemAtPosition(position);
+            if (SharedData.getInstance(EditGroups.this).getGroupConnectionByName(name, chosen) == null) {
+                chosen.add(SharedData.getInstance(EditGroups.this).getGroupConnectionByName(name));
+            } else {
+                chosen.remove(SharedData.getInstance(EditGroups.this).getGroupConnectionByName(name, chosen));
             }
         });
     }
