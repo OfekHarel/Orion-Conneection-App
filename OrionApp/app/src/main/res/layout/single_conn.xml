@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center_horizontal"
     android:background="@drawable/conn_back"
-    android:padding="12dp"
-    >
+    android:padding="12dp">
     <LinearLayout
         android:orientation="horizontal"
         android:padding="12dp"

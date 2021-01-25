@@ -1,10 +1,8 @@
 package com.horizon.OrionConnection;
 
 import com.horizon.networking.Executioner.Actions;
-import com.horizon.utils.Vars;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 
 public class PowerOptions extends OrionControlBaseActivity {

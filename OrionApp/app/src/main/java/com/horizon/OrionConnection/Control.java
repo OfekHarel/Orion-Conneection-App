@@ -1,10 +1,9 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.horizon.networking.Executioner.Actions;
@@ -14,6 +13,7 @@ import com.horizon.utils.Vars;
 public class Control extends OrionControlBaseActivity {
 
   private ImageView magicBTN;
+  private TextView textView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,10 @@ public class Control extends OrionControlBaseActivity {
     } else {
       this.magicBTN.setVisibility(View.INVISIBLE);
     }
+
+    this.textView = findViewById(R.id.control_title);
+    String txt = Vars.isFromGroup? Vars.newGroup.getName(): Vars.connection.getName();
+    this.textView.setText(txt);
   }
 
   /*
@@ -121,6 +125,10 @@ public class Control extends OrionControlBaseActivity {
     }
   }
 
+  /**
+   * This function's responsible of what happens when the pc magic btn is pressed.
+   * @param view -
+   */
   public void clickMagic(View view) {
     if (SharedData.getInstance(this).isMagic()) {
       control(Actions.MAGIC, view);

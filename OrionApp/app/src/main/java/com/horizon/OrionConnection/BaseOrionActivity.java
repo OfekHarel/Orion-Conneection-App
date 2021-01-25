@@ -1,13 +1,11 @@
 package com.horizon.OrionConnection;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.ProgressBar;
 

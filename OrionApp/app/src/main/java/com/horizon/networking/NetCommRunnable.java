@@ -1,8 +1,5 @@
 package com.horizon.networking;
 
-import android.os.Handler;
-import android.util.Log;
-
 import java.io.IOException;
 
 import com.horizon.networking.Executioner.Actions;

@@ -1,6 +1,5 @@
 package com.horizon.networking;
 
-import android.os.Handler;
 import android.util.Log;
 import android.util.Pair;
 

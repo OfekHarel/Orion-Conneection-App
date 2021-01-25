@@ -1,7 +1,5 @@
 package com.horizon.OrionConnection;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;

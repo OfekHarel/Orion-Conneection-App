@@ -3,7 +3,6 @@ package com.horizon.OrionConnection;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;

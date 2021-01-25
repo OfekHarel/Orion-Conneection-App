@@ -1,7 +1,5 @@
 package com.horizon.utils.conn;
 
-import android.util.Log;
-
 import com.horizon.networking.Executioner.Actions;
 import com.horizon.networking.NetRunnableFactory;
 

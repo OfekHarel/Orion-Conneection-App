@@ -2,16 +2,11 @@ package com.horizon.OrionConnection;
 
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class Groups extends BaseOrionActivity {
 

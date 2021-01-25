@@ -1,6 +1,5 @@
 package com.horizon.utils.routine;
 
-import com.horizon.utils.conn.Connection;
 import com.horizon.utils.conn.GroupConnection;
 import com.horizon.utils.conn.SingleConnection;
 

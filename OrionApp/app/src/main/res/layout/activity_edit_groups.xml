@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginHorizontal="35dp"
-            android:layout_marginVertica="20dp"
+            android:layout_marginVertical="20dp"
             android:background="@color/app_white"/>
 
         <Button

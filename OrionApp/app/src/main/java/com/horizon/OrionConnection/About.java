@@ -1,11 +1,7 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Toast;
-
-import com.horizon.utils.Vars;
 
 public class About extends BaseOrionActivity {
 

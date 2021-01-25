@@ -1,16 +1,9 @@
 package com.horizon.networking;
 
-import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.horizon.OrionConnection.BaseOrionActivity;
-import com.horizon.OrionConnection.MainActivity;
-import com.horizon.OrionConnection.OrionControlBaseActivity;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.Random;
 
 /**
