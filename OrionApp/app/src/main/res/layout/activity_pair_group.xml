@@ -16,6 +16,22 @@
 
         <include layout="@layout/main_toolbar" />
 
+        <TextView
+            android:id="@+id/control_title"
+            android:paddingVertical="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Group"
+            android:textColor="@color/app_white"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="35dp"
+            android:background="@color/app_white"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,12 +57,10 @@
                 android:scaleY="0.7"/>
 
         </LinearLayout>
-
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginHorizontal="35dp"
+            android:layout_marginHorizontal="45dp"
             android:background="@color/app_white"/>
 
         <ListView
@@ -61,14 +75,15 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginHorizontal="35dp"
+            android:layout_marginHorizontal="45dp"
             android:background="@color/app_white"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/new_group_pair_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="35dp"
+            android:paddingHorizontal="35dp"
+            android:paddingVertical="20dp"
             app:errorEnabled="true"
             app:counterTextColor="@color/app_white"
             android:textColorHint="@color/app_white"
@@ -92,6 +107,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/btn_layout"
             android:text="Done"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
             android:layout_gravity="center"
             android:onClick="clickDone"/>
 

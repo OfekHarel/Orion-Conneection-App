@@ -2,7 +2,6 @@ package com.horizon.utils;
 
 import android.util.Pair;
 
-import com.horizon.networking.Executioner.Actions;
 import com.horizon.networking.NetCommRunnable;
 import com.horizon.utils.conn.GroupConnection;
 import com.horizon.utils.conn.SingleConnection;
@@ -37,7 +36,13 @@ public class Vars {
      */
     public static ArrayList<Pair<String, NetCommRunnable>> names = new ArrayList<>();
 
+    /**
+     * A string for assembling a Toast msg
+     */
     public static String toastText = "";
 
-    public static boolean DEBUG = true;
+    /**
+     * A boolean var to enable debug skipping on net reliability.
+     */
+    public static boolean DEBUG = false;
 }

@@ -16,9 +16,17 @@
 
         <include layout="@layout/main_toolbar" />
 
-
+        <TextView
+            android:id="@+id/control_title"
+            android:paddingVertical="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Routines"
+            android:textColor="@color/app_white"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"/>
         <View
-            android:layout_marginVertical="20dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginHorizontal="35dp"
@@ -37,7 +45,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginHorizontal="35dp"
-            android:layout_marginVertical="22dp"
             android:background="@color/app_white"/>
 
         <Button
