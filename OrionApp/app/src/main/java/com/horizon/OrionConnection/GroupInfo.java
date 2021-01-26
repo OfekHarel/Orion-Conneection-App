@@ -2,6 +2,7 @@ package com.horizon.OrionConnection;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,6 +33,15 @@ public class GroupInfo extends BaseOrionActivity {
         this.listadpt = new ConnectionListAdapter(this, R.layout.single_conn,
                 Vars.newGroup.getList());
         this.listView.setAdapter(this.listadpt);
+
+        /*
+         * This code is responsible of what happens when a connection widget is pressed.
+         */
+        listView.setOnItemClickListener((arg0, arg1, arg2, id) -> {
+            Vars.connection = listadpt.getItem(arg2);
+            Vars.isFromGroup = false;
+            redirectActv(GroupInfo.this, Control.class);
+        });
     }
 
     /*
@@ -40,5 +50,13 @@ public class GroupInfo extends BaseOrionActivity {
     @Override
     public void onBackPressed() {
         redirectActv(this, Control.class);
+    }
+
+    public void clickAddGroupDec(View view) {
+
+    }
+
+    public void clickEditGroupDev(View view) {
+
     }
 }

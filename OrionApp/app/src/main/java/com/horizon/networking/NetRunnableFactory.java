@@ -65,24 +65,22 @@ public class NetRunnableFactory {
      *            Preffrences
      * @return - The edited and updated arr.
      */
-    public static ArrayList<SingleConnection> buildFromBlueprints(ArrayList<SingleConnection> arr) {
+    public static Pair<ArrayList<SingleConnection>, ArrayList<SingleConnection>> buildFromBlueprints(ArrayList<SingleConnection> arr) {
 
         if (arr == null) {
             return null;
         } else {
-            ArrayList<SingleConnection> valid = new ArrayList<>();
+            ArrayList<SingleConnection> invalids = new ArrayList<>();
+
 
             for (int i = 0; i < arr.size(); i++) {
                 NetRunnableFactory.get(arr.get(i).getName());
-                if (arr.get(i).initConnection()) {
-                    Log.i("aaaaaaaaaaaaaaaaaaaa", "a");
-                    valid.add(arr.get(i));
-                } else {
+                if (!arr.get(i).initConnection()) {
+                    invalids.add(arr.get(i));
                     Vars.toastText += arr.get(i).getName() + ", ";
                 }
             }
-
-            return valid;
+            return new Pair<>(arr, invalids);
         }
     }
 

@@ -27,14 +27,12 @@ public class SharedData {
     private final String RUNNABLE_NAMES = "run";
     private final String MAGIC_SETTINGS = "MagicSettings";
 
-
     private final SharedPreferences sharedPreferences;
     private final SharedPreferences.Editor editor;
     private final Gson gson;
 
     /**
      * Open the shared memory and its entries.
-     * 
      * @param context the context which it called from
      */
     @SuppressLint("CommitPrefEdits")
@@ -60,8 +58,13 @@ public class SharedData {
             this.editor.apply();
         }
 
-        setSingleConnections(NetRunnableFactory.buildFromBlueprints(getSingleConnections()));
+        Pair<ArrayList<SingleConnection>, ArrayList<SingleConnection>> p =
+                NetRunnableFactory.buildFromBlueprints(getSingleConnections());
+
+        setSingleConnections(p.first);
+        cleanSingle(p.second);
         NetRunnableFactory.backFromTheDead(getSingleConnections());
+
         if (!Vars.toastText.equals("")) {
             Vars.toastText = "Lost Connection with: " + Vars.toastText;
         }
@@ -248,7 +251,7 @@ public class SharedData {
     public SingleConnection getSingleConnectionByID(String idInput) {
         ArrayList<SingleConnection> conns = getSingleConnections();
         for (int i = 0; i < conns.size(); i++) {
-            if (idInput == conns.get(i).getID()) {
+            if (idInput.equals(conns.get(i).getID())) {
                 return conns.get(i);
             }
         }
@@ -394,7 +397,8 @@ public class SharedData {
         for (int i = 0; i < arr.size(); i++) {
             for (int j = 0; j < toDelete.size(); j++) {
                 if (arr.get(i).getID().equals(toDelete.get(j).getID())) {
-                    arr.remove(i);
+                    arr.remove(arr.get(i));
+                    cleanCollisions(toDelete.get(j));
                 }
             }
         }
@@ -411,6 +415,7 @@ public class SharedData {
         for (int i = 0; i < arr.size(); i++) {
             for (int j = 0; j < toDelete.size(); j++) {
                 if (arr.get(i).getName().equals(toDelete.get(j).getName())) {
+                    cleanCollisions(toDelete.get(j));
                     arr.remove(i);
                 }
             }
@@ -479,5 +484,64 @@ public class SharedData {
     public void setMagic(boolean is) {
         this.editor.putBoolean(this.MAGIC_SETTINGS, is);
         this.editor.apply();
+    }
+
+    /**
+     * This functions deals with the clean leftovers collisions
+     * @param connection - the single connection that collides
+     */
+    private void cleanCollisions(SingleConnection connection) {
+        /*
+         * groups
+         */
+        ArrayList<GroupConnection> updated = getGroupConnections();
+        SingleConnection tempConnection = null;
+        ArrayList<GroupConnection> tempGroups = new ArrayList<>();
+        for (GroupConnection groupConnection: updated) {
+            for (SingleConnection singleConnection: groupConnection.getList()) {
+                if (singleConnection.getName().equals(connection.getName())) {
+                    tempConnection = singleConnection;
+                }
+            }
+
+            if (tempConnection != null) {
+                groupConnection.getList().remove(tempConnection);
+                tempConnection = null;
+            }
+
+            if (groupConnection.getList().size() <= 1) {
+                tempGroups.add(groupConnection);
+            }
+        }
+        updated.removeAll(tempGroups);
+        setGroupConnections(updated);
+
+        /*
+         * routines
+         */
+        ArrayList<Routine> tempRoutines = new ArrayList<>();
+        for (Routine routine: getRoutines()) {
+           if (routine.getDevName().equals(connection.getName())) {
+                tempRoutines.add(routine);
+            }
+        }
+        cleanRoutines(tempRoutines);
+    }
+
+    /**
+     * This functions deals with the clean leftovers collisions
+     * @param connection - the group connection that collides
+     */
+    private void cleanCollisions(GroupConnection connection) {
+        /*
+         * routines
+         */
+        ArrayList<Routine> tempRoutines = new ArrayList<>();
+        for (Routine routine: getRoutines()) {
+            if (routine.getDevName().equals(connection.getName())) {
+                tempRoutines.add(routine);
+            }
+        }
+        cleanRoutines(tempRoutines);
     }
 }

@@ -1,11 +1,14 @@
 package com.horizon.OrionConnection;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
+import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
+import com.horizon.utils.routine.Routine;
+
+import java.util.ArrayList;
 
 public class RoutineInfo extends BaseOrionActivity {
 
@@ -35,6 +38,14 @@ public class RoutineInfo extends BaseOrionActivity {
      */
     @Override
     public void onBackPressed() {
+        redirectActv(this, Groups.class);
+    }
+
+    public void clickDelete(View view) {
+        ArrayList<Routine> arr = SharedData.getInstance(this).getRoutines();
+        arr.remove(Vars.routine);
+        SharedData.getInstance(this).setRoutines(arr);
+        Vars.routine = null;
         redirectActv(this, Groups.class);
     }
 }

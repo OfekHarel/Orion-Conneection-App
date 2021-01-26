@@ -45,7 +45,10 @@ public class Vars {
     /**
      * A boolean var to enable debug skipping on net reliability.
      */
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
 
+    /**
+     * A Routine var to provide a temp var.
+     */
     public static Routine routine = null;
 }

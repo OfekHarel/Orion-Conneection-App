@@ -61,39 +61,6 @@ public class Settings extends BaseOrionActivity {
     preformVibration(view);
   }
 
-  /**
-   * This function's responsible of what happens when the delete connection btn is
-   * pressed.
-   * 
-   * @param view -
-   */
-  public void clickDeleteCon(View view) {
-    SharedData.getInstance(this).cleanSingle();
-    preformVibration(view);
-  }
-
-  /**
-   * This function's responsible of what happens when the delete groups btn is
-   * pressed.
-   * 
-   * @param view -
-   */
-  public void clickDeleteGroups(View view) {
-    SharedData.getInstance(this).cleanGroups();
-    preformVibration(view);
-  }
-
-  /**
-   * This function's responsible of what happens when the delete groups btn is
-   * pressed.
-   * 
-   * @param view -
-   */
-  public void clickDeleteRoutines(View view) {
-    SharedData.getInstance(this).cleanRoutines();
-    preformVibration(view);
-  }
-
   @Override
   protected void onResume() {
     super.onResume();

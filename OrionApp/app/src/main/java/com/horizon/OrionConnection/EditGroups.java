@@ -40,12 +40,7 @@ public class EditGroups extends BaseOrionActivity {
          * This code is responsible of what happens when a single widget is pressed.
          */
         listView.setOnItemClickListener((parent, view, position, id) -> {
-            String name = (String) parent.getItemAtPosition(position);
-            if (SharedData.getInstance(EditGroups.this).getGroupConnectionByName(name, chosen) == null) {
-                chosen.add(SharedData.getInstance(EditGroups.this).getGroupConnectionByName(name));
-            } else {
-                chosen.remove(SharedData.getInstance(EditGroups.this).getGroupConnectionByName(name, chosen));
-            }
+            choose(position, false);
         });
     }
 
@@ -64,9 +59,37 @@ public class EditGroups extends BaseOrionActivity {
      */
     @RequiresApi(api = Build.VERSION_CODES.R)
     public void clickDelete(View view) {
-        view.setHapticFeedbackEnabled(true);
-        view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-        SharedData.getInstance(this).cleanGroups(this.chosen);
-        redirectActv(this, Groups.class);
+        setPopWin(this, "Warning", "Note - it will delete any collisions", "Delete anyway",
+                (dialog, which) ->{
+                    SharedData.getInstance(EditGroups.this).cleanGroups(this.chosen);
+                    redirectActv(EditGroups.this, Groups.class);
+                    preformVibration(view, HapticFeedbackConstants.CONFIRM);
+                }).show();
+    }
+
+    /**
+     * This function's responsible of what happens when the check all btn is pressed
+     * @param view -
+     */
+    public void clickCheckAllGroups(View view) {
+        boolean toggleTrue = SharedData.getInstance(this).getGroupConnections().size() != chosen.size();
+        for (int i=0; i < listView.getAdapter().getCount(); i++) {
+            listView.setItemChecked(i, toggleTrue);
+            choose(i, toggleTrue);
+        }
+    }
+
+    /**
+     * the logic interaction of list checker
+     * @param index - the position of the item
+     * @param all - is adding all
+     */
+    private void choose(int index, boolean all) {
+        String name = (String) listView.getItemAtPosition(index);
+        if (SharedData.getInstance(EditGroups.this).getGroupConnectionByName(name, chosen) == null) {
+            chosen.add(SharedData.getInstance(EditGroups.this).getGroupConnectionByName(name));
+        } else if (!all){
+            chosen.remove(SharedData.getInstance(EditGroups.this).getGroupConnectionByName(name, chosen));
+        }
     }
 }

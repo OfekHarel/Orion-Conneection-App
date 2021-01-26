@@ -42,7 +42,6 @@ public class MainActivity extends BaseOrionActivity {
       Vars.isFromGroup = false;
       redirectActv(MainActivity.this, Control.class);
     });
-    loadingBar.setVisibility(View.INVISIBLE);
   }
 
   /*

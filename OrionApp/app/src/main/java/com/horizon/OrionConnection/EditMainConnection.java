@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -37,21 +36,11 @@ public class EditMainConnection extends BaseOrionActivity {
         this.listView.setAdapter(adapter);
         this.listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        EditMainConnection instance = this;
-
         /*
          * This code is responsible of what happens when a single widget is pressed.
          */
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String name = (String) parent.getItemAtPosition(position);
-                if (SharedData.getInstance(instance).getSingleConnectionByName(name, chosen) == null) {
-                    chosen.add(SharedData.getInstance(instance).getSingleConnectionByName(name));
-                } else {
-                    chosen.remove(SharedData.getInstance(instance).getSingleConnectionByName(name, chosen));
-                }
-            }
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            choose(position, false);
         });
     }
 
@@ -70,9 +59,38 @@ public class EditMainConnection extends BaseOrionActivity {
      */
     @RequiresApi(api = Build.VERSION_CODES.R)
     public void clickDelete(View view) {
-        view.setHapticFeedbackEnabled(true);
-        view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-        SharedData.getInstance(this).cleanSingle(this.chosen);
-        redirectActv(this, MainActivity.class);
+        setPopWin(this, "Warning", "Note - it will delete any collisions", "Delete anyway",
+                (dialog, which) ->{
+                    SharedData.getInstance(EditMainConnection.this).cleanSingle(chosen);
+                    redirectActv(EditMainConnection.this, MainActivity.class);
+                    preformVibration(view, HapticFeedbackConstants.CONFIRM);
+                }).show();
     }
+
+    /**
+     * This function's responsible of what happens when the check all btn is pressed
+     * @param view -
+     */
+    public void clickCheckAllConnections(View view) {
+        boolean toggleTrue = SharedData.getInstance(this).getSingleConnections().size() != chosen.size();
+        for (int i=0; i < listView.getAdapter().getCount(); i++) {
+            listView.setItemChecked(i, toggleTrue);
+            choose(i, toggleTrue);
+        }
+    }
+
+    /**
+     * the logic interaction of list checker
+     * @param index - the position of the item
+     * @param all - is adding all
+     */
+    private void choose(int index, boolean all) {
+        String name = (String) listView.getItemAtPosition(index);
+        if (SharedData.getInstance(EditMainConnection.this).getSingleConnectionByName(name, chosen) == null) {
+            chosen.add(SharedData.getInstance(EditMainConnection.this).getSingleConnectionByName(name));
+        } else if(!all) {
+            chosen.remove(SharedData.getInstance(EditMainConnection.this).getSingleConnectionByName(name, chosen));
+        }
+    }
+
 }

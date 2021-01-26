@@ -94,7 +94,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Time"
+                android:hint="Time - 24h"
                 android:inputType="time"
                 android:text="hh:mm"
                 android:background="@color/transparent"

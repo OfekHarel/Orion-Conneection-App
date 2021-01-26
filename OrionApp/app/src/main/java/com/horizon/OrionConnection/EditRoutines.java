@@ -38,7 +38,6 @@ public class EditRoutines extends BaseOrionActivity {
         this.listView.setAdapter(adapter);
         this.listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        EditRoutines instance = this;
 
         /*
          * This code is responsible of what happens when a single widget is pressed.
@@ -46,12 +45,7 @@ public class EditRoutines extends BaseOrionActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String name = (String) parent.getItemAtPosition(position);
-                if(SharedData.getInstance(instance).getRoutineConnectionByName(name, chosen) == null) {
-                    chosen.add(SharedData.getInstance(instance).getRoutineConnectionByName(name));
-                } else {
-                    chosen.remove(SharedData.getInstance(instance).getRoutineConnectionByName(name, chosen));
-                }
+                choose(position, false);
             }
         });
     }
@@ -71,9 +65,37 @@ public class EditRoutines extends BaseOrionActivity {
     */
     @RequiresApi(api = Build.VERSION_CODES.R)
     public void clickDelete(View view) {
-        view.setHapticFeedbackEnabled(true);
-        view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-        SharedData.getInstance(this).cleanRoutines(this.chosen);
-        redirectActv(this, Routines.class);
+        setPopWin(this, "Warning", "Note - it will delete any collisions", "Delete anyway",
+                (dialog, which) ->{
+                    SharedData.getInstance(EditRoutines.this).cleanRoutines(chosen);
+                    redirectActv(EditRoutines.this, MainActivity.class);
+                    preformVibration(view, HapticFeedbackConstants.CONFIRM);
+                }).show();
+    }
+
+    /**
+     * This function's responsible of what happens when the check all btn is pressed
+     * @param view -
+     */
+    public void clickCheckAllRoutines(View view) {
+        boolean toggleTrue = SharedData.getInstance(this).getRoutines().size() != chosen.size();
+        for (int i=0; i < listView.getAdapter().getCount(); i++) {
+            listView.setItemChecked(i, toggleTrue);
+            choose(i, toggleTrue);
+        }
+    }
+
+    /**
+     * the logic interaction of list checker
+     * @param index - the position of the item
+     * @param all - is adding all
+     */
+    private void choose(int index, boolean all) {
+        String name = (String) listView.getItemAtPosition(index);
+        if(SharedData.getInstance(EditRoutines.this).getRoutineConnectionByName(name, chosen) == null) {
+            chosen.add(SharedData.getInstance(EditRoutines.this).getRoutineConnectionByName(name));
+        } else if(!all){
+            chosen.remove(SharedData.getInstance(EditRoutines.this).getRoutineConnectionByName(name, chosen));
+        }
     }
 }
