@@ -68,8 +68,8 @@ public class EditRoutines extends BaseOrionActivity {
         setPopWin(this, "Warning", "Note - it will delete any collisions", "Delete anyway",
                 (dialog, which) ->{
                     SharedData.getInstance(EditRoutines.this).cleanRoutines(chosen);
-                    redirectActv(EditRoutines.this, MainActivity.class);
                     preformVibration(view, HapticFeedbackConstants.CONFIRM);
+                    redirectActv(EditRoutines.this, MainActivity.class);
                 }).show();
     }
 

@@ -433,6 +433,7 @@ public class SharedData {
         for (int i = 0; i < arr.size(); i++) {
             for (int j = 0; j < toDelete.size(); j++) {
                 if (arr.get(i).getName().equals(toDelete.get(j).getName())) {
+                    arr.get(i).kill();
                     arr.remove(i);
                 }
             }

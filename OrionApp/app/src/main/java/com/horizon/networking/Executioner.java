@@ -96,7 +96,8 @@ public class Executioner {
         ID_VALIDATION("ID_VAL"),
         ROUTINE("ROUT"),
         ON("ON"),
-        MAGIC("MAGIC");
+        MAGIC("MAGIC"),
+        DEL_ROUTINE("DROUT");
 
         private String str;
 

@@ -42,9 +42,9 @@ public class RoutineInfo extends BaseOrionActivity {
     }
 
     public void clickDelete(View view) {
-        ArrayList<Routine> arr = SharedData.getInstance(this).getRoutines();
-        arr.remove(Vars.routine);
-        SharedData.getInstance(this).setRoutines(arr);
+        ArrayList<Routine> arr = new ArrayList<>();
+        arr.add(Vars.routine);
+        SharedData.getInstance(this).cleanRoutines(arr);
         Vars.routine = null;
         redirectActv(this, Groups.class);
     }

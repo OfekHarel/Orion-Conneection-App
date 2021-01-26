@@ -146,7 +146,7 @@ public class NewRoutine extends BaseOrionActivity {
             group);
 
         msg = NetworkPackets.assamble("ROUT", routine.getTime().toString(), Time.getTimeZoneParam(),
-            Actions.getByFullName(routine.getActions()).getAsString());
+            Actions.getByFullName(routine.getActions()).getAsString(), routine.getName());
 
         Actions.ROUTINE.setStr(msg);
 
@@ -157,7 +157,7 @@ public class NewRoutine extends BaseOrionActivity {
             single);
 
         msg = NetworkPackets.assamble("ROUT", routine.getTime().toString(), Time.getTimeZoneParam(),
-            Actions.getByFullName(routine.getActions()).getAsString());
+            Actions.getByFullName(routine.getActions()).getAsString(), routine.getName());
 
         Actions.ROUTINE.setStr(msg);
 

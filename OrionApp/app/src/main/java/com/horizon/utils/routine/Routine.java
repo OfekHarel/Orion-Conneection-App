@@ -1,5 +1,8 @@
 package com.horizon.utils.routine;
 
+import com.horizon.networking.Executioner;
+import com.horizon.networking.NetRunnableFactory;
+import com.horizon.networking.NetworkPackets;
 import com.horizon.utils.conn.GroupConnection;
 import com.horizon.utils.conn.SingleConnection;
 
@@ -14,6 +17,7 @@ public class Routine {
   private final Time time;
   private SingleConnection singleConnection;
   private GroupConnection groupConnection;
+  private boolean isGroup;
 
   public Routine(String action, String name, Time time, SingleConnection singleConnection) {
     this.action = action;
@@ -21,6 +25,7 @@ public class Routine {
     this.time = time;
     this.singleConnection = singleConnection;
     this.devName = singleConnection.getName();
+    this.isGroup = false;
   }
 
   public Routine(String action, String name, Time time, GroupConnection groupConnection) {
@@ -29,6 +34,7 @@ public class Routine {
     this.time = time;
     this.groupConnection = groupConnection;
     this.devName = groupConnection.getName();
+    this.isGroup = true;
   }
 
   public String getActions() {
@@ -53,5 +59,15 @@ public class Routine {
 
   public String getDevName() {
     return devName;
+  }
+
+  public void kill() {
+    Executioner.Actions.DEL_ROUTINE.setStr(NetworkPackets.assamble("DROUT", getName()));
+    if (this.isGroup) {
+      groupConnection.send(Executioner.Actions.DEL_ROUTINE);
+    } else {
+      NetRunnableFactory.passAnAction(getDevName(), Executioner.Actions.DEL_ROUTINE);
+    }
+
   }
 }
