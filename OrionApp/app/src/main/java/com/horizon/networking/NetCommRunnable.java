@@ -1,8 +1,11 @@
 package com.horizon.networking;
 
+import android.util.Log;
+
 import java.io.IOException;
 
 import com.horizon.networking.Executioner.Actions;
+import com.horizon.utils.Vars;
 
 /**
  * A runnable class that's responsible of the passing flow of the communication.
@@ -10,17 +13,18 @@ import com.horizon.networking.Executioner.Actions;
 public class NetCommRunnable implements Runnable {
     private Client client;
     private Executioner executioner;
-    private String recvMsg = "";
 
+    public String recvMsg;
     private Actions act;
     private String id = "";
     private String name = "";
 
     private boolean synced = false;
-    public boolean isDoneSynceProc = false;
+    public boolean isDoneSyncProc = false;
 
     public NetCommRunnable() {
         act = null;
+        recvMsg = "";
     }
 
     /**
@@ -35,7 +39,7 @@ public class NetCommRunnable implements Runnable {
         name = nameInfo;
 
         synced = false;
-        isDoneSynceProc = false;
+        isDoneSyncProc = false;
         /*
          * Trying to connect
          */
@@ -48,7 +52,7 @@ public class NetCommRunnable implements Runnable {
             synced = false;
             e.printStackTrace();
         }
-        isDoneSynceProc = true;
+        isDoneSyncProc = true;
         return synced;
     }
 
@@ -60,23 +64,32 @@ public class NetCommRunnable implements Runnable {
         act = action;
     }
 
+    public String getRecvMsg() {
+        return recvMsg;
+    }
+
+    public void setRecvMsg(String recvMsg) {
+        this.recvMsg = recvMsg;
+    }
+
     /**
-     * Passes the action to the exeutioner.
+     * Passes the action to the executioner.
      * 
      * @throws IOException -
      */
     private void act() throws IOException {
         if (act != null) {
+            Log.i("3333333333333333333333333333333333333333", act.getAsString());
             executioner.Execute(act);
             act = null;
         }
     }
 
-    /**
-     * @return if the connection is synced
-     */
-    public boolean isSynced() {
-        return synced;
+    private void recvPacket() throws IOException {
+        String msg = client.receive();
+        if (!msg.equals("")) {
+            setRecvMsg(msg);
+        }
     }
 
     @Override
@@ -99,7 +112,7 @@ public class NetCommRunnable implements Runnable {
              * recv
              */
             try {
-                recvMsg = client.receive();
+                recvPacket();
             } catch (NumberFormatException | IOException e) {
                 e.printStackTrace();
             }

@@ -19,9 +19,9 @@
             android:id="@+id/pair_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="50dp"
             android:gravity="center_horizontal"
-            android:text="Pair new Device"
+            android:text="Pair"
+            android:layout_marginTop="70dp"
             android:textColor="@color/app_white"
             android:textSize="32sp"
             android:textStyle="bold" />
@@ -32,6 +32,7 @@
             android:layout_marginHorizontal="35dp"
             android:background="@color/app_white"
             android:layout_below="@id/pair_title"
+            android:layout_marginTop="10dp"
             android:id="@+id/pair_line"/>
 
         <com.google.android.material.textfield.TextInputLayout

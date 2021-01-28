@@ -6,32 +6,135 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer"
-    tools:context=".PCInfo"
+    tools:context=".Pair"
     android:background="@drawable/grad_background">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <include layout="@layout/main_toolbar" />
 
         <TextView
-            android:id="@+id/control_title"
-            android:paddingVertical="22dp"
+            android:id="@+id/pc_info_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Info"
+            android:gravity="center_horizontal"
+            android:text="PC info"
+            android:layout_marginTop="70dp"
             android:textColor="@color/app_white"
             android:textSize="32sp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"/>
+            android:textStyle="bold" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginHorizontal="35dp"
-            android:background="@color/app_white"/>
-    </LinearLayout>
+            android:background="@color/app_white"
+            android:layout_below="@id/pc_info_title"
+            android:layout_marginTop="10dp"
+            android:id="@+id/pc_info_line"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cpu_block"
+            android:paddingHorizontal="35dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/pc_info_line">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CPU: "
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/cpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:paddingHorizontal="10dp"
+                android:text=""
+                android:layout_marginVertical="3dp"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gpu_block"
+            android:paddingHorizontal="35dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/cpu_block">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GPU: "
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/gpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:paddingHorizontal="10dp"
+                android:text=""
+                android:layout_marginVertical="3dp"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ram_block"
+            android:paddingHorizontal="35dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/gpu_block">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RAM: "
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/ram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:paddingHorizontal="10dp"
+                android:text=""
+                android:layout_marginVertical="3dp"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/os_block"
+            android:paddingHorizontal="35dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/ram_block">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OS: "
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/os_ver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="37dp"
+                android:paddingHorizontal="10dp"
+                android:text=""
+                android:layout_marginVertical="3dp"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="300dp"
@@ -41,6 +144,6 @@
 
         <include
             layout="@layout/main_nav_drawer"/>
-    </RelativeLayout>
 
+    </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

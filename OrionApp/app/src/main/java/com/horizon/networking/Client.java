@@ -22,15 +22,15 @@ public class Client {
     private String name = "Comp";
 
     private final String PUBLIC_IP = "192.46.233.145";
-    private final String LOCAL_IP = "192.168.1.36";
+    private final String LOCAL_IP = "192.168.1.34";
     private final int PORT = 1691;
 
     private Encryption encryption = null;
 
     public Client() throws Exception {
         this.clientSocket = new Socket();
-        this.clientSocket.setSoTimeout(500);
-        this.clientSocket.connect(new InetSocketAddress(this.LOCAL_IP, this.PORT), 700);
+//        this.clientSocket.setSoTimeout(1000);
+        this.clientSocket.connect(new InetSocketAddress(this.LOCAL_IP, this.PORT), 1000);
 
         this.output = new OutputStreamWriter(this.clientSocket.getOutputStream(), StandardCharsets.UTF_8);
         this.cryptoOutput = new OutputStreamWriter(this.clientSocket.getOutputStream(), StandardCharsets.UTF_16LE);
@@ -53,7 +53,7 @@ public class Client {
     public void send(String msg) throws IOException {
         String length;
         if (this.encryption == null) {
-            length = String.format("%03d", msg.length());
+            length = String.format("%04d", msg.length());
             this.output.write(length);
             this.output.flush();
             System.out.println("send: " + length);
@@ -63,7 +63,7 @@ public class Client {
 
         } else {
             System.out.println("fuck: " + encryption.getFullKey());
-            length = String.format("%03d", (msg.length() * 4));
+            length = String.format("%04d", (msg.length() * 4));
             this.output.write(length);
             this.output.flush();
 
@@ -76,7 +76,7 @@ public class Client {
     }
 
     /**
-     * Receives a msf through the network.
+     * Receives a msg through the network.
      * 
      * @return the received net msg.
      * @throws NumberFormatException -
@@ -89,7 +89,7 @@ public class Client {
 
         int length = 0;
         if (this.encryption == null) {
-            for (int i = 0, dev = 100; i < NetworkPackets.HEADER; i++, dev /= 10) {
+            for (int i = 0, dev = 1000; i < NetworkPackets.HEADER; i++, dev /= 10) {
                 length += Character.getNumericValue(input.read()) * dev;
                 System.out.println(length);
             }
@@ -104,7 +104,7 @@ public class Client {
             return msg.toString();
         } else {
 
-            for (int i = 0, dev = 100; i < NetworkPackets.HEADER; i++, dev /= 10) {
+            for (int i = 0, dev = 1000; i < NetworkPackets.HEADER; i++, dev /= 10) {
                 length += Character.getNumericValue(input.read()) * dev;
             }
 

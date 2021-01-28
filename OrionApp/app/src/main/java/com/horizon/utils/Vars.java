@@ -51,4 +51,6 @@ public class Vars {
      * A Routine var to provide a temp var.
      */
     public static Routine routine = null;
+
+    public static String msg = "";
 }

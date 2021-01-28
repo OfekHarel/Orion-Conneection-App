@@ -14,6 +14,7 @@ public class SingleConnection extends Connection {
 
   private final String name;
   private final String id;
+  private  String[] info = null;
 
   private Thread thread;
 
@@ -47,5 +48,13 @@ public class SingleConnection extends Connection {
 
   public NetCommRunnable getRunnable() {
     return NetRunnableFactory.get(name);
+  }
+
+  public void setInfo(String[] info) {
+    this.info = info;
+  }
+
+  public String[] getInfo() {
+    return info;
   }
 }

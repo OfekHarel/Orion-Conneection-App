@@ -89,4 +89,14 @@ public class NetRunnableFactory {
             arr.get(i).flowConnection();
         }
     }
+
+    public static String getNetPacket(String name) {
+        String msg = "";
+        for (int i = 0; i < Vars.names.size(); i++) {
+            if (Vars.names.get(i).first.equals(name)) {
+                return Vars.names.get(i).second.getRecvMsg();
+            }
+        }
+        return null;
+    }
 }

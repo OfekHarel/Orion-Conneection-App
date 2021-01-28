@@ -5,7 +5,7 @@ package com.horizon.networking;
  */
 public final class NetworkPackets {
     public final static String SEPERATOR = "!";
-    public final static int HEADER = 3;
+    public final static int HEADER = 4;
 
     /**
      * Creates a msg that follows the protocol rules.

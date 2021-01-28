@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import com.google.android.material.textfield.TextInputLayout;
+import com.horizon.networking.NetworkPackets;
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 import com.horizon.utils.conn.SingleConnection;
+
+import java.util.Arrays;
 import java.util.Objects;
 
 import android.view.HapticFeedbackConstants;
@@ -164,6 +167,9 @@ public class Pair extends BaseOrionActivity {
               handler.post(() -> id.setError("Invalid ID - check for typos"));
             } else {
               handler.post(() -> id.setError(null));
+              String[] arr = NetworkPackets.split(Vars.msg);
+              connection.setInfo(Arrays.copyOfRange(arr, 1,arr.length));
+              Vars.msg = "";
 
               /*
                * Taking care of 2 scenarios that the use paired from single device or from a

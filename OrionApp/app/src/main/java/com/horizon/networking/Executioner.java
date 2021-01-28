@@ -2,6 +2,8 @@ package com.horizon.networking;
 
 import android.util.Log;
 
+import com.horizon.utils.Vars;
+
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Random;
@@ -11,7 +13,7 @@ import java.util.Random;
  * outcomes.
  */
 public class Executioner {
-    private Client client;
+    private final Client client;
 
     public Executioner(Client client) {
         this.client = client;
@@ -38,7 +40,7 @@ public class Executioner {
         BigInteger g = new BigInteger(msgArr[1]);
         BigInteger n = new BigInteger(msgArr[2]);
         BigInteger g_Pow_a_Mod_n = new BigInteger(msgArr[3]);
-        Encryption crypto = new Encryption(g, n, BigInteger.probablePrime(8, new Random()));
+        Encryption crypto = new Encryption(g, n, BigInteger.probablePrime(4, new Random()));
         crypto.getFullKey(g_Pow_a_Mod_n);
         this.client.send(NetworkPackets.assamble(NetworkPackets.IncomingOperations.CONNECT.getAsString(),
                 crypto.getPartialKey().toString()));
@@ -74,6 +76,7 @@ public class Executioner {
             while (!NetworkPackets.split(val)[0].equals(NetworkPackets.IncomingOperations.PAIRED.getAsString())) {
                 val = this.client.receive();
             }
+            Vars.msg = val;
             return true;
         }
     }
@@ -97,7 +100,8 @@ public class Executioner {
         ROUTINE("ROUT"),
         ON("ON"),
         MAGIC("MAGIC"),
-        DEL_ROUTINE("DROUT");
+        DEL_ROUTINE("DROUT"),
+        SPECS_INFO("SPECS");
 
         private String str;
 
