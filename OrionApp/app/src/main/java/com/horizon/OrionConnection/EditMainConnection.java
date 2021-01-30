@@ -9,6 +9,8 @@ import android.widget.ListView;
 
 import androidx.annotation.RequiresApi;
 
+import com.horizon.networking.Executioner;
+import com.horizon.networking.NetRunnableFactory;
 import com.horizon.utils.SharedData;
 import com.horizon.utils.conn.SingleConnection;
 
@@ -61,6 +63,9 @@ public class EditMainConnection extends BaseOrionActivity {
     public void clickDelete(View view) {
         setPopWin(this, "Warning", "Note - it will delete any collisions", "Delete anyway",
                 (dialog, which) ->{
+                    for (SingleConnection conn: chosen) {
+                        NetRunnableFactory.passAnAction(conn.getName(), Executioner.Actions.DISCONNECT);
+                    }
                     SharedData.getInstance(EditMainConnection.this).cleanSingle(chosen);
                     redirectActv(EditMainConnection.this, MainActivity.class);
                     preformVibration(view, HapticFeedbackConstants.CONFIRM);
@@ -73,7 +78,7 @@ public class EditMainConnection extends BaseOrionActivity {
      */
     public void clickCheckAllConnections(View view) {
         boolean toggleTrue = SharedData.getInstance(this).getSingleConnections().size() != chosen.size();
-        for (int i=0; i < listView.getAdapter().getCount(); i++) {
+        for (int i = 0; i < listView.getAdapter().getCount(); i++) {
             listView.setItemChecked(i, toggleTrue);
             choose(i, toggleTrue);
         }

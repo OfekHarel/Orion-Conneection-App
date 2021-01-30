@@ -167,9 +167,6 @@ public class Pair extends BaseOrionActivity {
               handler.post(() -> id.setError("Invalid ID - check for typos"));
             } else {
               handler.post(() -> id.setError(null));
-              String[] arr = NetworkPackets.split(Vars.msg);
-              connection.setInfo(Arrays.copyOfRange(arr, 1,arr.length));
-              Vars.msg = "";
 
               /*
                * Taking care of 2 scenarios that the use paired from single device or from a

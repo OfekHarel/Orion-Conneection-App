@@ -2,9 +2,6 @@ package com.horizon.OrionConnection;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.horizon.utils.Vars;
@@ -37,21 +34,12 @@ public class PCInfo extends BaseOrionActivity {
   @SuppressLint("SetTextI18n")
   private void write() {
     SingleConnection con = Vars.connection;
-
     if (con != null) {
-      this.title.setText(con.getName() + "'s");
-      Log.i("111111111111111111", "1");
-      this.os.setText(con.getInfo()[1]);
-      Log.i("111111111111111111", "2");
-
-      this.ram.setText(con.getInfo()[2]);
-      Log.i("111111111111111111", "3");
-
-      this.cpu.setText(con.getInfo()[3]);
-      Log.i("111111111111111111", "4");
-
-      this.gpu.setText(con.getInfo()[4]);
-      Log.i("111111111111111111", "5");
+      this.title.setText(con.getName() + "'s Info");
+      this.os.setText(con.getInfo()[0]);
+      this.ram.setText(con.getInfo()[1] + " GB");
+      this.cpu.setText(con.getInfo()[2]);
+      this.gpu.setText(con.getInfo()[3]);
     }
   }
 }

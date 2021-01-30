@@ -2,7 +2,10 @@ package com.horizon.utils.conn;
 
 import com.horizon.networking.NetCommRunnable;
 import com.horizon.networking.NetRunnableFactory;
+import com.horizon.networking.NetworkPackets;
+import com.horizon.utils.Vars;
 
+import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -34,6 +37,11 @@ public class SingleConnection extends Connection {
   public boolean initConnection() {
     Future<Boolean> is = Executors.newSingleThreadExecutor().submit(() -> getRunnable().pair(id, name));
     try {
+      if(is.get()) {
+        String[] arr = NetworkPackets.split(Vars.msg);
+        setInfo(Arrays.copyOfRange(arr, 1,arr.length));
+        Vars.msg = "";
+      }
       return is.get();
     } catch (ExecutionException | InterruptedException e) {
       e.printStackTrace();
