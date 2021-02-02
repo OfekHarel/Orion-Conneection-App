@@ -1,11 +1,7 @@
 package com.horizon.networking;
 
-import android.util.Log;
-
 import java.io.IOException;
-
 import com.horizon.networking.Executioner.Actions;
-import com.horizon.utils.Vars;
 
 /**
  * A runnable class that's responsible of the passing flow of the communication.
@@ -74,17 +70,19 @@ public class NetCommRunnable implements Runnable {
 
     /**
      * Passes the action to the executioner.
-     * 
      * @throws IOException -
      */
     private void act() throws IOException {
         if (act != null) {
-            Log.i("3333333333333333333333333333333333333333", act.getAsString());
             executioner.Execute(act);
             act = null;
         }
     }
 
+    /**
+     * recv a network packet
+     * @throws IOException -
+     */
     private void recvPacket() throws IOException {
         String msg = client.receive();
         if (!msg.equals("")) {
@@ -92,6 +90,9 @@ public class NetCommRunnable implements Runnable {
         }
     }
 
+    /**
+     * The periodic function
+     */
     @Override
     public void run() {
 

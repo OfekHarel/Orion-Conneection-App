@@ -18,9 +18,9 @@ import java.util.ArrayList;
 
 public class EditMainConnection extends BaseOrionActivity {
 
-    private ListView listView; // List view of the singles
+    private ListView listView;
     private ArrayAdapter<String> adapter;
-    private ArrayList<SingleConnection> chosen = new ArrayList<SingleConnection>();
+    private final ArrayList<SingleConnection> chosen = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,5 +97,4 @@ public class EditMainConnection extends BaseOrionActivity {
             chosen.remove(SharedData.getInstance(EditMainConnection.this).getSingleConnectionByName(name, chosen));
         }
     }
-
 }

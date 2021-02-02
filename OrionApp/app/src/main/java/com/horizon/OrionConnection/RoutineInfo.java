@@ -41,6 +41,10 @@ public class RoutineInfo extends BaseOrionActivity {
         redirectActv(this, Groups.class);
     }
 
+    /**
+     * This function's responsible of deleting the selected connections when dlt btn is pressed
+     * @param view
+     */
     public void clickDelete(View view) {
         ArrayList<Routine> arr = new ArrayList<>();
         arr.add(Vars.routine);

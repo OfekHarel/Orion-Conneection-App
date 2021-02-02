@@ -101,7 +101,7 @@ public class PairGroup extends BaseOrionActivity {
             return false;
 
         } else { // valid
-            this.errorDisp.setText("");
+            this.errorDisp.setText(null);
             return true;
         }
     }
@@ -125,7 +125,6 @@ public class PairGroup extends BaseOrionActivity {
         view.setHapticFeedbackEnabled(true);
         if (!validateName() | !validateConnections()) {
             view.performHapticFeedback(HapticFeedbackConstants.REJECT);
-            return;
         } else {
             view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
             redirectActv(this, MainActivity.class);

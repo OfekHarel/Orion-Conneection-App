@@ -8,6 +8,9 @@ import android.view.View;
 
 import com.horizon.utils.SharedData;
 
+/**
+ * A view to do the loading background processes
+ */
 public class StartLoader extends BaseOrionActivity {
 
     @Override

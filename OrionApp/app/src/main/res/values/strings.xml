@@ -21,6 +21,21 @@
         <item>Restart</item>
     </string-array>
 
+    <string-array name="Spinner_Actions_Magic">
+        <item>Volume Up</item>
+        <item>Volume down</item>
+        <item>Mute</item>
+        <item>Next</item>
+        <item>Previous</item>
+        <item>Pause Play Toggle</item>
+        <item>Power Off</item>
+        <item>Power On</item>
+        <item>Sleep</item>
+        <item>Lock</item>
+        <item>Restart</item>
+        <item>Magic</item>
+    </string-array>
+
     <string name="empty_error">Cannot be empty</string>
     <string name="long_error">Too long</string>
     <string name="short_error">Too short</string>

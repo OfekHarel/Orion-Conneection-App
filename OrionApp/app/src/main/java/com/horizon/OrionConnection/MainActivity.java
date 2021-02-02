@@ -13,7 +13,7 @@ import com.horizon.utils.conn.ConnectionListAdapter;
 public class MainActivity extends BaseOrionActivity {
 
   private ListView listView; // List view of the device list.
-  private ConnectionListAdapter listadpt;
+  private ConnectionListAdapter listAdpt;
 
   private int backBTNCounter = 0;
 
@@ -30,15 +30,15 @@ public class MainActivity extends BaseOrionActivity {
      * List view init.
      */
     this.listView = findViewById(R.id.main_list);
-    this.listadpt = new ConnectionListAdapter(this, R.layout.single_conn,
+    this.listAdpt = new ConnectionListAdapter(this, R.layout.single_conn,
         SharedData.getInstance(this).getSingleConnections());
-    this.listView.setAdapter(this.listadpt);
+    this.listView.setAdapter(this.listAdpt);
 
     /*
      * This code is responsible of what happens when a connection widget is pressed.
      */
     listView.setOnItemClickListener((arg0, arg1, arg2, id) -> {
-      Vars.connection = listadpt.getItem(arg2);
+      Vars.connection = listAdpt.getItem(arg2);
       Vars.isFromGroup = false;
       redirectActv(MainActivity.this, Control.class);
     });

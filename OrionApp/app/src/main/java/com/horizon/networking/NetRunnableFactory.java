@@ -57,12 +57,12 @@ public class NetRunnableFactory {
     }
 
     /**
-     * This Function builds the factory from scartch and it's respnible of remaping
+     * This Function builds the factory from scratch and it's responsible of remapping
      * any association between the connection to it's runnable. This function allows
      * to maintain the paired connections.
      * 
      * @param arr - An array list of Single connections right from the Shared
-     *            Preffrences
+     *            Preferences
      * @return - The edited and updated arr.
      */
     public static Pair<ArrayList<SingleConnection>, ArrayList<SingleConnection>> buildFromBlueprints(ArrayList<SingleConnection> arr) {
@@ -84,19 +84,13 @@ public class NetRunnableFactory {
         }
     }
 
+    /**
+     * starts the flow communication to each dead connection
+     * @param arr - all valid dead connections
+     */
     public static void backFromTheDead(ArrayList<SingleConnection> arr) {
         for (int i = 0; i < arr.size(); i++) {
             arr.get(i).flowConnection();
         }
-    }
-
-    public static String getNetPacket(String name) {
-        String msg = "";
-        for (int i = 0; i < Vars.names.size(); i++) {
-            if (Vars.names.get(i).first.equals(name)) {
-                return Vars.names.get(i).second.getRecvMsg();
-            }
-        }
-        return null;
     }
 }

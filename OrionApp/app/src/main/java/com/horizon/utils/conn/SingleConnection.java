@@ -18,22 +18,32 @@ public class SingleConnection extends Connection {
   private final String name;
   private final String id;
   private  String[] info = null;
-
   private Thread thread;
 
+  /**
+   * @param name - The name of the connection
+   * @param id - the ID of the computer
+   */
   public SingleConnection(String name, String id) {
     this.id = id;
     this.name = name;
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  /**
+   * @return the connection's ID.
+   */
   public String getID() {
     return id;
   }
 
+  /**
+   * @return whether the connection is successfully initiated.
+   */
   public boolean initConnection() {
     Future<Boolean> is = Executors.newSingleThreadExecutor().submit(() -> getRunnable().pair(id, name));
     try {
@@ -49,19 +59,31 @@ public class SingleConnection extends Connection {
     }
   }
 
+  /**
+   * Starts the runnable thread of the flow incoming and outgoing msg.
+   */
   public void flowConnection() {
     thread = new Thread(getRunnable());
     thread.start();
   }
 
+  /**
+   * @return the runnable that this connection is connected to.
+   */
   public NetCommRunnable getRunnable() {
     return NetRunnableFactory.get(name);
   }
 
+  /**
+   * @param info - the specs info of the connection
+   */
   public void setInfo(String[] info) {
     this.info = info;
   }
 
+  /**
+   * @return the specs info
+   */
   public String[] getInfo() {
     return info;
   }

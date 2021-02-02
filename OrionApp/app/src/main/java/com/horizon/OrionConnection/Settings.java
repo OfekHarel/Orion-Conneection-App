@@ -1,8 +1,6 @@
 package com.horizon.OrionConnection;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
@@ -22,7 +20,6 @@ public class Settings extends BaseOrionActivity {
 
     this.magicCheckBox = findViewById(R.id.magic_check_box);
     fromMemSettings();
-    Log.i("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", Boolean.toString(SharedData.getInstance(Settings.this).isMagic()));
     this.magicCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
       SharedData.getInstance(Settings.this).setMagic(isChecked);
       String txt;
@@ -31,8 +28,7 @@ public class Settings extends BaseOrionActivity {
       } else {
         txt = "Your problem.";
       }
-      Toast.makeText(Settings.this, txt, Toast.LENGTH_SHORT).show();
-    });
+      Toast.makeText(Settings.this, txt, Toast.LENGTH_SHORT).show();});
   }
 
   private void fromMemSettings() {
@@ -47,20 +43,17 @@ public class Settings extends BaseOrionActivity {
     redirectActv(this, MainActivity.class);
   }
 
-  private void preformVibration(View view) {
-    view.setHapticFeedbackEnabled(true);
-    view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-  }
-
   /*
    * Override to make a more efficient case.
    */
   @Override
   public void clickSettings(View view) {
     closeDrawer();
-    preformVibration(view);
   }
 
+  /**
+   * making sure that all the settings are updated.
+   */
   @Override
   protected void onResume() {
     super.onResume();

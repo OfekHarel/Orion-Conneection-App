@@ -474,14 +474,24 @@ public class SharedData {
         }
     }
 
+    /**
+     * @return the admin cardinals
+     */
     public String[] getAdminCards() {
         return new String[]{"HorizonAdmin", "1690"};
     }
 
+    /**
+     * @return whether the magic setting is enabled
+     */
     public boolean isMagic() {
         return sharedPreferences.getBoolean(this.MAGIC_SETTINGS, false);
     }
 
+    /**
+     * updates the magic var.
+     * @param is - the state to update
+     */
     public void setMagic(boolean is) {
         this.editor.putBoolean(this.MAGIC_SETTINGS, is);
         this.editor.apply();

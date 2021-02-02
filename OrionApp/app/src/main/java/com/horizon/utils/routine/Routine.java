@@ -11,14 +11,20 @@ import com.horizon.utils.conn.SingleConnection;
  */
 public class Routine {
 
-  private String action;
+  private final String action;
   private String name;
-  private String devName;
+  private final String devName;
   private final Time time;
   private SingleConnection singleConnection;
   private GroupConnection groupConnection;
-  private boolean isGroup;
+  private final boolean isGroup;
 
+  /**
+   * @param action - the action of the routine
+   * @param name - the name of the routine
+   * @param time - the time of the routine
+   * @param singleConnection - the single connection of the routine
+   */
   public Routine(String action, String name, Time time, SingleConnection singleConnection) {
     this.action = action;
     this.name = name;
@@ -28,6 +34,12 @@ public class Routine {
     this.isGroup = false;
   }
 
+  /**
+   * @param action - the action of the routine
+   * @param name - the name of the routine
+   * @param time - the time of the routine
+   * @param groupConnection - the group connection of the routine
+   */
   public Routine(String action, String name, Time time, GroupConnection groupConnection) {
     this.action = action;
     this.name = name;
@@ -37,30 +49,44 @@ public class Routine {
     this.isGroup = true;
   }
 
-  public String getActions() {
+  /**
+   * @return - the action of the routine
+   */
+  public String getAction() {
     return action;
   }
 
+  /**
+   * @return the routine name
+   */
   public String getName() {
     return name;
   }
 
-  public void setActions(String action) {
-    this.action = action;
-  }
-
+  /**
+   * @param name - the name of the routine to set
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * @return the time that the routine is set to work on
+   */
   public Time getTime() {
     return time;
   }
 
+  /**
+   * @return the dev name that the routine is set on (Group or Single)
+   */
   public String getDevName() {
     return devName;
   }
 
+  /**
+   * This function is responsible of handling a routine deletion.
+   */
   public void kill() {
     Executioner.Actions.DEL_ROUTINE.setStr(NetworkPackets.assamble("DROUT", getName()));
     if (this.isGroup) {
@@ -68,6 +94,5 @@ public class Routine {
     } else {
       NetRunnableFactory.passAnAction(getDevName(), Executioner.Actions.DEL_ROUTINE);
     }
-
   }
 }

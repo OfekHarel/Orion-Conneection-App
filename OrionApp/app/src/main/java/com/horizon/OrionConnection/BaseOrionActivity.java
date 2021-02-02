@@ -150,10 +150,26 @@ public class BaseOrionActivity extends AppCompatActivity {
     closeDrawer();
   }
 
+  /**
+   * changes the loading bar state<p>
+   * NEED TO EXIST IN THE XML FILE.
+   * @param mode - the mode to change
+   * @param handler - the handler to use
+   */
   protected void changeLoadingBarState(int mode, Handler handler) {
     handler.post(() -> runOnUiThread(() -> loadingBar.setVisibility(mode)));
   }
 
+  /**
+   * builds a pop up dialog window.
+   * sets a default cancel btn.
+   * @param context - the context where it will show up.
+   * @param title - the title of the window.
+   * @param msg - the pop up window description
+   * @param positiveBtn - positive option string
+   * @param positiveListener - what will happen when pressing positive.
+   * @return the popup win object
+   */
   protected AlertDialog.Builder setPopWin(Context context, String title, String msg, String positiveBtn,
       DialogInterface.OnClickListener positiveListener) {
     AlertDialog.Builder alert = new AlertDialog.Builder(context);
@@ -165,6 +181,9 @@ public class BaseOrionActivity extends AppCompatActivity {
     return alert;
   }
 
+  /**
+   * Exits the app to the android main screen (home page)
+   */
   protected void exit() {
     Intent intent = new Intent(Intent.ACTION_MAIN);
     intent.addCategory(Intent.CATEGORY_HOME);
@@ -172,8 +191,13 @@ public class BaseOrionActivity extends AppCompatActivity {
     startActivity(intent);
   }
 
-  protected void preformVibration(View view, int kind) {
+  /**
+   * preforms a vibration
+   * @param view - the context
+   * @param type - which vibration type
+   */
+  protected void preformVibration(View view, int type) {
     view.setHapticFeedbackEnabled(true);
-    view.performHapticFeedback(kind);
+    view.performHapticFeedback(type);
   }
 }

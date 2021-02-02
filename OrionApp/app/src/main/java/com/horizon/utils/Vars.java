@@ -23,7 +23,7 @@ public class Vars {
      * A GroupConnection var to help and provide a temp var of a group connection.
      * Used in the pair / control group process.
      */
-    public static GroupConnection newGroup = new GroupConnection("", new ArrayList<SingleConnection>());
+    public static GroupConnection newGroup = new GroupConnection("", new ArrayList<>());
 
     /**
      * A Single Connection var to help and provide a temp var of a group connection.
@@ -52,5 +52,8 @@ public class Vars {
      */
     public static Routine routine = null;
 
+    /**
+     * Util string for incoming msgs.
+     */
     public static String msg = "";
 }

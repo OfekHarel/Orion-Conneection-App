@@ -152,6 +152,8 @@ public class Executioner {
                     return Actions.LOCK;
                 case "Restart":
                     return Actions.RESTART;
+                case "Magic":
+                    return Actions.MAGIC;
                 default:
                     return null;
             }

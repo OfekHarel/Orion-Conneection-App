@@ -1,5 +1,7 @@
 package com.horizon.utils.routine;
 
+import android.annotation.SuppressLint;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,6 +40,7 @@ public class Time {
      * @return A formatted string {+hh:mm / -hh:mm} that contains the time offset
      *         relative to GMT.
      */
+    @SuppressLint("SimpleDateFormat")
     public static String getTimeZoneParam() {
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"), Locale.getDefault());
         Date currentLocalTime = calendar.getTime();
@@ -45,6 +48,7 @@ public class Time {
         return date.format(currentLocalTime);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public String toString() {
         return String.format("%2d:%2d", this.h, this.min);

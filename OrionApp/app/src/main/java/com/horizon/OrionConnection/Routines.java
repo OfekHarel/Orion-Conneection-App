@@ -2,13 +2,11 @@ package com.horizon.OrionConnection;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
-import com.horizon.utils.routine.Routine;
 
 public class Routines extends BaseOrionActivity {
 

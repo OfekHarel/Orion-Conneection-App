@@ -30,6 +30,8 @@ public class NewRoutine extends BaseOrionActivity {
   private Spinner devSpinner;
 
   private ArrayAdapter<String> devSpinnerAdapter;
+  private ArrayAdapter<String> actAdapter;
+
 
   private String[] timeFormatted;
 
@@ -49,6 +51,12 @@ public class NewRoutine extends BaseOrionActivity {
     this.devSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     this.devSpinner.setAdapter(this.devSpinnerAdapter);
     this.devSpinnerAdapter.notifyDataSetChanged();
+
+    String[] actArr = getResources().getStringArray(SharedData.getInstance(this).isMagic()?
+            R.array.Spinner_Actions_Magic: R.array.Spinner_Actions);
+    this.actAdapter = new ArrayAdapter<>(
+            this, android.R.layout.simple_spinner_item, actArr);
+    this.actSpinner.setAdapter( this.actAdapter);
   }
 
   /*
@@ -129,7 +137,6 @@ public class NewRoutine extends BaseOrionActivity {
 
     if (!validateName() | !validateTime()) {
       view.performHapticFeedback(HapticFeedbackConstants.REJECT);
-      return;
     } else {
       view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
       String d_name = this.devSpinner.getSelectedItem().toString();
@@ -146,7 +153,7 @@ public class NewRoutine extends BaseOrionActivity {
             group);
 
         msg = NetworkPackets.assamble("ROUT", routine.getTime().toString(), Time.getTimeZoneParam(),
-            Actions.getByFullName(routine.getActions()).getAsString(), routine.getName());
+            Actions.getByFullName(routine.getAction()).getAsString(), routine.getName());
 
         Actions.ROUTINE.setStr(msg);
 
@@ -157,7 +164,7 @@ public class NewRoutine extends BaseOrionActivity {
             single);
 
         msg = NetworkPackets.assamble("ROUT", routine.getTime().toString(), Time.getTimeZoneParam(),
-            Actions.getByFullName(routine.getActions()).getAsString(), routine.getName());
+            Actions.getByFullName(routine.getAction()).getAsString(), routine.getName());
 
         Actions.ROUTINE.setStr(msg);
 

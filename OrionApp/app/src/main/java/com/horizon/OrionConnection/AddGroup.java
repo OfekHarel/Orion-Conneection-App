@@ -109,7 +109,7 @@ public class AddGroup extends BaseOrionActivity {
             return false;
 
         } else { // valid
-            this.errorDisp.setText("");
+            this.errorDisp.setText(null);
             return true;
         }
     }
@@ -124,7 +124,6 @@ public class AddGroup extends BaseOrionActivity {
         view.setHapticFeedbackEnabled(true);
         if (!validateName() | !validateConnections()) {
             view.performHapticFeedback(HapticFeedbackConstants.REJECT);
-            return;
         } else {
             view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
             String nameInfo = Objects.requireNonNull(name.getEditText()).getText().toString();

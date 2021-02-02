@@ -31,6 +31,9 @@ public class PCInfo extends BaseOrionActivity {
     write();
   }
 
+  /**
+   * Writes the pc specs according to the connections {@code string[] PC_Info}
+   */
   @SuppressLint("SetTextI18n")
   private void write() {
     SingleConnection con = Vars.connection;

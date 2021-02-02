@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import com.google.android.material.textfield.TextInputLayout;
-import com.horizon.networking.NetworkPackets;
 import com.horizon.utils.SharedData;
 import com.horizon.utils.Vars;
 import com.horizon.utils.conn.SingleConnection;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 import android.view.HapticFeedbackConstants;

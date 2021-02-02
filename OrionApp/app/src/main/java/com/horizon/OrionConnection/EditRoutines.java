@@ -18,9 +18,9 @@ import java.util.ArrayList;
 
 public class EditRoutines extends BaseOrionActivity {
 
-    private ListView listView; // List view of the singles
+    private ListView listView;
     private ArrayAdapter<String> adapter;
-    private ArrayList<Routine> chosen = new ArrayList<Routine>();
+    private final ArrayList<Routine> chosen = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

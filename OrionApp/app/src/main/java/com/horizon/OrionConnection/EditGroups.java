@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 public class EditGroups extends BaseOrionActivity {
 
-    private ListView listView; // List view of the singles
+    private ListView listView;
     private ArrayAdapter<String> adapter;
-    private ArrayList<GroupConnection> chosen = new ArrayList<GroupConnection>();
+    private final ArrayList<GroupConnection> chosen = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

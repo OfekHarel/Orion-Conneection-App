@@ -13,7 +13,7 @@ public class GroupInfo extends BaseOrionActivity {
 
     private TextView textView;
     private ListView listView; // List view of the device list.
-    private ConnectionListAdapter listadpt;
+    private ConnectionListAdapter listAdpt;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -30,15 +30,15 @@ public class GroupInfo extends BaseOrionActivity {
          * List view init.
          */
         this.listView = findViewById(R.id.group_i_list);
-        this.listadpt = new ConnectionListAdapter(this, R.layout.single_conn,
+        this.listAdpt = new ConnectionListAdapter(this, R.layout.single_conn,
                 Vars.newGroup.getList());
-        this.listView.setAdapter(this.listadpt);
+        this.listView.setAdapter(this.listAdpt);
 
         /*
          * This code is responsible of what happens when a connection widget is pressed.
          */
         listView.setOnItemClickListener((arg0, arg1, arg2, id) -> {
-            Vars.connection = listadpt.getItem(arg2);
+            Vars.connection = listAdpt.getItem(arg2);
             Vars.isFromGroup = false;
             redirectActv(GroupInfo.this, Control.class);
         });
@@ -52,11 +52,7 @@ public class GroupInfo extends BaseOrionActivity {
         redirectActv(this, Control.class);
     }
 
-    public void clickAddGroupDec(View view) {
+    public void clickAddGroupDec(View view) {}
 
-    }
-
-    public void clickEditGroupDev(View view) {
-
-    }
+    public void clickEditGroupDev(View view) {}
 }
