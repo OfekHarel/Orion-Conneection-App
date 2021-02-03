@@ -35,7 +35,8 @@ public final class NetworkPackets {
      * An enum that contains the incoming network state msgs.
      */
     public enum IncomingOperations {
-        INVALID("INVALID"), VALID("VALID"), PAIRED("HELLO"), CONNECT("CONN");
+        INVALID("INVALID"), VALID("VALID"), PAIRED("HELLO"), CONNECT("CONN"),
+        USAGE("USE");
 
         private final String msg;
 

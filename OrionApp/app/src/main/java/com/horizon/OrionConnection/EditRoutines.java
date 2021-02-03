@@ -65,12 +65,9 @@ public class EditRoutines extends BaseOrionActivity {
     */
     @RequiresApi(api = Build.VERSION_CODES.R)
     public void clickDelete(View view) {
-        setPopWin(this, "Warning", "Note - it will delete any collisions", "Delete anyway",
-                (dialog, which) ->{
-                    SharedData.getInstance(EditRoutines.this).cleanRoutines(chosen);
-                    preformVibration(view, HapticFeedbackConstants.CONFIRM);
-                    redirectActv(EditRoutines.this, MainActivity.class);
-                }).show();
+        SharedData.getInstance(EditRoutines.this).cleanRoutines(chosen);
+        preformVibration(view, HapticFeedbackConstants.CONFIRM);
+        redirectActv(EditRoutines.this, MainActivity.class);
     }
 
     /**

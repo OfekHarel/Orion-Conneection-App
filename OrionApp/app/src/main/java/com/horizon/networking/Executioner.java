@@ -101,7 +101,8 @@ public class Executioner {
         ON("ON"),
         MAGIC("MAGIC"),
         DEL_ROUTINE("DROUT"),
-        SPECS_INFO("SPECS");
+        SPECS_INFO("SPECS"),
+        USE("USE");
 
         private String str;
 
