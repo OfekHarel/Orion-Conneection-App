@@ -55,13 +55,9 @@ public class Client {
             length = String.format("%04d", msg.length());
             this.output.write(length);
             this.output.flush();
-            System.out.println("send: " + length);
-
             this.output.write(msg);
-            System.out.println("send: " + msg);
 
         } else {
-            System.out.println("fuck: " + encryption.getFullKey());
             length = String.format("%04d", (msg.length() * 4));
             this.output.write(length);
             this.output.flush();
@@ -69,7 +65,6 @@ public class Client {
             msg = this.encryption.encryptMsg(msg);
 
             this.cryptoOutput.write(msg);
-            System.out.println("send: " + msg);
             this.cryptoOutput.flush();
         }
     }
@@ -90,16 +85,13 @@ public class Client {
         if (this.encryption == null) {
             for (int i = 0, dev = 1000; i < NetworkPackets.HEADER; i++, dev /= 10) {
                 length += Character.getNumericValue(input.read()) * dev;
-                System.out.println(length);
             }
 
             StringBuilder msg = new StringBuilder();
             for (int i = 0; i < length; i++) {
                 msg.append((char) input.read());
-                System.out.println(msg.toString());
             }
 
-            System.out.println("recv " + length + " " + msg);
             return msg.toString();
         } else {
 
@@ -110,10 +102,8 @@ public class Client {
             StringBuilder msg = new StringBuilder();
             for (int i = 0; i < length / 4; i++) {
                 msg.append((char) cryptoInput.read());
-                System.out.println(msg.toString());
             }
             String finalMsg = encryption.decryptMsg(msg.toString());
-            System.out.println("recv " + length + " " + finalMsg);
             return finalMsg;
         }
 
