@@ -22,14 +22,13 @@ public class Client {
     private String name = "Comp";
 
     private final String PUBLIC_IP = "192.46.233.145";
-    private final String LOCAL_IP = "192.168.1.34";
+    private final String LOCAL_IP = "192.168.1.41";
     private final int PORT = 1691;
 
     private Encryption encryption = null;
 
     public Client() throws Exception {
         this.clientSocket = new Socket();
-//        this.clientSocket.setSoTimeout(1000);
         this.clientSocket.connect(new InetSocketAddress(this.LOCAL_IP, this.PORT), 1000);
 
         this.output = new OutputStreamWriter(this.clientSocket.getOutputStream(), StandardCharsets.UTF_8);

@@ -38,7 +38,7 @@ public class RoutineInfo extends BaseOrionActivity {
      */
     @Override
     public void onBackPressed() {
-        redirectActv(this, Groups.class);
+        redirectActv(this, Routines.class);
     }
 
     /**

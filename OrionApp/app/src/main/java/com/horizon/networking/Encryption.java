@@ -69,9 +69,12 @@ public class Encryption {
      */
     public String encryptMsg(String msg) {
         String encMsg = "";
+        int ord;
         char[] arr = msg.toCharArray();
         for (char c : arr) {
-            encMsg += (char) ((int) (c) + this.fullKey.intValue());
+            ord = ((int) (c)) + this.fullKey.intValue();
+            ord %= 256;
+            encMsg += (char) Math.abs(ord);
         }
         return encMsg;
     }
@@ -82,9 +85,12 @@ public class Encryption {
      */
     public String decryptMsg(String msg) {
         String decMsg = "";
+        int ord;
         char[] arr = msg.toCharArray();
         for (char c : arr) {
-            decMsg += (char) ((int) (c) - this.fullKey.intValue());
+            ord = ((int) (c)) - this.fullKey.intValue();
+            ord %= 256;
+            decMsg += (char) ord;
         }
         return decMsg;
     }
